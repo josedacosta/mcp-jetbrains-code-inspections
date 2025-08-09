@@ -9,7 +9,7 @@
 
 // Syntax Error: Missing closing bracket
 function brokenFunction() {
-    console.log("Missing closing bracket");
+    console.log('Missing closing bracket');
     // Fixed: Added closing parenthesis and semicolon
 }
 
@@ -18,7 +18,7 @@ console.log(undefinedVariable);
 const result = nonExistentFunction();
 
 // Type Error: Type mismatch
-const numberValue: number = "This is a string";
+const numberValue: number = 'This is a string';
 const booleanValue: boolean = 123;
 
 interface User {
@@ -26,7 +26,7 @@ interface User {
     age: number;
 }
 const user: User = {
-    name: "John",
+    name: 'John',
     // Missing required property 'age'
 };
 
@@ -37,8 +37,8 @@ const user: User = {
 // Unreachable code
 function unreachableExample() {
     return true;
-    console.log("This will never execute");
-    const neverUsed = "unreachable";
+    console.log('This will never execute');
+    const neverUsed = 'unreachable';
 }
 
 // Infinite loop
@@ -46,7 +46,7 @@ function infiniteLoop() {
     while (true) {
         // No break condition
     }
-    console.log("Never reached");
+    console.log('Never reached');
 }
 
 // Division by zero
@@ -68,12 +68,12 @@ function duplicateFunction() {
 const unusedVariable = "I'm never used";
 let anotherUnused = 42;
 function unusedFunction() {
-    return "Never called";
+    return 'Never called';
 }
 
 // Empty catch block
 try {
-    throw new Error("Test error");
+    throw new Error('Test error');
 } catch (e) {
     // Empty catch - error swallowed
 }
@@ -81,23 +81,23 @@ try {
 // Comparing with NaN
 const nanComparison = NaN === NaN;
 if (someValue == NaN) {
-    console.log("Wrong NaN comparison");
+    console.log('Wrong NaN comparison');
 }
 
 // Dead code / Unnecessary condition
 const alwaysTrue = true;
 if (alwaysTrue) {
-    console.log("Always executes");
+    console.log('Always executes');
 } else {
-    console.log("Dead code");
+    console.log('Dead code');
 }
 
 // Duplicate conditions
 const x = 5;
 if (x > 3) {
-    console.log("First");
+    console.log('First');
 } else if (x > 3) {
-    console.log("Duplicate condition");
+    console.log('Duplicate condition');
 }
 
 // ============================================================================
@@ -105,14 +105,14 @@ if (x > 3) {
 // ============================================================================
 
 // Missing semicolons (if strict mode)
-const noSemicolon = "missing semicolon"
-let anotherMissing = true
+const noSemicolon = 'missing semicolon';
+let anotherMissing = true;
 
 // Inconsistent naming conventions
-const snake_case_variable = "wrong convention";
-const PascalCaseVariable = "should be camelCase";
+const snake_case_variable = 'wrong convention';
+const PascalCaseVariable = 'should be camelCase';
 function CapitalizedFunction() {
-    return "Should start with lowercase";
+    return 'Should start with lowercase';
 }
 
 // Magic numbers
@@ -123,26 +123,26 @@ const tax = 0.21; // Magic number
 
 // Long function
 function veryLongFunction() {
-    console.log("Line 1");
-    console.log("Line 2");
-    console.log("Line 3");
-    console.log("Line 4");
-    console.log("Line 5");
-    console.log("Line 6");
-    console.log("Line 7");
-    console.log("Line 8");
-    console.log("Line 9");
-    console.log("Line 10");
-    console.log("Line 11");
-    console.log("Line 12");
-    console.log("Line 13");
-    console.log("Line 14");
-    console.log("Line 15");
-    console.log("Line 16");
-    console.log("Line 17");
-    console.log("Line 18");
-    console.log("Line 19");
-    console.log("Line 20");
+    console.log('Line 1');
+    console.log('Line 2');
+    console.log('Line 3');
+    console.log('Line 4');
+    console.log('Line 5');
+    console.log('Line 6');
+    console.log('Line 7');
+    console.log('Line 8');
+    console.log('Line 9');
+    console.log('Line 10');
+    console.log('Line 11');
+    console.log('Line 12');
+    console.log('Line 13');
+    console.log('Line 14');
+    console.log('Line 15');
+    console.log('Line 16');
+    console.log('Line 17');
+    console.log('Line 18');
+    console.log('Line 19');
+    console.log('Line 20');
     // Functions shouldn't be this long
 }
 
@@ -151,8 +151,8 @@ function veryLongFunction() {
 // ============================================================================
 
 // == instead of ===
-if ("5" == 5) {
-    console.log("Loose equality");
+if ('5' == 5) {
+    console.log('Loose equality');
 }
 
 // Implicit any
@@ -207,8 +207,8 @@ function unsafeQuery(userId: string) {
 }
 
 // Hardcoded credentials
-const API_KEY = "sk-1234567890abcdef";
-const password = "admin123";
+const API_KEY = 'sk-1234567890abcdef';
+const password = 'admin123';
 
 // ============================================================================
 // PERFORMANCE ISSUES
@@ -236,8 +236,8 @@ setInterval(() => {
 
 // Missing key in list
 const items = [1, 2, 3];
-const listItems = items.map(item =>
-    `<li>${item}</li>` // Missing key prop
+const listItems = items.map(
+    (item) => `<li>${item}</li>`, // Missing key prop
 );
 
 // Direct DOM manipulation (anti-pattern in React)
@@ -254,7 +254,7 @@ if (typeof document !== 'undefined') {
 const ignoredError = wrongType;
 
 // Type assertion abuse
-const someValue: any = "this is a string";
+const someValue: any = 'this is a string';
 const strLength: number = (someValue as string).length;
 const wrongAssertion = (someValue as number).toFixed(2);
 
@@ -264,7 +264,7 @@ interface IUser {
 }
 type TUser = {
     name: string;
-}
+};
 
 // Missing return type annotation
 function noReturnType(a: number, b: number) {
@@ -291,7 +291,7 @@ const testString = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaab';
 
 // Invalid regex
 try {
-    new RegExp('[');  // Invalid regex
+    new RegExp('['); // Invalid regex
 } catch (e) {
     // Ignored
 }
@@ -301,7 +301,7 @@ try {
 // ============================================================================
 
 class ProblematicClass {
-    private unusedPrivate: string = "unused";
+    private unusedPrivate: string = 'unused';
 
     constructor(public value: number) {
         // Direct property access before super() in derived class
@@ -325,13 +325,13 @@ class ProblematicClass {
 const testCase = 2;
 switch (testCase) {
     case 1:
-        console.log("One");
-        // Missing break - falls through
+        console.log('One');
+    // Missing break - falls through
     case 2:
-        console.log("Two");
+        console.log('Two');
         break;
     case 2: // Duplicate case
-        console.log("Duplicate");
+        console.log('Duplicate');
         break;
     // Missing default case
 }
@@ -355,10 +355,10 @@ const booleanDefault = false ?? true; // Wrong usage
 // CONSOLE STATEMENTS (should be removed in production)
 // ============================================================================
 
-console.log("Debug statement");
-console.error("Error logging");
-console.warn("Warning");
-console.debug("Debug info");
+console.log('Debug statement');
+console.error('Error logging');
+console.warn('Warning');
+console.debug('Debug info');
 debugger; // Debugger statement
 
 // ============================================================================
@@ -371,10 +371,10 @@ export {
     ProblematicClass,
     divisionByZero,
     // Exporting undefined variables
-    nonExistentExport
+    nonExistentExport,
 };
 
 // Default export at the end (style issue)
-export default function() {
-    return "Anonymous default export";
+export default function () {
+    return 'Anonymous default export';
 }
