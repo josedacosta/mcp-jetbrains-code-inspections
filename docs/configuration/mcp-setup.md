@@ -16,12 +16,12 @@ Add to your `.mcp.json` file:
 
 ```json
 {
-  "mcpServers": {
-    "jetbrains-inspections": {
-      "command": "node",
-      "args": ["./dist/index.js"]
+    "mcpServers": {
+        "jetbrains-inspections": {
+            "command": "node",
+            "args": ["./dist/index.js"]
+        }
     }
-  }
 }
 ```
 
@@ -29,17 +29,17 @@ Add to your `.mcp.json` file:
 
 ```json
 {
-  "mcpServers": {
-    "jetbrains-inspections": {
-      "command": "node",
-      "args": ["./dist/index.js"],
-      "env": {
-        "INSPECTION_TIMEOUT": "300000",
-        "RESPONSE_FORMAT": "json",
-        "EXCLUDE_INSPECTIONS": "SpellCheckingInspection,TodoComment"
-      }
+    "mcpServers": {
+        "jetbrains-inspections": {
+            "command": "node",
+            "args": ["./dist/index.js"],
+            "env": {
+                "INSPECTION_TIMEOUT": "300000",
+                "RESPONSE_FORMAT": "json",
+                "EXCLUDE_INSPECTIONS": "SpellCheckingInspection,TodoComment"
+            }
+        }
     }
-  }
 }
 ```
 
@@ -49,11 +49,11 @@ If you've installed globally with npm:
 
 ```json
 {
-  "mcpServers": {
-    "jetbrains-inspections": {
-      "command": "mcp-jetbrains-code-inspections"
+    "mcpServers": {
+        "jetbrains-inspections": {
+            "command": "mcp-jetbrains-code-inspections"
+        }
     }
-  }
 }
 ```
 
@@ -65,13 +65,13 @@ For development with `yarn dev`:
 
 ```json
 {
-  "mcpServers": {
-    "jetbrains-inspections": {
-      "command": "yarn",
-      "args": ["dev"],
-      "cwd": "/path/to/mcp-jetbrains-code-inspections"
+    "mcpServers": {
+        "jetbrains-inspections": {
+            "command": "yarn",
+            "args": ["dev"],
+            "cwd": "/path/to/mcp-jetbrains-code-inspections"
+        }
     }
-  }
 }
 ```
 
@@ -81,13 +81,13 @@ Using tsx directly:
 
 ```json
 {
-  "mcpServers": {
-    "jetbrains-inspections": {
-      "command": "npx",
-      "args": ["tsx", "src/index.ts"],
-      "cwd": "/path/to/mcp-jetbrains-code-inspections"
+    "mcpServers": {
+        "jetbrains-inspections": {
+            "command": "npx",
+            "args": ["tsx", "src/index.ts"],
+            "cwd": "/path/to/mcp-jetbrains-code-inspections"
+        }
     }
-  }
 }
 ```
 
@@ -99,8 +99,8 @@ The command to run the server:
 
 ```json
 {
-  "command": "node",
-  "args": ["./dist/index.js"]
+    "command": "node",
+    "args": ["./dist/index.js"]
 }
 ```
 
@@ -116,7 +116,7 @@ Set the working directory:
 
 ```json
 {
-  "cwd": "/path/to/mcp-jetbrains-code-inspections"
+    "cwd": "/path/to/mcp-jetbrains-code-inspections"
 }
 ```
 
@@ -126,12 +126,12 @@ Configure server behavior:
 
 ```json
 {
-  "env": {
-    "INSPECTION_TIMEOUT": "300000",
-    "FORCE_INSPECT_PATH": "/custom/path/inspect.sh",
-    "RESPONSE_FORMAT": "json",
-    "DEBUG": "true"
-  }
+    "env": {
+        "INSPECTION_TIMEOUT": "300000",
+        "FORCE_INSPECT_PATH": "/custom/path/inspect.sh",
+        "RESPONSE_FORMAT": "json",
+        "DEBUG": "true"
+    }
 }
 ```
 
@@ -143,12 +143,12 @@ Simplest setup for testing:
 
 ```json
 {
-  "mcpServers": {
-    "jetbrains-inspections": {
-      "command": "node",
-      "args": ["./dist/index.js"]
+    "mcpServers": {
+        "jetbrains-inspections": {
+            "command": "node",
+            "args": ["./dist/index.js"]
+        }
     }
-  }
 }
 ```
 
@@ -158,17 +158,17 @@ Optimized for production use:
 
 ```json
 {
-  "mcpServers": {
-    "jetbrains-inspections": {
-      "command": "node",
-      "args": ["./dist/index.js"],
-      "env": {
-        "INSPECTION_TIMEOUT": "300000",
-        "EXCLUDE_INSPECTIONS": "SpellCheckingInspection,TodoComment,UnusedDeclaration",
-        "RESPONSE_FORMAT": "json"
-      }
+    "mcpServers": {
+        "jetbrains-inspections": {
+            "command": "node",
+            "args": ["./dist/index.js"],
+            "env": {
+                "INSPECTION_TIMEOUT": "300000",
+                "EXCLUDE_INSPECTIONS": "SpellCheckingInspection,TodoComment,UnusedDeclaration",
+                "RESPONSE_FORMAT": "json"
+            }
+        }
     }
-  }
 }
 ```
 
@@ -178,16 +178,16 @@ For troubleshooting issues:
 
 ```json
 {
-  "mcpServers": {
-    "jetbrains-inspections": {
-      "command": "node",
-      "args": ["./dist/index.js"],
-      "env": {
-        "DEBUG": "true",
-        "INSPECTION_TIMEOUT": "600000"
-      }
+    "mcpServers": {
+        "jetbrains-inspections": {
+            "command": "node",
+            "args": ["./dist/index.js"],
+            "env": {
+                "DEBUG": "true",
+                "INSPECTION_TIMEOUT": "600000"
+            }
+        }
     }
-  }
 }
 ```
 
@@ -197,16 +197,16 @@ Force specific IDE usage:
 
 ```json
 {
-  "mcpServers": {
-    "jetbrains-inspections": {
-      "command": "node",
-      "args": ["./dist/index.js"],
-      "env": {
-        "FORCE_INSPECT_PATH": "/Applications/WebStorm.app/Contents/bin/inspect.sh",
-        "FORCE_PROJECT_ROOT": "/path/to/project"
-      }
+    "mcpServers": {
+        "jetbrains-inspections": {
+            "command": "node",
+            "args": ["./dist/index.js"],
+            "env": {
+                "FORCE_INSPECT_PATH": "/Applications/WebStorm.app/Contents/bin/inspect.sh",
+                "FORCE_PROJECT_ROOT": "/path/to/project"
+            }
+        }
     }
-  }
 }
 ```
 
@@ -216,15 +216,15 @@ Force specific IDE usage:
 
 ```json
 {
-  "mcpServers": {
-    "jetbrains-inspections": {
-      "command": "node",
-      "args": ["./dist/index.js"],
-      "env": {
-        "FORCE_INSPECT_PATH": "/Applications/IntelliJ IDEA.app/Contents/bin/inspect.sh"
-      }
+    "mcpServers": {
+        "jetbrains-inspections": {
+            "command": "node",
+            "args": ["./dist/index.js"],
+            "env": {
+                "FORCE_INSPECT_PATH": "/Applications/IntelliJ IDEA.app/Contents/bin/inspect.sh"
+            }
+        }
     }
-  }
 }
 ```
 
@@ -232,15 +232,15 @@ Force specific IDE usage:
 
 ```json
 {
-  "mcpServers": {
-    "jetbrains-inspections": {
-      "command": "node",
-      "args": ["./dist/index.js"],
-      "env": {
-        "FORCE_INSPECT_PATH": "C:/Program Files/JetBrains/IntelliJ IDEA/bin/inspect.bat"
-      }
+    "mcpServers": {
+        "jetbrains-inspections": {
+            "command": "node",
+            "args": ["./dist/index.js"],
+            "env": {
+                "FORCE_INSPECT_PATH": "C:/Program Files/JetBrains/IntelliJ IDEA/bin/inspect.bat"
+            }
+        }
     }
-  }
 }
 ```
 
@@ -248,15 +248,15 @@ Force specific IDE usage:
 
 ```json
 {
-  "mcpServers": {
-    "jetbrains-inspections": {
-      "command": "node",
-      "args": ["./dist/index.js"],
-      "env": {
-        "FORCE_INSPECT_PATH": "/opt/idea/bin/inspect.sh"
-      }
+    "mcpServers": {
+        "jetbrains-inspections": {
+            "command": "node",
+            "args": ["./dist/index.js"],
+            "env": {
+                "FORCE_INSPECT_PATH": "/opt/idea/bin/inspect.sh"
+            }
+        }
     }
-  }
 }
 ```
 
@@ -276,9 +276,9 @@ Enable debug logging:
 
 ```json
 {
-  "env": {
-    "DEBUG": "true"
-  }
+    "env": {
+        "DEBUG": "true"
+    }
 }
 ```
 
@@ -310,24 +310,24 @@ You can configure multiple instances with different settings:
 
 ```json
 {
-  "mcpServers": {
-    "jetbrains-java": {
-      "command": "node",
-      "args": ["./dist/index.js"],
-      "env": {
-        "FORCE_INSPECT_PATH": "/Applications/IntelliJ IDEA.app/Contents/bin/inspect.sh",
-        "ONLY_INSPECTIONS": "NullPointerException,ArrayIndexOutOfBounds"
-      }
-    },
-    "jetbrains-typescript": {
-      "command": "node",
-      "args": ["./dist/index.js"],
-      "env": {
-        "FORCE_INSPECT_PATH": "/Applications/WebStorm.app/Contents/bin/inspect.sh",
-        "ONLY_INSPECTIONS": "TypeScriptValidateTypes,ES6MissingAwait"
-      }
+    "mcpServers": {
+        "jetbrains-java": {
+            "command": "node",
+            "args": ["./dist/index.js"],
+            "env": {
+                "FORCE_INSPECT_PATH": "/Applications/IntelliJ IDEA.app/Contents/bin/inspect.sh",
+                "ONLY_INSPECTIONS": "NullPointerException,ArrayIndexOutOfBounds"
+            }
+        },
+        "jetbrains-typescript": {
+            "command": "node",
+            "args": ["./dist/index.js"],
+            "env": {
+                "FORCE_INSPECT_PATH": "/Applications/WebStorm.app/Contents/bin/inspect.sh",
+                "ONLY_INSPECTIONS": "TypeScriptValidateTypes,ES6MissingAwait"
+            }
+        }
     }
-  }
 }
 ```
 

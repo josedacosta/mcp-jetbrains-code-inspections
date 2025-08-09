@@ -62,15 +62,15 @@ Claude Code requires two configuration files to properly enable the MCP server:
 
 ```json
 {
-  "mcpServers": {
-    "mcp-jetbrains-code-inspections": {
-      "command": "node",
-      "args": ["dist/index.js"],
-      "env": {
-        "EXCLUDE_INSPECTIONS": "SpellCheckingInspection"
-      }
+    "mcpServers": {
+        "mcp-jetbrains-code-inspections": {
+            "command": "node",
+            "args": ["dist/index.js"],
+            "env": {
+                "EXCLUDE_INSPECTIONS": "SpellCheckingInspection"
+            }
+        }
     }
-  }
 }
 ```
 
@@ -78,14 +78,12 @@ Claude Code requires two configuration files to properly enable the MCP server:
 
 ```json
 {
-  "permissions": {
-    "allow": [],
-    "deny": []
-  },
-  "enableAllProjectMcpServers": true,
-  "enabledMcpjsonServers": [
-    "mcp-jetbrains-code-inspections"
-  ]
+    "permissions": {
+        "allow": [],
+        "deny": []
+    },
+    "enableAllProjectMcpServers": true,
+    "enabledMcpjsonServers": ["mcp-jetbrains-code-inspections"]
 }
 ```
 
@@ -106,14 +104,16 @@ server defined in `.mcp.json`.
 To verify the installation in Claude Code:
 
 1. Open Claude Code:
-   ```bash
-   claude
-   ```
+
+    ```bash
+    claude
+    ```
 
 2. Use the `/mcp` command to list available MCP servers:
-   ```
-   /mcp
-   ```
+
+    ```
+    /mcp
+    ```
 
 3. You should see `mcp-jetbrains-code-inspections` in the list of configured servers
 

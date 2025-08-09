@@ -41,16 +41,16 @@ Master inspection profile configuration:
 
 ```json
 {
-  "mcpServers": {
-    "jetbrains-inspections": {
-      "command": "node",
-      "args": ["./dist/index.js"],
-      "env": {
-        "INSPECTION_TIMEOUT": "300000",
-        "FORCE_INSPECT_PATH": "/custom/path/to/inspect.sh"
-      }
+    "mcpServers": {
+        "jetbrains-inspections": {
+            "command": "node",
+            "args": ["./dist/index.js"],
+            "env": {
+                "INSPECTION_TIMEOUT": "300000",
+                "FORCE_INSPECT_PATH": "/custom/path/to/inspect.sh"
+            }
+        }
     }
-  }
 }
 ```
 
@@ -65,7 +65,7 @@ Master inspection profile configuration:
 ## Environment Variables Reference
 
 | Variable              | Default       | Description                                 |
-|-----------------------|---------------|---------------------------------------------|
+| --------------------- | ------------- | ------------------------------------------- |
 | `FORCE_INSPECT_PATH`  | Auto-detected | Force specific IDE inspect tool path        |
 | `FORCE_PROJECT_ROOT`  | Auto-detected | Force project root directory                |
 | `FORCE_PROFILE_PATH`  | Auto-detected | Force inspection profile path               |

@@ -121,6 +121,7 @@ Human-readable formatted output:
 ## Code Inspection Results for: src/components/Button.tsx
 
 ### Summary
+
 - **Total Issues**: 3
 - **Errors**: 1
 - **Warnings**: 2
@@ -129,14 +130,17 @@ Human-readable formatted output:
 ### Issues Found
 
 **ERROR** at line 15, column 7:
+
 - **Issue**: Variable 'config' is used before being declared
 - **Inspection**: UseBeforeDeclaration
 
 **WARNING** at line 23, column 12:
+
 - **Issue**: Function 'handleClick' is never used
 - **Inspection**: UnusedDeclaration
 
 **WEAK WARNING** at line 8, column 1:
+
 - **Issue**: TODO: Add proper error handling
 - **Inspection**: TodoComment
 ```
@@ -147,36 +151,36 @@ Structured data format for programmatic processing:
 
 ```json
 {
-  "totalProblems": 3,
-  "diagnostics": [
-    {
-      "file": "src/components/Button.tsx",
-      "line": 15,
-      "column": 7,
-      "severity": "error",
-      "code": "UseBeforeDeclaration",
-      "message": "UseBeforeDeclaration: Variable 'config' is used before being declared"
-    },
-    {
-      "file": "src/components/Button.tsx",
-      "line": 23,
-      "column": 12,
-      "length": 11,
-      "severity": "warning",
-      "code": "JSUnusedLocalSymbols",
-      "message": "JSUnusedLocalSymbols: Unused function handleClick",
-      "highlightedElement": "handleClick"
-    },
-    {
-      "file": "src/components/Button.tsx",
-      "line": 45,
-      "column": 3,
-      "severity": "info",
-      "code": "SpellCheckingInspection",
-      "message": "SpellCheckingInspection: Typo: In word 'recieve'",
-      "highlightedElement": "recieve"
-    }
-  ]
+    "totalProblems": 3,
+    "diagnostics": [
+        {
+            "file": "src/components/Button.tsx",
+            "line": 15,
+            "column": 7,
+            "severity": "error",
+            "code": "UseBeforeDeclaration",
+            "message": "UseBeforeDeclaration: Variable 'config' is used before being declared"
+        },
+        {
+            "file": "src/components/Button.tsx",
+            "line": 23,
+            "column": 12,
+            "length": 11,
+            "severity": "warning",
+            "code": "JSUnusedLocalSymbols",
+            "message": "JSUnusedLocalSymbols: Unused function handleClick",
+            "highlightedElement": "handleClick"
+        },
+        {
+            "file": "src/components/Button.tsx",
+            "line": 45,
+            "column": 3,
+            "severity": "info",
+            "code": "SpellCheckingInspection",
+            "message": "SpellCheckingInspection: Typo: In word 'recieve'",
+            "highlightedElement": "recieve"
+        }
+    ]
 }
 ```
 
@@ -186,37 +190,37 @@ Structured data format for programmatic processing:
 
 ```typescript
 interface InspectionResult {
-  totalProblems: number;
-  diagnostics: Diagnostic[];
-  error?: string;
-  warning?: string;
-  timeout?: boolean;
-  metadata?: InspectionMetadata;
+    totalProblems: number;
+    diagnostics: Diagnostic[];
+    error?: string;
+    warning?: string;
+    timeout?: boolean;
+    metadata?: InspectionMetadata;
 }
 
 interface Diagnostic {
-  file: string;
-  line: number;
-  column: number;
-  length?: number;
-  severity: SeverityLevel;
-  code?: string;
-  message: string;
-  highlightedElement?: string;
-  category?: string;
-  hints?: string[];
+    file: string;
+    line: number;
+    column: number;
+    length?: number;
+    severity: SeverityLevel;
+    code?: string;
+    message: string;
+    highlightedElement?: string;
+    category?: string;
+    hints?: string[];
 }
 
 interface InspectionMetadata {
-  targetPath: string;
-  projectRoot: string;
-  ideUsed: string;
-  ideVersion?: string;
-  executionTime: number;
-  timestamp: Date;
+    targetPath: string;
+    projectRoot: string;
+    ideUsed: string;
+    ideVersion?: string;
+    executionTime: number;
+    timestamp: Date;
 }
 
-type SeverityLevel = "error" | "warning" | "info";
+type SeverityLevel = 'error' | 'warning' | 'info';
 ```
 
 ### Field Descriptions
@@ -261,7 +265,7 @@ type SeverityLevel = "error" | "warning" | "info";
 ```javascript
 // Analyze a single file
 const result = await get_jetbrains_code_inspections({
-  path: "src/utils/validation.ts"
+    path: 'src/utils/validation.ts',
 });
 ```
 
@@ -303,9 +307,9 @@ console.log(`Found ${diagnostics.totalProblems} issues`);
 
 ```json
 {
-  "error": "Path does not exist: src/nonexistent.ts",
-  "totalProblems": 0,
-  "diagnostics": []
+    "error": "Path does not exist: src/nonexistent.ts",
+    "totalProblems": 0,
+    "diagnostics": []
 }
 ```
 
@@ -313,10 +317,10 @@ console.log(`Found ${diagnostics.totalProblems} issues`);
 
 ```json
 {
-  "timeout": true,
-  "warning": "Inspection timed out after 120000ms",
-  "totalProblems": 0,
-  "diagnostics": []
+    "timeout": true,
+    "warning": "Inspection timed out after 120000ms",
+    "totalProblems": 0,
+    "diagnostics": []
 }
 ```
 
@@ -324,9 +328,9 @@ console.log(`Found ${diagnostics.totalProblems} issues`);
 
 ```json
 {
-  "error": "No suitable JetBrains IDE found. Please install a JetBrains IDE or set FORCE_INSPECT_PATH.",
-  "totalProblems": 0,
-  "diagnostics": []
+    "error": "No suitable JetBrains IDE found. Please install a JetBrains IDE or set FORCE_INSPECT_PATH.",
+    "totalProblems": 0,
+    "diagnostics": []
 }
 ```
 
@@ -336,10 +340,10 @@ Errors are returned as valid responses with error information:
 
 ```typescript
 interface ErrorResponse {
-  error: string;           // Error message
-  totalProblems: 0;       // Always 0 for errors
-  diagnostics: [];        // Always empty for errors
-  timeout?: boolean;      // True for timeout errors
+    error: string; // Error message
+    totalProblems: 0; // Always 0 for errors
+    diagnostics: []; // Always empty for errors
+    timeout?: boolean; // True for timeout errors
 }
 ```
 
@@ -383,7 +387,7 @@ The tool supports all file types that JetBrains IDEs can analyze:
 - **package.json**, **composer.json**, **pom.xml**
 - **build.gradle**, **Cargo.toml**
 - **tsconfig.json**, **webpack.config.js**
-- **Dockerfile**, **docker-compose.yml`
+- **Dockerfile**, \*\*docker-compose.yml`
 
 ## IDE Detection Priority
 
@@ -423,28 +427,26 @@ Override automatic detection with `FORCE_INSPECT_PATH` environment variable.
 
 ```javascript
 async function qualityGate(files) {
-  const results = [];
-  
-  for (const file of files) {
-    const result = await get_jetbrains_code_inspections({ path: file });
-    const diagnostics = JSON.parse(result);
-    
-    if (diagnostics.error) {
-      throw new Error(`Analysis failed: ${diagnostics.error}`);
+    const results = [];
+
+    for (const file of files) {
+        const result = await get_jetbrains_code_inspections({ path: file });
+        const diagnostics = JSON.parse(result);
+
+        if (diagnostics.error) {
+            throw new Error(`Analysis failed: ${diagnostics.error}`);
+        }
+
+        results.push(diagnostics);
     }
-    
-    results.push(diagnostics);
-  }
-  
-  const totalErrors = results.reduce((sum, r) => 
-    sum + r.diagnostics.filter(d => d.severity === 'ERROR').length, 0
-  );
-  
-  if (totalErrors > 0) {
-    throw new Error(`Quality gate failed: ${totalErrors} errors found`);
-  }
-  
-  return results;
+
+    const totalErrors = results.reduce((sum, r) => sum + r.diagnostics.filter((d) => d.severity === 'ERROR').length, 0);
+
+    if (totalErrors > 0) {
+        throw new Error(`Quality gate failed: ${totalErrors} errors found`);
+    }
+
+    return results;
 }
 ```
 
@@ -452,24 +454,22 @@ async function qualityGate(files) {
 
 ```javascript
 async function analyzeProject(rootPath, batchSize = 5) {
-  // Get all source files (implementation specific)
-  const files = await getSourceFiles(rootPath);
-  
-  const results = [];
-  for (let i = 0; i < files.length; i += batchSize) {
-    const batch = files.slice(i, i + batchSize);
-    
-    const batchPromises = batch.map(file => 
-      get_jetbrains_code_inspections({ path: file })
-    );
-    
-    const batchResults = await Promise.all(batchPromises);
-    results.push(...batchResults.map(r => JSON.parse(r)));
-    
-    // Optional delay to manage system resources
-    await new Promise(resolve => setTimeout(resolve, 1000));
-  }
-  
-  return results;
+    // Get all source files (implementation specific)
+    const files = await getSourceFiles(rootPath);
+
+    const results = [];
+    for (let i = 0; i < files.length; i += batchSize) {
+        const batch = files.slice(i, i + batchSize);
+
+        const batchPromises = batch.map((file) => get_jetbrains_code_inspections({ path: file }));
+
+        const batchResults = await Promise.all(batchPromises);
+        results.push(...batchResults.map((r) => JSON.parse(r)));
+
+        // Optional delay to manage system resources
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+    }
+
+    return results;
 }
 ```

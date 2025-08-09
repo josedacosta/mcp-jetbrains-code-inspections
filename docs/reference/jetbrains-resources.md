@@ -356,31 +356,31 @@ name: Code Inspection
 on: [push, pull_request]
 
 jobs:
-  inspect:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
+    inspect:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
 
-      - name: Setup JDK
-        uses: actions/setup-java@v2
-        with:
-          java-version: '11'
+            - name: Setup JDK
+              uses: actions/setup-java@v2
+              with:
+                  java-version: '11'
 
-      - name: Run IntelliJ Inspections
-        run: |
-          wget -q https://download.jetbrains.com/idea/ideaIC-2023.3.tar.gz
-          tar -xzf ideaIC-2023.3.tar.gz
-          ./idea-IC-*/bin/inspect.sh \
-            ${{ github.workspace }} \
-            .idea/inspectionProfiles/Project_Default.xml \
-            inspection-results \
-            -v2 -format json
+            - name: Run IntelliJ Inspections
+              run: |
+                  wget -q https://download.jetbrains.com/idea/ideaIC-2023.3.tar.gz
+                  tar -xzf ideaIC-2023.3.tar.gz
+                  ./idea-IC-*/bin/inspect.sh \
+                    ${{ github.workspace }} \
+                    .idea/inspectionProfiles/Project_Default.xml \
+                    inspection-results \
+                    -v2 -format json
 
-      - name: Upload Results
-        uses: actions/upload-artifact@v2
-        with:
-          name: inspection-results
-          path: inspection-results/
+            - name: Upload Results
+              uses: actions/upload-artifact@v2
+              with:
+                  name: inspection-results
+                  path: inspection-results/
 ```
 
 ## Conclusion

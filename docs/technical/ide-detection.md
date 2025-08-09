@@ -39,7 +39,7 @@ The system first identifies the operating system and searches IDE installation l
 The system searches for these JetBrains IDEs in priority order:
 
 | Priority | IDE            | Binary Pattern                 | Languages Supported                                   |
-|----------|----------------|--------------------------------|-------------------------------------------------------|
+| -------- | -------------- | ------------------------------ | ----------------------------------------------------- |
 | 1        | IntelliJ IDEA  | `idea*/bin/inspect.*`          | Java, Kotlin, Scala, JavaScript, TypeScript, and more |
 | 2        | WebStorm       | `webstorm*/bin/inspect.*`      | JavaScript, TypeScript, HTML, CSS, Vue, React         |
 | 3        | PyCharm        | `pycharm*/bin/inspect.*`       | Python, Django, Flask, HTML, CSS, JavaScript          |
@@ -70,12 +70,12 @@ The system selects an IDE using priority-based logic:
 
 ```typescript
 function selectIDE(detectedIDEs: IDE[]): IDE | null {
-  // Sort by priority (lower number = higher priority)
-  const sortedIDEs = detectedIDEs.sort((a, b) => a.priority - b.priority);
-  
-  // Return the highest priority IDE
-  // All IDEs work thanks to isolated configuration
-  return sortedIDEs[0] || null;
+    // Sort by priority (lower number = higher priority)
+    const sortedIDEs = detectedIDEs.sort((a, b) => a.priority - b.priority);
+
+    // Return the highest priority IDE
+    // All IDEs work thanks to isolated configuration
+    return sortedIDEs[0] || null;
 }
 ```
 
@@ -89,9 +89,9 @@ Force specific IDE using environment variable:
 
 ```json
 {
-  "env": {
-    "FORCE_INSPECT_PATH": "/Applications/WebStorm.app/Contents/bin/inspect.sh"
-  }
+    "env": {
+        "FORCE_INSPECT_PATH": "/Applications/WebStorm.app/Contents/bin/inspect.sh"
+    }
 }
 ```
 
@@ -101,9 +101,9 @@ Force specific project root:
 
 ```json
 {
-  "env": {
-    "FORCE_PROJECT_ROOT": "/path/to/project"
-  }
+    "env": {
+        "FORCE_PROJECT_ROOT": "/path/to/project"
+    }
 }
 ```
 
@@ -174,12 +174,12 @@ When no JetBrains IDEs are detected:
 
 ```json
 {
-  "error": "No suitable JetBrains IDE found. Please install a JetBrains IDE or set FORCE_INSPECT_PATH environment variable.",
-  "suggestions": [
-    "Install IntelliJ IDEA, WebStorm, PyCharm, or another JetBrains IDE",
-    "Set FORCE_INSPECT_PATH to point to your IDE's inspect tool",
-    "Verify IDE installation and command-line tools are available"
-  ]
+    "error": "No suitable JetBrains IDE found. Please install a JetBrains IDE or set FORCE_INSPECT_PATH environment variable.",
+    "suggestions": [
+        "Install IntelliJ IDEA, WebStorm, PyCharm, or another JetBrains IDE",
+        "Set FORCE_INSPECT_PATH to point to your IDE's inspect tool",
+        "Verify IDE installation and command-line tools are available"
+    ]
 }
 ```
 
@@ -189,9 +189,9 @@ When an IDE is selected:
 
 ```json
 {
-  "selectedIDE": "IntelliJ IDEA",
-  "isolationMode": true,
-  "note": "Using isolated configuration - works regardless of IDE state"
+    "selectedIDE": "IntelliJ IDEA",
+    "isolationMode": true,
+    "note": "Using isolated configuration - works regardless of IDE state"
 }
 ```
 
@@ -201,8 +201,8 @@ When forced IDE path is invalid:
 
 ```json
 {
-  "error": "Forced IDE path does not exist or is not executable: /invalid/path/inspect.sh",
-  "suggestion": "Verify the FORCE_INSPECT_PATH points to a valid JetBrains IDE inspect tool"
+    "error": "Forced IDE path does not exist or is not executable: /invalid/path/inspect.sh",
+    "suggestion": "Verify the FORCE_INSPECT_PATH points to a valid JetBrains IDE inspect tool"
 }
 ```
 
@@ -237,10 +237,10 @@ IDE detection results are cached to improve performance:
 
 ```typescript
 interface IDECache {
-  timestamp: number;
-  detectedIDEs: IDE[];
-  selectedIDE: IDE | null;
-  ttl: number; // Time to live in milliseconds
+    timestamp: number;
+    detectedIDEs: IDE[];
+    selectedIDE: IDE | null;
+    ttl: number; // Time to live in milliseconds
 }
 ```
 
@@ -256,23 +256,21 @@ Multiple IDE locations are searched in parallel:
 
 ```typescript
 async function detectIDEs(): Promise<IDE[]> {
-  const searchPaths = getPlatformSearchPaths();
-  
-  const detectionPromises = searchPaths.map(async (path) => {
-    try {
-      return await validateIDEPath(path);
-    } catch (error) {
-      return null; // IDE not found at this path
-    }
-  });
-  
-  const results = await Promise.allSettled(detectionPromises);
-  
-  return results
-    .filter((result): result is PromiseFulfilledResult<IDE> => 
-      result.status === 'fulfilled' && result.value !== null
-    )
-    .map(result => result.value);
+    const searchPaths = getPlatformSearchPaths();
+
+    const detectionPromises = searchPaths.map(async (path) => {
+        try {
+            return await validateIDEPath(path);
+        } catch (error) {
+            return null; // IDE not found at this path
+        }
+    });
+
+    const results = await Promise.allSettled(detectionPromises);
+
+    return results
+        .filter((result): result is PromiseFulfilledResult<IDE> => result.status === 'fulfilled' && result.value !== null)
+        .map((result) => result.value);
 }
 ```
 
@@ -290,9 +288,9 @@ IDE validation is performed lazily to reduce startup time:
 
 ```json
 {
-  "env": {
-    "DEBUG": "true"
-  }
+    "env": {
+        "DEBUG": "true"
+    }
 }
 ```
 
@@ -325,15 +323,15 @@ To add support for a new JetBrains IDE:
 
 ```typescript
 const NEW_IDE: IDEDefinition = {
-  name: 'DataSpell',
-  priority: 10,
-  binaryPatterns: ['dataspell*/bin/inspect.*'],
-  supportedLanguages: ['python', 'jupyter', 'sql'],
-  searchPaths: {
-    darwin: ['/Applications/DataSpell.app/Contents/bin/inspect.sh'],
-    win32: ['C:/Program Files/JetBrains/DataSpell/bin/inspect.bat'],
-    linux: ['/opt/dataspell/bin/inspect.sh']
-  }
+    name: 'DataSpell',
+    priority: 10,
+    binaryPatterns: ['dataspell*/bin/inspect.*'],
+    supportedLanguages: ['python', 'jupyter', 'sql'],
+    searchPaths: {
+        darwin: ['/Applications/DataSpell.app/Contents/bin/inspect.sh'],
+        win32: ['C:/Program Files/JetBrains/DataSpell/bin/inspect.bat'],
+        linux: ['/opt/dataspell/bin/inspect.sh'],
+    },
 };
 ```
 
@@ -349,15 +347,15 @@ Implement custom detection for special cases:
 
 ```typescript
 class CustomIDEDetector implements IDEDetector {
-  async detect(): Promise<IDE[]> {
-    // Custom detection logic
-    return detectedIDEs;
-  }
-  
-  async validate(ide: IDE): Promise<boolean> {
-    // Custom validation logic
-    return isValid;
-  }
+    async detect(): Promise<IDE[]> {
+        // Custom detection logic
+        return detectedIDEs;
+    }
+
+    async validate(ide: IDE): Promise<boolean> {
+        // Custom validation logic
+        return isValid;
+    }
 }
 ```
 

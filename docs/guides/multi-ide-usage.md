@@ -55,18 +55,18 @@ This means:
 All JetBrains IDEs can analyze JavaScript/TypeScript projects:
 
 | IDE           | Primary Language | JS/TS Support |
-|---------------|------------------|---------------|
-| IntelliJ IDEA | Java             | ✅ Full        |
-| WebStorm      | JavaScript       | ✅ Native      |
-| PyCharm       | Python           | ✅ Full        |
-| PhpStorm      | PHP              | ✅ Full        |
-| GoLand        | Go               | ✅ Full        |
-| Rider         | C#/.NET          | ✅ Full        |
-| CLion         | C/C++            | ✅ Basic       |
-| RubyMine      | Ruby             | ✅ Full        |
-| DataGrip      | SQL              | ✅ Basic       |
-| DataSpell     | Data Science     | ✅ Full        |
-| AppCode       | iOS/macOS        | ✅ Basic       |
+| ------------- | ---------------- | ------------- |
+| IntelliJ IDEA | Java             | ✅ Full       |
+| WebStorm      | JavaScript       | ✅ Native     |
+| PyCharm       | Python           | ✅ Full       |
+| PhpStorm      | PHP              | ✅ Full       |
+| GoLand        | Go               | ✅ Full       |
+| Rider         | C#/.NET          | ✅ Full       |
+| CLion         | C/C++            | ✅ Basic      |
+| RubyMine      | Ruby             | ✅ Full       |
+| DataGrip      | SQL              | ✅ Basic      |
+| DataSpell     | Data Science     | ✅ Full       |
+| AppCode       | iOS/macOS        | ✅ Basic      |
 
 ## How to Test
 

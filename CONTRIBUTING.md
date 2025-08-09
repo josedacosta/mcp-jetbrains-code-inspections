@@ -21,34 +21,38 @@ Before contributing, ensure you have:
 ## 🚀 Getting Started
 
 1. **Fork the repository**
-   ```bash
-   git clone https://github.com/your-username/mcp-jetbrains-code-inspections.git
-   cd mcp-jetbrains-code-inspections
-   ```
+
+    ```bash
+    git clone https://github.com/your-username/mcp-jetbrains-code-inspections.git
+    cd mcp-jetbrains-code-inspections
+    ```
 
 2. **Install dependencies**
-   ```bash
-   yarn install
-   ```
+
+    ```bash
+    yarn install
+    ```
 
 3. **Run development mode**
-   ```bash
-   yarn dev
-   ```
+
+    ```bash
+    yarn dev
+    ```
 
 4. **Run tests**
-   ```bash
-   yarn test:mcp --path <test-file>
-   ```
+    ```bash
+    yarn test:mcp --path <test-file>
+    ```
 
 ## 🌳 Branching Strategy: GitHub Flow
 
 We use GitHub Flow for our development process:
 
 1. **Create a feature branch** from `main`
-   ```bash
-   git checkout -b feat/auth-oauth-support
-   ```
+
+    ```bash
+    git checkout -b feat/auth-oauth-support
+    ```
 
 2. **Make your changes** and commit regularly
 
@@ -134,11 +138,12 @@ BREAKING CHANGE: Node 18+ is now required
 ### Before Submitting
 
 1. **Ensure your code follows our standards**:
-   ```bash
-   yarn lint
-   yarn build
-   yarn test:mcp --path src/index.ts
-   ```
+
+    ```bash
+    yarn lint
+    yarn build
+    yarn test:mcp --path src/index.ts
+    ```
 
 2. **Update documentation** if you've added new features
 

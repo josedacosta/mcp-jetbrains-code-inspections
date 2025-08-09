@@ -104,12 +104,12 @@ npx @modelcontextprotocol/inspector node dist/index.js
 ```javascript
 // Analyze entire project directory
 await get_jetbrains_code_inspections({
-  path: '/path/to/project'
+    path: '/path/to/project',
 });
 
 // Analyze specific file
 await get_jetbrains_code_inspections({
-  path: '/path/to/project/src/file.ts'
+    path: '/path/to/project/src/file.ts',
 });
 ```
 

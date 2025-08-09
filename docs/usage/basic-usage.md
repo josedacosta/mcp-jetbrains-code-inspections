@@ -14,7 +14,7 @@ This guide covers the most common ways to use the MCP JetBrains Code Inspections
 
 ```javascript
 await get_jetbrains_code_inspections({
-  path: "src/components/Header.tsx"
+    path: 'src/components/Header.tsx',
 });
 ```
 
@@ -32,10 +32,12 @@ await get_jetbrains_code_inspections({
 ### Issues Found: 2
 
 **WEAK WARNING** at line 12, column 7:
+
 - **Issue**: Variable 'unusedVar' is never used
 - **Inspection**: UnusedDeclaration
 
 **INFO** at line 18, column 1:
+
 - **Issue**: TODO: Add proper error handling
 - **Inspection**: TodoComment
 ```
@@ -46,7 +48,7 @@ await get_jetbrains_code_inspections({
 
 ```javascript
 await get_jetbrains_code_inspections({
-  path: "src/utils"
+    path: 'src/utils',
 });
 ```
 
@@ -60,7 +62,7 @@ await get_jetbrains_code_inspections({
 
 ```javascript
 await get_jetbrains_code_inspections({
-  path: "src/components/forms"
+    path: 'src/components/forms',
 });
 ```
 
@@ -72,7 +74,7 @@ The tool recursively analyzes all supported files in the directory.
 
 ```javascript
 await get_jetbrains_code_inspections({
-  path: "."
+    path: '.',
 });
 ```
 
@@ -86,7 +88,7 @@ await get_jetbrains_code_inspections({
 
 ```javascript
 await get_jetbrains_code_inspections({
-  path: "src/"
+    path: 'src/',
 });
 ```
 
@@ -98,7 +100,7 @@ More focused than entire project, skips configuration and build files.
 
 ```javascript
 await get_jetbrains_code_inspections({
-  path: "/Users/username/projects/myapp/src/index.ts"
+    path: '/Users/username/projects/myapp/src/index.ts',
 });
 ```
 
@@ -106,7 +108,7 @@ await get_jetbrains_code_inspections({
 
 ```javascript
 await get_jetbrains_code_inspections({
-  path: "./src/index.ts"
+    path: './src/index.ts',
 });
 ```
 
@@ -114,7 +116,7 @@ await get_jetbrains_code_inspections({
 
 ```javascript
 await get_jetbrains_code_inspections({
-  path: "."
+    path: '.',
 });
 ```
 
@@ -125,17 +127,17 @@ await get_jetbrains_code_inspections({
 ```javascript
 // React component
 await get_jetbrains_code_inspections({
-  path: "src/components/UserProfile.tsx"
+    path: 'src/components/UserProfile.tsx',
 });
 
 // Styles
 await get_jetbrains_code_inspections({
-  path: "src/styles/main.scss"
+    path: 'src/styles/main.scss',
 });
 
 // Configuration
 await get_jetbrains_code_inspections({
-  path: "webpack.config.js"
+    path: 'webpack.config.js',
 });
 ```
 
@@ -144,17 +146,17 @@ await get_jetbrains_code_inspections({
 ```javascript
 // Java class
 await get_jetbrains_code_inspections({
-  path: "src/main/java/com/example/UserService.java"
+    path: 'src/main/java/com/example/UserService.java',
 });
 
 // Python module
 await get_jetbrains_code_inspections({
-  path: "src/services/user_service.py"
+    path: 'src/services/user_service.py',
 });
 
 // Configuration
 await get_jetbrains_code_inspections({
-  path: "application.yml"
+    path: 'application.yml',
 });
 ```
 
@@ -197,9 +199,9 @@ Set environment variable for JSON output:
 
 ```json
 {
-  "env": {
-    "RESPONSE_FORMAT": "json"
-  }
+    "env": {
+        "RESPONSE_FORMAT": "json"
+    }
 }
 ```
 
@@ -209,9 +211,9 @@ Filter out noisy inspections:
 
 ```json
 {
-  "env": {
-    "EXCLUDE_INSPECTIONS": "SpellCheckingInspection,TodoComment"
-  }
+    "env": {
+        "EXCLUDE_INSPECTIONS": "SpellCheckingInspection,TodoComment"
+    }
 }
 ```
 
@@ -221,9 +223,9 @@ For larger files or slower systems:
 
 ```json
 {
-  "env": {
-    "INSPECTION_TIMEOUT": "300000"
-  }
+    "env": {
+        "INSPECTION_TIMEOUT": "300000"
+    }
 }
 ```
 
@@ -236,12 +238,12 @@ Begin with single files before analyzing entire projects:
 ```javascript
 // Good: Start with one file
 await get_jetbrains_code_inspections({
-  path: "src/index.ts"
+    path: 'src/index.ts',
 });
 
 // Then expand to directories
 await get_jetbrains_code_inspections({
-  path: "src/components"
+    path: 'src/components',
 });
 ```
 
@@ -252,12 +254,12 @@ Choose the most specific path for your needs:
 ```javascript
 // Specific file for focused analysis
 await get_jetbrains_code_inspections({
-  path: "src/utils/validation.ts"
+    path: 'src/utils/validation.ts',
 });
 
 // Directory for module analysis
 await get_jetbrains_code_inspections({
-  path: "src/utils"
+    path: 'src/utils',
 });
 ```
 
@@ -267,10 +269,10 @@ Set up environment variables that match your development needs:
 
 ```json
 {
-  "env": {
-    "EXCLUDE_INSPECTIONS": "SpellCheckingInspection",
-    "INSPECTION_TIMEOUT": "180000"
-  }
+    "env": {
+        "EXCLUDE_INSPECTIONS": "SpellCheckingInspection",
+        "INSPECTION_TIMEOUT": "180000"
+    }
 }
 ```
 
@@ -290,7 +292,7 @@ Use inspection results to guide further analysis:
 ```javascript
 // Check files you're about to commit
 await get_jetbrains_code_inspections({
-  path: "src/components/NewFeature.tsx"
+    path: 'src/components/NewFeature.tsx',
 });
 ```
 
@@ -299,7 +301,7 @@ await get_jetbrains_code_inspections({
 ```javascript
 // Analyze changed files
 await get_jetbrains_code_inspections({
-  path: "src/services/updated-service.ts"
+    path: 'src/services/updated-service.ts',
 });
 ```
 
@@ -308,7 +310,7 @@ await get_jetbrains_code_inspections({
 ```javascript
 // Check refactored code
 await get_jetbrains_code_inspections({
-  path: "src/refactored-module"
+    path: 'src/refactored-module',
 });
 ```
 
@@ -317,7 +319,7 @@ await get_jetbrains_code_inspections({
 ```javascript
 // Full project check before release
 await get_jetbrains_code_inspections({
-  path: "src/"
+    path: 'src/',
 });
 ```
 

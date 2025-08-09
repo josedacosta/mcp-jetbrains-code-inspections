@@ -18,15 +18,15 @@ Based on our `IDESelector.ts` implementation:
 ```typescript
 export class IDESelector {
     private readonly priorityOrder = [
-        'IntelliJ IDEA',    // Most comprehensive
-        'WebStorm',         // JavaScript/TypeScript focus
-        'PyCharm',          // Python focus
-        'PhpStorm',         // PHP focus
-        'GoLand',           // Go focus
-        'RubyMine',         // Ruby focus
-        'CLion',            // C/C++ focus
-        'Rider',            // .NET focus
-        'DataGrip',         // Database focus
+        'IntelliJ IDEA', // Most comprehensive
+        'WebStorm', // JavaScript/TypeScript focus
+        'PyCharm', // Python focus
+        'PhpStorm', // PHP focus
+        'GoLand', // Go focus
+        'RubyMine', // Ruby focus
+        'CLion', // C/C++ focus
+        'Rider', // .NET focus
+        'DataGrip', // Database focus
     ];
 }
 ```
@@ -35,8 +35,8 @@ export class IDESelector {
 
 ### IDE Capabilities
 
-| IDE               | Primary Languages                 | Additional Languages                                    | Shared Inspections            |
-|-------------------|-----------------------------------|---------------------------------------------------------|-------------------------------|
+| IDE               | Primary Languages                 | Additional Languages                                    | Shared Inspections             |
+| ----------------- | --------------------------------- | ------------------------------------------------------- | ------------------------------ |
 | **IntelliJ IDEA** | Java, Kotlin, Scala, Groovy       | HTML, CSS, JavaScript, TypeScript, SQL, XML, JSON, YAML | ✅ All platform inspections    |
 | **WebStorm**      | JavaScript, TypeScript, HTML, CSS | JSON, XML, YAML, Markdown                               | ✅ Web development inspections |
 | **PyCharm**       | Python                            | HTML, CSS, JavaScript, SQL, JSON                        | ✅ Python + web inspections    |
@@ -56,28 +56,28 @@ All JetBrains IDEs share these inspection categories:
 // From our unified inspection profile
 const sharedInspections = {
     // General code quality
-    'DuplicatedCode': 'All IDEs',
-    'RedundantSuppression': 'All IDEs',
-    'UnusedDeclaration': 'All IDEs',
-    'TodoComment': 'All IDEs',
-    
+    DuplicatedCode: 'All IDEs',
+    RedundantSuppression: 'All IDEs',
+    UnusedDeclaration: 'All IDEs',
+    TodoComment: 'All IDEs',
+
     // File and project structure
-    'InconsistentLineSeparators': 'All IDEs',
-    'LongLine': 'All IDEs',
-    'ProblematicWhitespace': 'All IDEs',
-    'TrailingWhitespace': 'All IDEs',
-    
+    InconsistentLineSeparators: 'All IDEs',
+    LongLine: 'All IDEs',
+    ProblematicWhitespace: 'All IDEs',
+    TrailingWhitespace: 'All IDEs',
+
     // Version control
-    'CommitMessageFormat': 'All IDEs',
-    'UnresolvedMergeConflict': 'All IDEs',
-    
+    CommitMessageFormat: 'All IDEs',
+    UnresolvedMergeConflict: 'All IDEs',
+
     // Documentation
-    'MissingJavadoc': 'Java-capable IDEs',
-    'InvalidJavadoc': 'Java-capable IDEs',
-    
+    MissingJavadoc: 'Java-capable IDEs',
+    InvalidJavadoc: 'Java-capable IDEs',
+
     // Security
-    'HardcodedPassword': 'All IDEs',
-    'SensitiveDataExposure': 'All IDEs',
+    HardcodedPassword: 'All IDEs',
+    SensitiveDataExposure: 'All IDEs',
 };
 ```
 
@@ -91,17 +91,17 @@ Our `unified.xml` profile ensures cross-IDE compatibility:
 <?xml version="1.0" encoding="UTF-8"?>
 <profile version="1.0">
   <option name="myName" value="Unified" />
-  
+
   <!-- Universal inspections work in all IDEs -->
   <inspection_tool class="DuplicatedCode" enabled="true" level="WARNING" enabled_by_default="true">
     <option name="MIN_DUPLICATED_LINES" value="10" />
   </inspection_tool>
-  
+
   <!-- Language-specific inspections are gracefully ignored if not supported -->
   <inspection_tool class="TypeScriptValidateTypes" enabled="true" level="ERROR" enabled_by_default="true">
     <!-- Only active in IDEs with TypeScript support -->
   </inspection_tool>
-  
+
   <inspection_tool class="PyPep8Inspection" enabled="true" level="WARNING" enabled_by_default="true">
     <!-- Only active in PyCharm -->
   </inspection_tool>
@@ -118,13 +118,13 @@ async resolveProfile(options: ProfileOptions): Promise<string> {
     if (options.forcedPath) {
         return options.forcedPath;
     }
-    
+
     // 2. Look for project-specific profile
     const projectProfile = await this.findProjectProfile(options.projectPath);
     if (projectProfile) {
         return projectProfile;
     }
-    
+
     // 3. Use unified profile (works across all IDEs)
     return this.getUnifiedProfilePath();
 }
@@ -139,12 +139,12 @@ The `IDEDetector` finds all available IDEs:
 ```typescript
 async detectIDEs(): Promise<IDE[]> {
     const detectedIDEs: IDE[] = [];
-    
+
     for (const location of this.getSearchLocations()) {
         const ides = await this.scanLocation(location);
         detectedIDEs.push(...ides);
     }
-    
+
     // Sort by priority for consistent selection
     return this.sortByPriority(detectedIDEs);
 }
@@ -161,7 +161,7 @@ selectBestIDE(availableIDEs: IDE[], projectType?: string): IDE {
         const matched = this.matchByProjectType(availableIDEs, projectType);
         if (matched) return matched;
     }
-    
+
     // Fall back to priority order
     return availableIDEs[0]; // Already sorted by priority
 }
@@ -221,7 +221,7 @@ When an inspection isn't available:
 ```typescript
 class DiagnosticFilter {
     filter(diagnostics: Diagnostic[], options: FilterOptions): Diagnostic[] {
-        return diagnostics.filter(d => {
+        return diagnostics.filter((d) => {
             // Skip unsupported inspections gracefully
             if (this.isUnsupported(d.inspection)) {
                 this.logger.debug(`Skipping unsupported: ${d.inspection}`);
@@ -257,7 +257,7 @@ To verify equivalence, run the same inspection across different IDEs:
 FORCE_INSPECT_PATH="/Applications/WebStorm.app/Contents/bin/inspect.sh" \
   node dist/index.js
 
-# Test with IntelliJ IDEA  
+# Test with IntelliJ IDEA
 FORCE_INSPECT_PATH="/Applications/IntelliJ IDEA.app/Contents/bin/inspect.sh" \
   node dist/index.js
 
@@ -349,7 +349,7 @@ if (fileExtension === '.py' && !hasPythonSupport(selectedIDE)) {
 ### Relative Performance by IDE
 
 | IDE           | Startup Time | Inspection Speed | Memory Usage |
-|---------------|--------------|------------------|--------------|
+| ------------- | ------------ | ---------------- | ------------ |
 | WebStorm      | Fast         | Fast for JS/TS   | Medium       |
 | IntelliJ IDEA | Slower       | Fast for Java    | High         |
 | PyCharm       | Medium       | Fast for Python  | Medium       |

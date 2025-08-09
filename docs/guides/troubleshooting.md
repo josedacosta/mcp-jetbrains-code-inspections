@@ -18,20 +18,20 @@ Solutions for common issues when using MCP JetBrains Code Inspections.
 
 1. Verify IDE is installed:
 
-   ```bash
-   ls /Applications/ | grep -E "(IntelliJ|WebStorm|PyCharm)"
-   ```
+    ```bash
+    ls /Applications/ | grep -E "(IntelliJ|WebStorm|PyCharm)"
+    ```
 
 2. Set explicit IDE path:
 
-   ```bash
-   export FORCE_INSPECT_PATH="/path/to/your/IDE.app/Contents/bin/inspect.sh"
-   ```
+    ```bash
+    export FORCE_INSPECT_PATH="/path/to/your/IDE.app/Contents/bin/inspect.sh"
+    ```
 
 3. Check IDE process isn't blocking:
-   ```bash
-   ps aux | grep -i "intellij\|webstorm\|pycharm"
-   ```
+    ```bash
+    ps aux | grep -i "intellij\|webstorm\|pycharm"
+    ```
 
 ### Timeout Errors
 
@@ -41,31 +41,31 @@ Solutions for common issues when using MCP JetBrains Code Inspections.
 
 1. Increase timeout value:
 
-   ```json
-   {
-     "env": {
-       "INSPECTION_TIMEOUT": "600000" // 10 minutes
-     }
-   }
-   ```
+    ```json
+    {
+        "env": {
+            "INSPECTION_TIMEOUT": "600000" // 10 minutes
+        }
+    }
+    ```
 
 2. Analyze smaller scopes:
 
-   ```javascript
-   // Instead of entire project
-   await get_jetbrains_code_inspections({
-     path: '/src/specific/file.ts',
-   });
-   ```
+    ```javascript
+    // Instead of entire project
+    await get_jetbrains_code_inspections({
+        path: '/src/specific/file.ts',
+    });
+    ```
 
 3. Enable debug mode for more information:
-   ```json
-   {
-     "env": {
-       "DEBUG": "true"
-     }
-   }
-   ```
+    ```json
+    {
+        "env": {
+            "DEBUG": "true"
+        }
+    }
+    ```
 
 ### No Diagnostics Returned
 
@@ -75,22 +75,22 @@ Solutions for common issues when using MCP JetBrains Code Inspections.
 
 1. Check inspection profile exists:
 
-   ```bash
-   ls .idea/inspectionProfiles/
-   ```
+    ```bash
+    ls .idea/inspectionProfiles/
+    ```
 
 2. Verify file is in project:
 
-   ```bash
-   # File should be within project root
-   realpath --relative-to=. /path/to/file
-   ```
+    ```bash
+    # File should be within project root
+    realpath --relative-to=. /path/to/file
+    ```
 
 3. Test with MCP Inspector:
-   ```bash
-   yarn inspect
-   # Then test with the file path in the web interface
-   ```
+    ```bash
+    yarn inspect
+    # Then test with the file path in the web interface
+    ```
 
 ### Permission Denied
 
@@ -100,22 +100,22 @@ Solutions for common issues when using MCP JetBrains Code Inspections.
 
 1. Check file permissions:
 
-   ```bash
-   ls -la /path/to/inspect.sh
-   chmod +x /path/to/inspect.sh
-   ```
+    ```bash
+    ls -la /path/to/inspect.sh
+    chmod +x /path/to/inspect.sh
+    ```
 
 2. Verify temp directory access:
 
-   ```bash
-   touch /tmp/test-mcp-inspection
-   ```
+    ```bash
+    touch /tmp/test-mcp-inspection
+    ```
 
 3. Run with correct user:
-   ```bash
-   whoami
-   ls -la .idea/
-   ```
+    ```bash
+    whoami
+    ls -la .idea/
+    ```
 
 ### Profile Not Found
 
@@ -130,19 +130,19 @@ Solutions for common issues when using MCP JetBrains Code Inspections.
 
 2. Use unified profile:
 
-   ```bash
-   cp src/resources/profiles/unified.xml .idea/inspectionProfiles/
-   ```
+    ```bash
+    cp src/resources/profiles/unified.xml .idea/inspectionProfiles/
+    ```
 
 3. Check profile settings:
-   ```xml
-   <!-- .idea/inspectionProfiles/profiles_settings.xml -->
-   <component name="InspectionProjectProfileManager">
-     <settings>
-       <option name="USE_PROJECT_PROFILE" value="true" />
-     </settings>
-   </component>
-   ```
+    ```xml
+    <!-- .idea/inspectionProfiles/profiles_settings.xml -->
+    <component name="InspectionProjectProfileManager">
+      <settings>
+        <option name="USE_PROJECT_PROFILE" value="true" />
+      </settings>
+    </component>
+    ```
 
 ## Performance Issues
 
@@ -152,12 +152,12 @@ Solutions for common issues when using MCP JetBrains Code Inspections.
 
 1. Exclude unnecessary files:
 
-   ```javascript
-   // Focus on source files only
-   await get_jetbrains_code_inspections({
-     path: '/project/src',
-   });
-   ```
+    ```javascript
+    // Focus on source files only
+    await get_jetbrains_code_inspections({
+        path: '/project/src',
+    });
+    ```
 
 2. Use specific file types:
     - Configure IDE to skip certain file types
@@ -173,11 +173,11 @@ Solutions for common issues when using MCP JetBrains Code Inspections.
 
 1. Increase IDE memory:
 
-   ```bash
-   # In IDE's vmoptions file
-   -Xmx4096m
-   -XX:MaxPermSize=1024m
-   ```
+    ```bash
+    # In IDE's vmoptions file
+    -Xmx4096m
+    -XX:MaxPermSize=1024m
+    ```
 
 2. Process files in batches
 3. Clear IDE caches if needed
@@ -188,20 +188,20 @@ Solutions for common issues when using MCP JetBrains Code Inspections.
 
 1. Set debug environment:
 
-   ```bash
-   export DEBUG=true
-   ```
+    ```bash
+    export DEBUG=true
+    ```
 
 2. Check server logs:
 
-   ```bash
-   DEBUG=true yarn dev 2>&1 | tee debug.log
-   ```
+    ```bash
+    DEBUG=true yarn dev 2>&1 | tee debug.log
+    ```
 
 3. Use interactive testing:
-   ```bash
-   yarn test:mcp
-   ```
+    ```bash
+    yarn test:mcp
+    ```
 
 ### Using MCP Inspector
 

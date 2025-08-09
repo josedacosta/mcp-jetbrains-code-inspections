@@ -24,7 +24,7 @@ Run JetBrains IDE code inspections on files or directories with automatic IDE se
 ### Parameters
 
 | Parameter | Type   | Required | Description                                              |
-|-----------|--------|----------|----------------------------------------------------------|
+| --------- | ------ | -------- | -------------------------------------------------------- |
 | `path`    | string | Yes      | File or directory path to inspect (absolute or relative) |
 
 ## Quick Examples
@@ -33,7 +33,7 @@ Run JetBrains IDE code inspections on files or directories with automatic IDE se
 
 ```javascript
 await get_jetbrains_code_inspections({
-  path: "src/components/Button.tsx"
+    path: 'src/components/Button.tsx',
 });
 ```
 
@@ -41,7 +41,7 @@ await get_jetbrains_code_inspections({
 
 ```javascript
 await get_jetbrains_code_inspections({
-  path: "src/utils/"
+    path: 'src/utils/',
 });
 ```
 
@@ -49,7 +49,7 @@ await get_jetbrains_code_inspections({
 
 ```javascript
 await get_jetbrains_code_inspections({
-  path: "."
+    path: '.',
 });
 ```
 
@@ -71,10 +71,12 @@ await get_jetbrains_code_inspections({
 ### File: src/app.ts
 
 **WEAK WARNING** at line 15:
+
 - **Issue**: Variable 'unused' is never used
 - **Inspection**: UnusedDeclaration
 
 **INFO** at line 23:
+
 - **Issue**: TODO comment found
 - **Inspection**: TodoComment
 ```
@@ -83,22 +85,22 @@ await get_jetbrains_code_inspections({
 
 ```json
 {
-  "results": [
-    {
-      "file": "src/app.ts",
-      "line": 15,
-      "column": 5,
-      "severity": "WEAK WARNING",
-      "message": "Variable 'unused' is never used",
-      "inspection": "UnusedDeclaration"
+    "results": [
+        {
+            "file": "src/app.ts",
+            "line": 15,
+            "column": 5,
+            "severity": "WEAK WARNING",
+            "message": "Variable 'unused' is never used",
+            "inspection": "UnusedDeclaration"
+        }
+    ],
+    "summary": {
+        "totalFiles": 1,
+        "totalIssues": 1,
+        "errors": 0,
+        "warnings": 1
     }
-  ],
-  "summary": {
-    "totalFiles": 1,
-    "totalIssues": 1,
-    "errors": 0,
-    "warnings": 1
-  }
 }
 ```
 
@@ -170,11 +172,11 @@ Control behavior without changing code:
 
 ```json
 {
-  "env": {
-    "INSPECTION_TIMEOUT": "300000",
-    "EXCLUDE_INSPECTIONS": "SpellCheckingInspection,TodoComment",
-    "RESPONSE_FORMAT": "json"
-  }
+    "env": {
+        "INSPECTION_TIMEOUT": "300000",
+        "EXCLUDE_INSPECTIONS": "SpellCheckingInspection,TodoComment",
+        "RESPONSE_FORMAT": "json"
+    }
 }
 ```
 

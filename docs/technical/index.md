@@ -55,22 +55,22 @@ The server provides a single tool with one required parameter:
 ```typescript
 // Server implements MCP tool interface
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
-  tools: [
-    {
-      name: 'get_jetbrains_code_inspections',
-      description: 'Run JetBrains IDE code inspections on files or directories',
-      inputSchema: {
-        type: 'object',
-        properties: {
-          path: {
-            type: 'string',
-            description: 'File or directory path to inspect',
-          },
+    tools: [
+        {
+            name: 'get_jetbrains_code_inspections',
+            description: 'Run JetBrains IDE code inspections on files or directories',
+            inputSchema: {
+                type: 'object',
+                properties: {
+                    path: {
+                        type: 'string',
+                        description: 'File or directory path to inspect',
+                    },
+                },
+                required: ['path'],
+            },
         },
-        required: ['path'],
-      },
-    },
-  ],
+    ],
 }));
 ```
 
@@ -89,13 +89,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
 
 ```typescript
 // Automatic IDE selection based on availability
-const ideHierarchy = [
-  'IntelliJ IDEA',
-  'WebStorm',
-  'PyCharm',
-  'PhpStorm',
-  'GoLand',
-];
+const ideHierarchy = ['IntelliJ IDEA', 'WebStorm', 'PyCharm', 'PhpStorm', 'GoLand'];
 ```
 
 ### Diagnostic Mapping
@@ -103,10 +97,10 @@ const ideHierarchy = [
 ```typescript
 // JetBrains severity to LSP diagnostic severity
 const severityMap = {
-  ERROR: DiagnosticSeverity.Error,
-  WARNING: DiagnosticSeverity.Warning,
-  'WEAK WARNING': DiagnosticSeverity.Information,
-  INFO: DiagnosticSeverity.Hint,
+    ERROR: DiagnosticSeverity.Error,
+    WARNING: DiagnosticSeverity.Warning,
+    'WEAK WARNING': DiagnosticSeverity.Information,
+    INFO: DiagnosticSeverity.Hint,
 };
 ```
 

@@ -12,30 +12,30 @@ permissions:
     id-token: write
 
 concurrency:
-    group: "pages"
+    group: 'pages'
     cancel-in-progress: false
 
 jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            -   uses: actions/checkout@v4
+            - uses: actions/checkout@v4
 
-            -   uses: actions/setup-node@v4
-                with:
-                    node-version: '20'
-                    cache: 'yarn'
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: '20'
+                  cache: 'yarn'
 
-            -   name: Install dependencies
-                run: yarn install --frozen-lockfile
+            - name: Install dependencies
+              run: yarn install --frozen-lockfile
 
-            -   name: Build website
-                run: yarn docs:build
+            - name: Build website
+              run: yarn docs:build
 
-            -   name: Upload artifact
-                uses: actions/upload-pages-artifact@v3
-                with:
-                    path: ./build
+            - name: Upload artifact
+              uses: actions/upload-pages-artifact@v3
+              with:
+                  path: ./build
 
     deploy:
         environment:
@@ -44,6 +44,6 @@ jobs:
         runs-on: ubuntu-latest
         needs: build
         steps:
-            -   name: Deploy to GitHub Pages
-                id: deployment
-                uses: actions/deploy-pages@v4
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4

@@ -9,8 +9,8 @@
 
 // Syntax Error: Missing closing bracket
 function brokenFunction() {
-    console.log("Missing closing bracket"
-    // Missing closing parenthesis and bracket
+    console.log("Missing closing bracket");
+    // Fixed: Added closing parenthesis and semicolon
 }
 
 // Type Error: Cannot find name

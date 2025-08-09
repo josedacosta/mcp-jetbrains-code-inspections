@@ -44,11 +44,11 @@ The MCP server executes JetBrains inspect tool with carefully configured paramet
 
 ```typescript
 interface InspectionCommand {
-  executable: string;           // Path to inspect.sh/inspect.bat
-  projectPath: string;         // Project or file to analyze
-  profilePath: string;         // Inspection profile to use
-  outputPath: string;          // Where to write results
-  options: InspectionOptions;  // Additional configuration
+    executable: string; // Path to inspect.sh/inspect.bat
+    projectPath: string; // Project or file to analyze
+    profilePath: string; // Inspection profile to use
+    outputPath: string; // Where to write results
+    options: InspectionOptions; // Additional configuration
 }
 ```
 
@@ -85,7 +85,7 @@ inspect.sh \
 #### Optional Parameters
 
 | Parameter           | Description                         | Default        |
-|---------------------|-------------------------------------|----------------|
+| ------------------- | ----------------------------------- | -------------- |
 | `-format`           | Output format (xml, json, plain)    | xml            |
 | `-d`                | Target directory or file to analyze | Entire project |
 | `-scope`            | Analysis scope name                 | Project Files  |
@@ -108,23 +108,23 @@ The system handles profiles as follows:
 <component name="InspectionProjectProfileManager">
   <profile version="1.0">
     <option name="myName" value="Project Default" />
-    
+
     <!-- Enable specific inspection -->
-    <inspection_tool class="UnusedDeclaration" 
-                     enabled="true" 
-                     level="WARNING" 
+    <inspection_tool class="UnusedDeclaration"
+                     enabled="true"
+                     level="WARNING"
                      enabled_by_default="true" />
-    
+
     <!-- Disable noisy inspection -->
-    <inspection_tool class="SpellCheckingInspection" 
-                     enabled="false" 
-                     level="INFO" 
+    <inspection_tool class="SpellCheckingInspection"
+                     enabled="false"
+                     level="INFO"
                      enabled_by_default="false" />
-    
+
     <!-- Configure severity -->
-    <inspection_tool class="NullPointerException" 
-                     enabled="true" 
-                     level="ERROR" 
+    <inspection_tool class="NullPointerException"
+                     enabled="true"
+                     level="ERROR"
                      enabled_by_default="true" />
   </profile>
 </component>
@@ -156,25 +156,25 @@ The system handles profiles as follows:
 
 ```json
 {
-  "version": "2023.3",
-  "problems": [
-    {
-      "file": "src/components/Button.tsx",
-      "line": 15,
-      "column": 7,
-      "package": "",
-      "entry_point": "...",
-      "problem_class": {
-        "severity": "WARNING",
-        "attribute_key": "WARNING_ATTRIBUTES",
-        "id": "UnusedDeclaration",
-        "name": "Unused declaration",
-        "description": "Reports unused functions, variables, and other declarations"
-      },
-      "hints": [],
-      "description": "Function 'handleClick' is never used"
-    }
-  ]
+    "version": "2023.3",
+    "problems": [
+        {
+            "file": "src/components/Button.tsx",
+            "line": 15,
+            "column": 7,
+            "package": "",
+            "entry_point": "...",
+            "problem_class": {
+                "severity": "WARNING",
+                "attribute_key": "WARNING_ATTRIBUTES",
+                "id": "UnusedDeclaration",
+                "name": "Unused declaration",
+                "description": "Reports unused functions, variables, and other declarations"
+            },
+            "hints": [],
+            "description": "Function 'handleClick' is never used"
+        }
+    ]
 }
 ```
 
@@ -184,20 +184,20 @@ The system handles profiles as follows:
 
 ```typescript
 interface RawInspectionOutput {
-  stdout: string;
-  stderr: string;
-  exitCode: number;
-  outputFiles: string[];
+    stdout: string;
+    stderr: string;
+    exitCode: number;
+    outputFiles: string[];
 }
 
 function validateRawOutput(output: RawInspectionOutput): void {
-  if (output.exitCode !== 0 && output.exitCode !== 1) {
-    throw new InspectionError(`Inspection failed with exit code ${output.exitCode}`);
-  }
-  
-  if (output.outputFiles.length === 0) {
-    throw new InspectionError('No output files generated');
-  }
+    if (output.exitCode !== 0 && output.exitCode !== 1) {
+        throw new InspectionError(`Inspection failed with exit code ${output.exitCode}`);
+    }
+
+    if (output.outputFiles.length === 0) {
+        throw new InspectionError('No output files generated');
+    }
 }
 ```
 
@@ -205,27 +205,27 @@ function validateRawOutput(output: RawInspectionOutput): void {
 
 ```typescript
 function parseInspectionResults(outputPath: string): Diagnostic[] {
-  const files = fs.readdirSync(outputPath);
-  
-  // Prefer JSON format
-  const jsonFile = files.find(f => f.endsWith('.json'));
-  if (jsonFile) {
-    return parseJSONResults(path.join(outputPath, jsonFile));
-  }
-  
-  // Fallback to XML
-  const xmlFile = files.find(f => f.endsWith('.xml'));
-  if (xmlFile) {
-    return parseXMLResults(path.join(outputPath, xmlFile));
-  }
-  
-  // Last resort: plain text
-  const txtFile = files.find(f => f.endsWith('.txt'));
-  if (txtFile) {
-    return parseTextResults(path.join(outputPath, txtFile));
-  }
-  
-  throw new Error('No parseable output files found');
+    const files = fs.readdirSync(outputPath);
+
+    // Prefer JSON format
+    const jsonFile = files.find((f) => f.endsWith('.json'));
+    if (jsonFile) {
+        return parseJSONResults(path.join(outputPath, jsonFile));
+    }
+
+    // Fallback to XML
+    const xmlFile = files.find((f) => f.endsWith('.xml'));
+    if (xmlFile) {
+        return parseXMLResults(path.join(outputPath, xmlFile));
+    }
+
+    // Last resort: plain text
+    const txtFile = files.find((f) => f.endsWith('.txt'));
+    if (txtFile) {
+        return parseTextResults(path.join(outputPath, txtFile));
+    }
+
+    throw new Error('No parseable output files found');
 }
 ```
 
@@ -233,38 +233,38 @@ function parseInspectionResults(outputPath: string): Diagnostic[] {
 
 ```typescript
 interface RawJetBrainsDiagnostic {
-  file: string;
-  line: number;
-  column?: number;
-  problem_class: {
-    severity: string;
-    id: string;
-    name: string;
-    description?: string;
-  };
-  description: string;
+    file: string;
+    line: number;
+    column?: number;
+    problem_class: {
+        severity: string;
+        id: string;
+        name: string;
+        description?: string;
+    };
+    description: string;
 }
 
 interface NormalizedDiagnostic {
-  file: string;
-  line: number;
-  column: number;
-  severity: 'ERROR' | 'WARNING' | 'WEAK WARNING' | 'INFO';
-  message: string;
-  inspection: string;
-  description?: string;
+    file: string;
+    line: number;
+    column: number;
+    severity: 'ERROR' | 'WARNING' | 'WEAK WARNING' | 'INFO';
+    message: string;
+    inspection: string;
+    description?: string;
 }
 
 function normalizeDiagnostic(raw: RawJetBrainsDiagnostic): NormalizedDiagnostic {
-  return {
-    file: path.relative(projectRoot, raw.file),
-    line: raw.line,
-    column: raw.column || 1,
-    severity: normalizeSeverity(raw.problem_class.severity),
-    message: raw.description,
-    inspection: raw.problem_class.id,
-    description: raw.problem_class.description
-  };
+    return {
+        file: path.relative(projectRoot, raw.file),
+        line: raw.line,
+        column: raw.column || 1,
+        severity: normalizeSeverity(raw.problem_class.severity),
+        message: raw.description,
+        inspection: raw.problem_class.id,
+        description: raw.problem_class.description,
+    };
 }
 ```
 
@@ -275,27 +275,20 @@ function normalizeDiagnostic(raw: RawJetBrainsDiagnostic): NormalizedDiagnostic 
 #### Inclusion/Exclusion Logic
 
 ```typescript
-function filterDiagnostics(
-  diagnostics: Diagnostic[],
-  options: FilterOptions
-): Diagnostic[] {
-  let filtered = diagnostics;
-  
-  // Apply inclusion filter (whitelist)
-  if (options.onlyInspections && options.onlyInspections.length > 0) {
-    filtered = filtered.filter(d => 
-      options.onlyInspections!.includes(d.inspection)
-    );
-  }
-  
-  // Apply exclusion filter (blacklist)
-  if (options.excludeInspections && options.excludeInspections.length > 0) {
-    filtered = filtered.filter(d => 
-      !options.excludeInspections!.includes(d.inspection)
-    );
-  }
-  
-  return filtered;
+function filterDiagnostics(diagnostics: Diagnostic[], options: FilterOptions): Diagnostic[] {
+    let filtered = diagnostics;
+
+    // Apply inclusion filter (whitelist)
+    if (options.onlyInspections && options.onlyInspections.length > 0) {
+        filtered = filtered.filter((d) => options.onlyInspections!.includes(d.inspection));
+    }
+
+    // Apply exclusion filter (blacklist)
+    if (options.excludeInspections && options.excludeInspections.length > 0) {
+        filtered = filtered.filter((d) => !options.excludeInspections!.includes(d.inspection));
+    }
+
+    return filtered;
 }
 ```
 
@@ -304,36 +297,32 @@ function filterDiagnostics(
 Instead of modifying XML profiles, filters are applied post-processing:
 
 ```typescript
-function createFilteredProfile(
-  baseProfile: string,
-  includeOnly?: string[],
-  exclude?: string[]
-): string {
-  if (!includeOnly && !exclude) {
-    return baseProfile; // Use original profile
-  }
-  
-  // Generate dynamic profile with filtering
-  const profile = parseProfile(baseProfile);
-  
-  if (includeOnly) {
-    // Disable all inspections except included ones
-    profile.inspections.forEach(inspection => {
-      inspection.enabled = includeOnly.includes(inspection.class);
-    });
-  }
-  
-  if (exclude) {
-    // Disable excluded inspections
-    exclude.forEach(inspectionClass => {
-      const inspection = profile.inspections.find(i => i.class === inspectionClass);
-      if (inspection) {
-        inspection.enabled = false;
-      }
-    });
-  }
-  
-  return serializeProfile(profile);
+function createFilteredProfile(baseProfile: string, includeOnly?: string[], exclude?: string[]): string {
+    if (!includeOnly && !exclude) {
+        return baseProfile; // Use original profile
+    }
+
+    // Generate dynamic profile with filtering
+    const profile = parseProfile(baseProfile);
+
+    if (includeOnly) {
+        // Disable all inspections except included ones
+        profile.inspections.forEach((inspection) => {
+            inspection.enabled = includeOnly.includes(inspection.class);
+        });
+    }
+
+    if (exclude) {
+        // Disable excluded inspections
+        exclude.forEach((inspectionClass) => {
+            const inspection = profile.inspections.find((i) => i.class === inspectionClass);
+            if (inspection) {
+                inspection.enabled = false;
+            }
+        });
+    }
+
+    return serializeProfile(profile);
 }
 ```
 
@@ -343,16 +332,16 @@ Map JetBrains severity levels to standardized levels:
 
 ```typescript
 function normalizeSeverity(jetBrainsSeverity: string): SeverityLevel {
-  const mapping: Record<string, SeverityLevel> = {
-    'ERROR': 'ERROR',
-    'WARNING': 'WARNING',
-    'WEAK_WARNING': 'WEAK WARNING',
-    'INFO': 'INFO',
-    'SERVER_PROBLEM': 'ERROR',
-    'INFORMATION': 'INFO'
-  };
-  
-  return mapping[jetBrainsSeverity] || 'INFO';
+    const mapping: Record<string, SeverityLevel> = {
+        ERROR: 'ERROR',
+        WARNING: 'WARNING',
+        WEAK_WARNING: 'WEAK WARNING',
+        INFO: 'INFO',
+        SERVER_PROBLEM: 'ERROR',
+        INFORMATION: 'INFO',
+    };
+
+    return mapping[jetBrainsSeverity] || 'INFO';
 }
 ```
 
@@ -398,63 +387,54 @@ class InvalidProjectError extends Error {
 #### Automatic Retry with Fallback
 
 ```typescript
-async function executeInspectionWithFallback(
-  command: InspectionCommand,
-  maxRetries: number = 2
-): Promise<Diagnostic[]> {
-  const strategies = [
-    () => executeWithJSON(command),
-    () => executeWithXML(command),
-    () => executeWithPlainText(command)
-  ];
-  
-  for (const strategy of strategies) {
-    for (let attempt = 0; attempt <= maxRetries; attempt++) {
-      try {
-        return await strategy();
-      } catch (error) {
-        if (attempt === maxRetries) {
-          console.warn(`Strategy failed after ${maxRetries + 1} attempts:`, error);
-        } else {
-          console.warn(`Attempt ${attempt + 1} failed, retrying...`, error);
-          await delay(1000 * (attempt + 1)); // Exponential backoff
+async function executeInspectionWithFallback(command: InspectionCommand, maxRetries: number = 2): Promise<Diagnostic[]> {
+    const strategies = [() => executeWithJSON(command), () => executeWithXML(command), () => executeWithPlainText(command)];
+
+    for (const strategy of strategies) {
+        for (let attempt = 0; attempt <= maxRetries; attempt++) {
+            try {
+                return await strategy();
+            } catch (error) {
+                if (attempt === maxRetries) {
+                    console.warn(`Strategy failed after ${maxRetries + 1} attempts:`, error);
+                } else {
+                    console.warn(`Attempt ${attempt + 1} failed, retrying...`, error);
+                    await delay(1000 * (attempt + 1)); // Exponential backoff
+                }
+            }
         }
-      }
     }
-  }
-  
-  throw new Error('All inspection strategies failed');
+
+    throw new Error('All inspection strategies failed');
 }
 ```
 
 #### Graceful Degradation
 
 ```typescript
-async function executeWithGracefulDegradation(
-  command: InspectionCommand
-): Promise<InspectionResult> {
-  try {
-    return await executeInspection(command);
-  } catch (error) {
-    if (error instanceof InspectionTimeoutError) {
-      return {
-        diagnostics: [],
-        totalProblems: 0,
-        timeout: true,
-        warning: `Inspection timed out. Try analyzing a smaller scope.`
-      };
+async function executeWithGracefulDegradation(command: InspectionCommand): Promise<InspectionResult> {
+    try {
+        return await executeInspection(command);
+    } catch (error) {
+        if (error instanceof InspectionTimeoutError) {
+            return {
+                diagnostics: [],
+                totalProblems: 0,
+                timeout: true,
+                warning: `Inspection timed out. Try analyzing a smaller scope.`,
+            };
+        }
+
+        if (error instanceof InvalidProjectError) {
+            return {
+                diagnostics: [],
+                totalProblems: 0,
+                error: `Project structure invalid. Ensure .idea directory exists.`,
+            };
+        }
+
+        throw error; // Re-throw unexpected errors
     }
-    
-    if (error instanceof InvalidProjectError) {
-      return {
-        diagnostics: [],
-        totalProblems: 0,
-        error: `Project structure invalid. Ensure .idea directory exists.`
-      };
-    }
-    
-    throw error; // Re-throw unexpected errors
-  }
 }
 ```
 
@@ -466,40 +446,40 @@ async function executeWithGracefulDegradation(
 
 ```typescript
 interface CacheKey {
-  path: string;
-  profileHash: string;
-  lastModified: number;
+    path: string;
+    profileHash: string;
+    lastModified: number;
 }
 
 interface CachedResult {
-  diagnostics: Diagnostic[];
-  timestamp: number;
-  ttl: number;
+    diagnostics: Diagnostic[];
+    timestamp: number;
+    ttl: number;
 }
 
 class InspectionCache {
-  private cache = new Map<string, CachedResult>();
-  
-  get(key: CacheKey): CachedResult | null {
-    const cacheKey = this.generateKey(key);
-    const cached = this.cache.get(cacheKey);
-    
-    if (!cached || Date.now() > cached.timestamp + cached.ttl) {
-      this.cache.delete(cacheKey);
-      return null;
+    private cache = new Map<string, CachedResult>();
+
+    get(key: CacheKey): CachedResult | null {
+        const cacheKey = this.generateKey(key);
+        const cached = this.cache.get(cacheKey);
+
+        if (!cached || Date.now() > cached.timestamp + cached.ttl) {
+            this.cache.delete(cacheKey);
+            return null;
+        }
+
+        return cached;
     }
-    
-    return cached;
-  }
-  
-  set(key: CacheKey, result: Diagnostic[], ttl: number = 300000): void {
-    const cacheKey = this.generateKey(key);
-    this.cache.set(cacheKey, {
-      diagnostics: result,
-      timestamp: Date.now(),
-      ttl
-    });
-  }
+
+    set(key: CacheKey, result: Diagnostic[], ttl: number = 300000): void {
+        const cacheKey = this.generateKey(key);
+        this.cache.set(cacheKey, {
+            diagnostics: result,
+            timestamp: Date.now(),
+            ttl,
+        });
+    }
 }
 ```
 
@@ -507,23 +487,21 @@ class InspectionCache {
 
 ```typescript
 class InspectionPool {
-  private processes = new Map<string, ChildProcess>();
-  
-  async executeInspection(
-    command: InspectionCommand
-  ): Promise<Diagnostic[]> {
-    const processKey = this.getProcessKey(command);
-    
-    // Reuse existing process if available
-    let process = this.processes.get(processKey);
-    
-    if (!process || process.killed) {
-      process = this.createInspectionProcess(command);
-      this.processes.set(processKey, process);
+    private processes = new Map<string, ChildProcess>();
+
+    async executeInspection(command: InspectionCommand): Promise<Diagnostic[]> {
+        const processKey = this.getProcessKey(command);
+
+        // Reuse existing process if available
+        let process = this.processes.get(processKey);
+
+        if (!process || process.killed) {
+            process = this.createInspectionProcess(command);
+            this.processes.set(processKey, process);
+        }
+
+        return this.sendInspectionRequest(process, command);
     }
-    
-    return this.sendInspectionRequest(process, command);
-  }
 }
 ```
 
@@ -532,19 +510,16 @@ class InspectionPool {
 #### Streaming Results
 
 ```typescript
-function parseResultsStreaming(
-  outputPath: string,
-  callback: (diagnostic: Diagnostic) => void
-): void {
-  const stream = fs.createReadStream(path.join(outputPath, 'results.json'));
-  const parser = new StreamingJsonParser();
-  
-  parser.on('diagnostic', callback);
-  parser.on('error', error => {
-    throw new Error(`Failed to parse results: ${error.message}`);
-  });
-  
-  stream.pipe(parser);
+function parseResultsStreaming(outputPath: string, callback: (diagnostic: Diagnostic) => void): void {
+    const stream = fs.createReadStream(path.join(outputPath, 'results.json'));
+    const parser = new StreamingJsonParser();
+
+    parser.on('diagnostic', callback);
+    parser.on('error', (error) => {
+        throw new Error(`Failed to parse results: ${error.message}`);
+    });
+
+    stream.pipe(parser);
 }
 ```
 
@@ -552,35 +527,35 @@ function parseResultsStreaming(
 
 ```typescript
 class ResourceManager {
-  private tempDirs: string[] = [];
-  private processes: ChildProcess[] = [];
-  
-  createTempDirectory(): string {
-    const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'mcp-inspection-'));
-    this.tempDirs.push(tempDir);
-    return tempDir;
-  }
-  
-  cleanup(): void {
-    // Clean up temporary directories
-    this.tempDirs.forEach(dir => {
-      try {
-        fs.rmSync(dir, { recursive: true, force: true });
-      } catch (error) {
-        console.warn(`Failed to clean up temp directory ${dir}:`, error);
-      }
-    });
-    
-    // Terminate processes
-    this.processes.forEach(process => {
-      if (!process.killed) {
-        process.kill('SIGTERM');
-      }
-    });
-    
-    this.tempDirs = [];
-    this.processes = [];
-  }
+    private tempDirs: string[] = [];
+    private processes: ChildProcess[] = [];
+
+    createTempDirectory(): string {
+        const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'mcp-inspection-'));
+        this.tempDirs.push(tempDir);
+        return tempDir;
+    }
+
+    cleanup(): void {
+        // Clean up temporary directories
+        this.tempDirs.forEach((dir) => {
+            try {
+                fs.rmSync(dir, { recursive: true, force: true });
+            } catch (error) {
+                console.warn(`Failed to clean up temp directory ${dir}:`, error);
+            }
+        });
+
+        // Terminate processes
+        this.processes.forEach((process) => {
+            if (!process.killed) {
+                process.kill('SIGTERM');
+            }
+        });
+
+        this.tempDirs = [];
+        this.processes = [];
+    }
 }
 ```
 

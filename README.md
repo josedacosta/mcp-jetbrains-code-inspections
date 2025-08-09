@@ -60,27 +60,27 @@ The code inspections server can be configured through environment variables in `
 
 ```json
 {
-  "mcpServers": {
-    "mcp-jetbrains-code-inspections": {
-      "command": "node",
-      "args": ["./dist/index.js"],
-      "env": {
-        // Force specific configurations (disables auto-detection)
-        // "FORCE_INSPECT_PATH": "/path/to/specific/ide/bin/inspect.sh",
-        // "FORCE_PROJECT_ROOT": "/path/to/project",
-        // "FORCE_PROFILE_PATH": "/path/to/profile.xml",
-        
-        // Inspection configuration
-        "INSPECTION_TIMEOUT": "120000",
-        // "EXCLUDE_INSPECTIONS": "SpellCheckingInspection,UnusedDeclaration",
-        // "ONLY_INSPECTIONS": "TypeScript,JavaScript",
-        
-        // Output and debug
-        // "RESPONSE_FORMAT": "json",
-        // "DEBUG": "true"
-      }
+    "mcpServers": {
+        "mcp-jetbrains-code-inspections": {
+            "command": "node",
+            "args": ["./dist/index.js"],
+            "env": {
+                // Force specific configurations (disables auto-detection)
+                // "FORCE_INSPECT_PATH": "/path/to/specific/ide/bin/inspect.sh",
+                // "FORCE_PROJECT_ROOT": "/path/to/project",
+                // "FORCE_PROFILE_PATH": "/path/to/profile.xml",
+
+                // Inspection configuration
+                "INSPECTION_TIMEOUT": "120000"
+                // "EXCLUDE_INSPECTIONS": "SpellCheckingInspection,UnusedDeclaration",
+                // "ONLY_INSPECTIONS": "TypeScript,JavaScript",
+
+                // Output and debug
+                // "RESPONSE_FORMAT": "json",
+                // "DEBUG": "true"
+            }
+        }
     }
-  }
 }
 ```
 
@@ -91,7 +91,7 @@ The code inspections server can be configured through environment variables in `
 The tool accepts only one parameter from the LLM:
 
 | Parameter | Type   | Description                       | Required |
-|-----------|--------|-----------------------------------|----------|
+| --------- | ------ | --------------------------------- | -------- |
 | `path`    | string | File or directory path to inspect | Yes      |
 
 #### Configuration via Environment Variables
@@ -99,7 +99,7 @@ The tool accepts only one parameter from the LLM:
 All other configurations are managed through environment variables in `.mcp.json`:
 
 | Environment Variable  | Type               | Description                                               | Default                 |
-|-----------------------|--------------------|-----------------------------------------------------------|-------------------------|
+| --------------------- | ------------------ | --------------------------------------------------------- | ----------------------- |
 | `FORCE_INSPECT_PATH`  | string             | Force specific IDE inspect tool (disables auto-detection) | Auto-detected           |
 | `FORCE_PROJECT_ROOT`  | string             | Force project root directory (disables auto-detection)    | Auto-detected           |
 | `FORCE_PROFILE_PATH`  | string             | Force inspection profile path (disables defaults)         | Project defaults        |

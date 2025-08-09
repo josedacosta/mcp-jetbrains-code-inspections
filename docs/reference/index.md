@@ -33,13 +33,13 @@ Version history and release notes:
 ### get_jetbrains_code_inspections Parameters
 
 | Parameter | Type   | Required | Default | Description                  |
-|-----------|--------|----------|---------|------------------------------|
+| --------- | ------ | -------- | ------- | ---------------------------- |
 | `path`    | string | ✓        | -       | File or directory to analyze |
 
 ### Configuration Environment Variables
 
 | Variable              | Type              | Default  | Description                          |
-|-----------------------|-------------------|----------|--------------------------------------|
+| --------------------- | ----------------- | -------- | ------------------------------------ |
 | `FORCE_INSPECT_PATH`  | string            | -        | Force specific IDE inspect tool path |
 | `FORCE_PROJECT_ROOT`  | string            | -        | Force project root directory         |
 | `FORCE_PROFILE_PATH`  | string            | -        | Force inspection profile path        |
@@ -52,7 +52,7 @@ Version history and release notes:
 ### Severity Mappings
 
 | JetBrains    | MCP/LSP     | Numeric | Description     |
-|--------------|-------------|---------|-----------------|
+| ------------ | ----------- | ------- | --------------- |
 | ERROR        | Error       | 1       | Must fix        |
 | WARNING      | Warning     | 2       | Should fix      |
 | WEAK WARNING | Information | 3       | Consider fixing |
@@ -97,7 +97,7 @@ C:\Windows\path\to\file.ext  # Windows
 ### Common Error Codes
 
 | Code            | Message                | Solution                  |
-|-----------------|------------------------|---------------------------|
+| --------------- | ---------------------- | ------------------------- |
 | `IDE_NOT_FOUND` | No JetBrains IDE found | Install IDE or set path   |
 | `TIMEOUT`       | Operation timed out    | Increase timeout          |
 | `INVALID_URI`   | Invalid file URI       | Check URI format          |
@@ -137,7 +137,7 @@ All file types supported by installed JetBrains IDEs:
 ## Version Compatibility
 
 | MCP Server | JetBrains IDE | Node.js |
-|------------|---------------|---------|
+| ---------- | ------------- | ------- |
 | 1.0.0+     | 2023.1+       | 20.0+   |
 
 ## See Also

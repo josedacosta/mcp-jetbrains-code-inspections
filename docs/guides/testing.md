@@ -62,9 +62,10 @@ yarn start
 ### Using MCP Inspector
 
 1. Start the MCP Inspector:
-   ```bash
-   yarn inspect
-   ```
+
+    ```bash
+    yarn inspect
+    ```
 
 2. In the web interface:
     - Select the `get_jetbrains_code_inspections` tool
@@ -115,7 +116,7 @@ EXCLUDE_INSPECTIONS="SpellCheckingInspection,GrazieInspection" yarn inspect
 # Test markdown output (default)
 RESPONSE_FORMAT=markdown yarn inspect
 
-# Test JSON output  
+# Test JSON output
 RESPONSE_FORMAT=json yarn inspect
 ```
 
@@ -140,16 +141,18 @@ The debug output will show:
 ### 2. Test Basic Functionality
 
 1. Create a test file with some issues:
-   ```typescript
-   // test.ts
-   const unused = 'this variable is unused';
-   console.log('Hello world');
-   ```
+
+    ```typescript
+    // test.ts
+    const unused = 'this variable is unused';
+    console.log('Hello world');
+    ```
 
 2. Test with MCP Inspector:
-   ```bash
-   yarn inspect
-   ```
+
+    ```bash
+    yarn inspect
+    ```
 
 3. Call the tool with the test file path
 4. Verify you get inspection results

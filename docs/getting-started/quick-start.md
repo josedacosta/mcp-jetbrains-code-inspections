@@ -23,17 +23,17 @@ Once you have [installed](./installation) the server, you can start using it imm
 ```javascript
 // Analyze a TypeScript file
 const result = await get_jetbrains_code_inspections({
-    path: '/path/to/your/file.ts'
+    path: '/path/to/your/file.ts',
 });
 
 // Analyze a Python file
 const result = await get_jetbrains_code_inspections({
-    path: '/path/to/your/script.py'
+    path: '/path/to/your/script.py',
 });
 
 // Analyze an entire directory
 const result = await get_jetbrains_code_inspections({
-    path: '/path/to/your/project'
+    path: '/path/to/your/project',
 });
 ```
 
@@ -51,9 +51,7 @@ Configure the response format in your `.mcp.json`:
     "mcpServers": {
         "jetbrains-inspections": {
             "command": "node",
-            "args": [
-                "/path/to/dist/index.js"
-            ],
+            "args": ["/path/to/dist/index.js"],
             "env": {
                 "RESPONSE_FORMAT": "markdown"
                 // or "json"
@@ -222,7 +220,7 @@ Root-level fields in the response:
 
 ```javascript
 await get_jetbrains_code_inspections({
-    path: '/src/components/Button.tsx'
+    path: '/src/components/Button.tsx',
 });
 ```
 
@@ -231,7 +229,7 @@ await get_jetbrains_code_inspections({
 ```javascript
 // This will analyze all files in the directory
 await get_jetbrains_code_inspections({
-    path: '/src'
+    path: '/src',
 });
 ```
 
@@ -244,9 +242,7 @@ Configure the response format using environment variables in your `.mcp.json`:
     "mcpServers": {
         "jetbrains-inspections": {
             "command": "node",
-            "args": [
-                "/path/to/dist/index.js"
-            ],
+            "args": ["/path/to/dist/index.js"],
             "env": {
                 "RESPONSE_FORMAT": "json",
                 "DEBUG": "true"

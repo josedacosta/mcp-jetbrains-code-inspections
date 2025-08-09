@@ -29,7 +29,7 @@ The MCP server uses inspection profiles in the following way:
 ```javascript
 // The tool analyzes files with configured profiles
 const result = await get_jetbrains_code_inspections({
-  path: '/path/to/file.ts'
+    path: '/path/to/file.ts',
 });
 ```
 

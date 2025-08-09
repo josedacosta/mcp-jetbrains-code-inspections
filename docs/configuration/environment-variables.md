@@ -23,17 +23,17 @@ Configure environment variables in your `.mcp.json` file:
 
 ```json
 {
-  "mcpServers": {
-    "mcp-jetbrains-code-inspections": {
-      "command": "node",
-      "args": ["./dist/index.js"],
-      "env": {
-        "INSPECTION_TIMEOUT": "180000",
-        "EXCLUDE_INSPECTIONS": "SpellCheckingInspection",
-        "RESPONSE_FORMAT": "markdown"
-      }
+    "mcpServers": {
+        "mcp-jetbrains-code-inspections": {
+            "command": "node",
+            "args": ["./dist/index.js"],
+            "env": {
+                "INSPECTION_TIMEOUT": "180000",
+                "EXCLUDE_INSPECTIONS": "SpellCheckingInspection",
+                "RESPONSE_FORMAT": "markdown"
+            }
+        }
     }
-  }
 }
 ```
 
@@ -43,9 +43,9 @@ Configure environment variables in your `.mcp.json` file:
 
 ```json
 {
-  "env": {
-    "INSPECTION_TIMEOUT": "300000"  // 5 minutes
-  }
+    "env": {
+        "INSPECTION_TIMEOUT": "300000" // 5 minutes
+    }
 }
 ```
 
@@ -53,9 +53,9 @@ Configure environment variables in your `.mcp.json` file:
 
 ```json
 {
-  "env": {
-    "EXCLUDE_INSPECTIONS": "SpellCheckingInspection,TodoComment"
-  }
+    "env": {
+        "EXCLUDE_INSPECTIONS": "SpellCheckingInspection,TodoComment"
+    }
 }
 ```
 
@@ -63,9 +63,9 @@ Configure environment variables in your `.mcp.json` file:
 
 ```json
 {
-  "env": {
-    "FORCE_INSPECT_PATH": "/Applications/WebStorm.app/Contents/bin/inspect.sh"
-  }
+    "env": {
+        "FORCE_INSPECT_PATH": "/Applications/WebStorm.app/Contents/bin/inspect.sh"
+    }
 }
 ```
 
@@ -73,16 +73,15 @@ Configure environment variables in your `.mcp.json` file:
 
 ```json
 {
-  "env": {
-    "DEBUG": "true"
-  }
+    "env": {
+        "DEBUG": "true"
+    }
 }
 ```
 
 ## Complete Reference
 
-For a complete list of all environment variables with detailed descriptions, types, defaults, and advanced usage examples, see the *
-*[Environment Variables Reference](../reference/environment-variables.md)**.
+For a complete list of all environment variables with detailed descriptions, types, defaults, and advanced usage examples, see the \* \*[Environment Variables Reference](../reference/environment-variables.md)\*\*.
 
 ## See Also
 

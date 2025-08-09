@@ -173,24 +173,22 @@ Write to output directory
 ```typescript
 // Conceptual representation of settings loading
 class InspectionRunner {
-  loadProject(projectPath: string) {
-    const ideaDir = path.join(projectPath, '.idea');
+    loadProject(projectPath: string) {
+        const ideaDir = path.join(projectPath, '.idea');
 
-    // Load modules
-    const modules = this.loadXML(path.join(ideaDir, 'modules.xml'));
+        // Load modules
+        const modules = this.loadXML(path.join(ideaDir, 'modules.xml'));
 
-    // Load inspection profile
-    const profilePath = this.findActiveProfile(ideaDir);
-    const profile = this.loadXML(profilePath);
+        // Load inspection profile
+        const profilePath = this.findActiveProfile(ideaDir);
+        const profile = this.loadXML(profilePath);
 
-    // Load code style
-    const codeStyle = this.loadXML(
-      path.join(ideaDir, 'codeStyles', 'Project.xml'),
-    );
+        // Load code style
+        const codeStyle = this.loadXML(path.join(ideaDir, 'codeStyles', 'Project.xml'));
 
-    // Apply all settings
-    this.applyConfiguration(modules, profile, codeStyle);
-  }
+        // Apply all settings
+        this.applyConfiguration(modules, profile, codeStyle);
+    }
 }
 ```
 
@@ -201,7 +199,7 @@ class InspectionRunner {
 JetBrains IDEs include built-in inspections for JS/TS:
 
 | Inspection Category    | Examples                             |
-|------------------------|--------------------------------------|
+| ---------------------- | ------------------------------------ |
 | **Syntax**             | Missing semicolons, invalid syntax   |
 | **Semantics**          | Undefined variables, type mismatches |
 | **Best Practices**     | Unreachable code, unused symbols     |
@@ -327,12 +325,12 @@ Create automated tests to verify consistency:
 
 ```typescript
 describe('Inspection Consistency', () => {
-  it('should produce identical results across IDEs', async () => {
-    const webstormResults = await runInspection('webstorm');
-    const intellijResults = await runInspection('intellij');
+    it('should produce identical results across IDEs', async () => {
+        const webstormResults = await runInspection('webstorm');
+        const intellijResults = await runInspection('intellij');
 
-    expect(webstormResults).toEqual(intellijResults);
-  });
+        expect(webstormResults).toEqual(intellijResults);
+    });
 });
 ```
 

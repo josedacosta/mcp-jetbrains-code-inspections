@@ -62,11 +62,11 @@ private sortDiagnostics(diagnostics: Diagnostic[]): Diagnostic[] {
         // First by file path
         const fileCompare = a.file.localeCompare(b.file);
         if (fileCompare !== 0) return fileCompare;
-        
+
         // Then by line number
         const lineCompare = a.line - b.line;
         if (lineCompare !== 0) return lineCompare;
-        
+
         // Finally by column
         return (a.column || 0) - (b.column || 0);
     });
@@ -96,15 +96,15 @@ The `InspectionProfileManager` ensures consistent profile usage:
 ```typescript
 export class InspectionProfileManager {
     private profileCache = new Map<string, string>();
-    
+
     async resolveProfile(options: ProfileOptions): Promise<string> {
         const cacheKey = this.getCacheKey(options);
-        
+
         // Return cached profile for consistency
         if (this.profileCache.has(cacheKey)) {
             return this.profileCache.get(cacheKey)!;
         }
-        
+
         const profile = await this.findProfile(options);
         this.profileCache.set(cacheKey, profile);
         return profile;
@@ -123,14 +123,14 @@ class DiagnosticNormalizer {
     normalize(diagnostic: RawDiagnostic): NormalizedDiagnostic {
         // Remove timestamp fields
         const { timestamp, ...rest } = diagnostic;
-        
+
         return {
             ...rest,
             // Use stable identifiers
             id: this.generateStableId(rest),
         };
     }
-    
+
     private generateStableId(diagnostic: any): string {
         // Create deterministic ID from content
         const content = `${diagnostic.file}:${diagnostic.line}:${diagnostic.column}:${diagnostic.inspection}`;
@@ -148,12 +148,12 @@ class PathNormalizer {
     normalize(absolutePath: string, projectRoot: string): string {
         // Always use forward slashes
         const normalized = absolutePath.replace(/\\/g, '/');
-        
+
         // Make relative to project root
         if (normalized.startsWith(projectRoot)) {
             return path.relative(projectRoot, normalized).replace(/\\/g, '/');
         }
-        
+
         return normalized;
     }
 }
@@ -167,9 +167,7 @@ Force consistent inspection execution order:
 class InspectionOrdering {
     orderInspections(inspections: Inspection[]): Inspection[] {
         // Sort by inspection ID for consistency
-        return inspections.sort((a, b) => 
-            a.id.localeCompare(b.id)
-        );
+        return inspections.sort((a, b) => a.id.localeCompare(b.id));
     }
 }
 ```
@@ -191,12 +189,12 @@ interface IDEVersion {
 class VersionCompatibility {
     ensureCompatibility(ide: IDE): void {
         const version = this.parseVersion(ide.version);
-        
+
         // Warn about version differences
         if (this.hasBreakingChanges(version)) {
             this.logger.warn(`IDE version ${ide.version} may produce different results`);
         }
-        
+
         // Apply version-specific adjustments
         this.applyVersionAdjustments(version);
     }
@@ -212,7 +210,7 @@ Handle profile format changes:
 <profile version="1.0">
   <option name="myName" value="Unified" />
   <option name="PROFILE_VERSION" value="2023.3" />
-  
+
   <!-- Version-specific settings -->
   <inspection_tool class="ModernInspection" enabled="true" level="WARNING">
     <!-- Only in 2023.3+ -->
@@ -230,7 +228,7 @@ Implement deterministic caching:
 ```typescript
 class InspectionCache {
     private cache = new Map<string, CachedResult>();
-    
+
     getCacheKey(params: InspectionParams): string {
         // Create deterministic cache key
         const elements = [
@@ -240,13 +238,10 @@ class InspectionCache {
             params.filter?.exclude?.sort().join(',') || '',
             this.getFileHash(params.targetPath),
         ];
-        
-        return crypto
-            .createHash('sha256')
-            .update(elements.join('|'))
-            .digest('hex');
+
+        return crypto.createHash('sha256').update(elements.join('|')).digest('hex');
     }
-    
+
     private getFileHash(targetPath: string): string {
         // Hash file contents for cache invalidation
         const content = fs.readFileSync(targetPath, 'utf8');
@@ -287,23 +282,23 @@ describe('Inspection Consistency', () => {
     it('should produce identical results for multiple runs', async () => {
         const params = {
             targetPath: 'test/fixtures/sample.ts',
-            profilePath: 'test/fixtures/profile.xml'
+            profilePath: 'test/fixtures/profile.xml',
         };
-        
+
         const result1 = await executor.inspect(params);
         const result2 = await executor.inspect(params);
-        
+
         expect(result1).toEqual(result2);
     });
-    
+
     it('should maintain consistency across IDE restarts', async () => {
         const result1 = await executor.inspect(params);
-        
+
         // Simulate IDE restart
         await executor.restart();
-        
+
         const result2 = await executor.inspect(params);
-        
+
         expect(normalizeResults(result1)).toEqual(normalizeResults(result2));
     });
 });
@@ -317,12 +312,12 @@ Track consistency over time:
 class ConsistencyMonitor {
     async checkConsistency(params: InspectionParams): Promise<ConsistencyReport> {
         const results: InspectionResult[] = [];
-        
+
         // Run multiple times
         for (let i = 0; i < 5; i++) {
             results.push(await this.executor.inspect(params));
         }
-        
+
         return {
             consistent: this.areResultsIdentical(results),
             variance: this.calculateVariance(results),
@@ -388,12 +383,12 @@ Always specify configuration explicitly:
 
 ```json
 {
-  "env": {
-    "FORCE_INSPECT_PATH": "/path/to/inspect.sh",
-    "FORCE_PROJECT_ROOT": "/path/to/project",
-    "FORCE_PROFILE_PATH": "/path/to/profile.xml",
-    "INSPECTION_TIMEOUT": "120000"
-  }
+    "env": {
+        "FORCE_INSPECT_PATH": "/path/to/inspect.sh",
+        "FORCE_PROJECT_ROOT": "/path/to/project",
+        "FORCE_PROFILE_PATH": "/path/to/profile.xml",
+        "INSPECTION_TIMEOUT": "120000"
+    }
 }
 ```
 
@@ -403,13 +398,13 @@ Lock IDE and plugin versions:
 
 ```json
 {
-  "requirements": {
-    "ide": "WebStorm 2023.3.2",
-    "plugins": {
-      "eslint": "2.4.0",
-      "prettier": "1.2.3"
+    "requirements": {
+        "ide": "WebStorm 2023.3.2",
+        "plugins": {
+            "eslint": "2.4.0",
+            "prettier": "1.2.3"
+        }
     }
-  }
 }
 ```
 
@@ -432,10 +427,7 @@ Implement result verification:
 class ResultVerifier {
     verify(result: InspectionResult): boolean {
         return (
-            this.hasExpectedStructure(result) &&
-            this.hasValidSeverities(result) &&
-            this.hasConsistentPaths(result) &&
-            this.hasNoDuplicates(result)
+            this.hasExpectedStructure(result) && this.hasValidSeverities(result) && this.hasConsistentPaths(result) && this.hasNoDuplicates(result)
         );
     }
 }
@@ -461,9 +453,9 @@ class ConsistencyLogger {
                 ide: process.env.FORCE_INSPECT_PATH,
                 profile: process.env.FORCE_PROFILE_PATH,
                 nodeVersion: process.version,
-            }
+            },
         };
-        
+
         this.logger.info('Inspection run', entry);
     }
 }
@@ -494,14 +486,14 @@ Balance performance with consistency:
 
 ```typescript
 enum CacheStrategy {
-    NONE = 'none',           // Always fresh, slowest
+    NONE = 'none', // Always fresh, slowest
     CONSERVATIVE = 'conservative', // Cache with strict invalidation
-    AGGRESSIVE = 'aggressive',     // Cache aggressively, fastest
+    AGGRESSIVE = 'aggressive', // Cache aggressively, fastest
 }
 
 class CacheManager {
     constructor(private strategy: CacheStrategy) {}
-    
+
     async get(key: string): Promise<InspectionResult | null> {
         switch (this.strategy) {
             case CacheStrategy.NONE:
@@ -524,19 +516,17 @@ class ParallelExecutor {
     async inspectParallel(files: string[]): Promise<InspectionResult[]> {
         // Sort files for consistent ordering
         const sortedFiles = files.sort();
-        
+
         // Process in deterministic batches
         const batchSize = 4;
         const results: InspectionResult[] = [];
-        
+
         for (let i = 0; i < sortedFiles.length; i += batchSize) {
             const batch = sortedFiles.slice(i, i + batchSize);
-            const batchResults = await Promise.all(
-                batch.map(file => this.inspect(file))
-            );
+            const batchResults = await Promise.all(batch.map((file) => this.inspect(file)));
             results.push(...batchResults);
         }
-        
+
         return results;
     }
 }

@@ -104,17 +104,17 @@ These variables force specific paths and disable auto-detection:
 
 ```json
 {
-  "mcpServers": {
-    "mcp-jetbrains-code-inspections": {
-      "command": "node",
-      "args": ["./dist/index.js"],
-      "env": {
-        "INSPECTION_TIMEOUT": "180000",
-        "EXCLUDE_INSPECTIONS": "SpellCheckingInspection,TodoComment",
-        "RESPONSE_FORMAT": "json"
-      }
+    "mcpServers": {
+        "mcp-jetbrains-code-inspections": {
+            "command": "node",
+            "args": ["./dist/index.js"],
+            "env": {
+                "INSPECTION_TIMEOUT": "180000",
+                "EXCLUDE_INSPECTIONS": "SpellCheckingInspection,TodoComment",
+                "RESPONSE_FORMAT": "json"
+            }
+        }
     }
-  }
 }
 ```
 
@@ -122,10 +122,10 @@ These variables force specific paths and disable auto-detection:
 
 ```json
 {
-  "env": {
-    "FORCE_INSPECT_PATH": "/Applications/WebStorm.app/Contents/bin/inspect.sh",
-    "FORCE_PROJECT_ROOT": "/Users/myuser/projects/webapp"
-  }
+    "env": {
+        "FORCE_INSPECT_PATH": "/Applications/WebStorm.app/Contents/bin/inspect.sh",
+        "FORCE_PROJECT_ROOT": "/Users/myuser/projects/webapp"
+    }
 }
 ```
 
@@ -133,11 +133,11 @@ These variables force specific paths and disable auto-detection:
 
 ```json
 {
-  "env": {
-    "FORCE_PROFILE_PATH": "/path/to/strict-profile.xml",
-    "ONLY_INSPECTIONS": "TypeScriptValidateTypes,UnusedDeclaration",
-    "INSPECTION_TIMEOUT": "300000"
-  }
+    "env": {
+        "FORCE_PROFILE_PATH": "/path/to/strict-profile.xml",
+        "ONLY_INSPECTIONS": "TypeScriptValidateTypes,UnusedDeclaration",
+        "INSPECTION_TIMEOUT": "300000"
+    }
 }
 ```
 
@@ -145,23 +145,23 @@ These variables force specific paths and disable auto-detection:
 
 ```json
 {
-  "env": {
-    "DEBUG": "true",
-    "RESPONSE_FORMAT": "json"
-  }
+    "env": {
+        "DEBUG": "true",
+        "RESPONSE_FORMAT": "json"
+    }
 }
 ```
 
 ## Precedence Rules
 
 1. **ONLY_INSPECTIONS** takes precedence over EXCLUDE_INSPECTIONS
-2. **FORCE_* variables** disable all auto-detection for their respective features
+2. **FORCE\_\* variables** disable all auto-detection for their respective features
 3. **System environment variables** override MCP configuration file values
 4. **Timeout** is capped at 600000ms (10 minutes) regardless of configuration
 
 ## Best Practices
 
-1. **Use FORCE_* sparingly**: Auto-detection usually selects the best IDE
+1. **Use FORCE\_\* sparingly**: Auto-detection usually selects the best IDE
 2. **Start with default timeout**: Increase only if inspections are timing out
 3. **Be selective with filters**: Too many exclusions may miss important issues
 4. **Use markdown for humans**: JSON format is better for automated processing

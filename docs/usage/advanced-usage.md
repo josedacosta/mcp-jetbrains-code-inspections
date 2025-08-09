@@ -21,15 +21,15 @@ Instead of analyzing the entire project:
 ```javascript
 // Analyze specific modules
 await get_jetbrains_code_inspections({
-  path: "src/core"
+    path: 'src/core',
 });
 
 await get_jetbrains_code_inspections({
-  path: "src/components"
+    path: 'src/components',
 });
 
 await get_jetbrains_code_inspections({
-  path: "src/services"
+    path: 'src/services',
 });
 ```
 
@@ -39,9 +39,9 @@ Configure longer timeouts for large projects:
 
 ```json
 {
-  "env": {
-    "INSPECTION_TIMEOUT": "600000"  // 10 minutes
-  }
+    "env": {
+        "INSPECTION_TIMEOUT": "600000" // 10 minutes
+    }
 }
 ```
 
@@ -69,9 +69,9 @@ Focus on critical issues:
 
 ```json
 {
-  "env": {
-    "ONLY_INSPECTIONS": "NullPointerException,ArrayIndexOutOfBounds,TypeScriptValidateTypes"
-  }
+    "env": {
+        "ONLY_INSPECTIONS": "NullPointerException,ArrayIndexOutOfBounds,TypeScriptValidateTypes"
+    }
 }
 ```
 
@@ -81,9 +81,9 @@ Remove distracting issues:
 
 ```json
 {
-  "env": {
-    "EXCLUDE_INSPECTIONS": "SpellCheckingInspection,TodoComment,UnusedDeclaration,JSUnusedGlobalSymbols"
-  }
+    "env": {
+        "EXCLUDE_INSPECTIONS": "SpellCheckingInspection,TodoComment,UnusedDeclaration,JSUnusedGlobalSymbols"
+    }
 }
 ```
 
@@ -93,9 +93,9 @@ Target specific severity levels by excluding low-priority inspections:
 
 ```json
 {
-  "env": {
-    "EXCLUDE_INSPECTIONS": "TodoComment,ConstantConditions,JSValidateTypes"
-  }
+    "env": {
+        "EXCLUDE_INSPECTIONS": "TodoComment,ConstantConditions,JSValidateTypes"
+    }
 }
 ```
 
@@ -109,9 +109,9 @@ Force specific IDEs for different languages:
 
 ```json
 {
-  "env": {
-    "FORCE_INSPECT_PATH": "/Applications/WebStorm.app/Contents/bin/inspect.sh"
-  }
+    "env": {
+        "FORCE_INSPECT_PATH": "/Applications/WebStorm.app/Contents/bin/inspect.sh"
+    }
 }
 ```
 
@@ -119,9 +119,9 @@ Force specific IDEs for different languages:
 
 ```json
 {
-  "env": {
-    "FORCE_INSPECT_PATH": "/Applications/IntelliJ IDEA.app/Contents/bin/inspect.sh"
-  }
+    "env": {
+        "FORCE_INSPECT_PATH": "/Applications/IntelliJ IDEA.app/Contents/bin/inspect.sh"
+    }
 }
 ```
 
@@ -129,9 +129,9 @@ Force specific IDEs for different languages:
 
 ```json
 {
-  "env": {
-    "FORCE_INSPECT_PATH": "/Applications/PyCharm.app/Contents/bin/inspect.sh"
-  }
+    "env": {
+        "FORCE_INSPECT_PATH": "/Applications/PyCharm.app/Contents/bin/inspect.sh"
+    }
 }
 ```
 
@@ -141,24 +141,24 @@ Set up different MCP server configurations for different use cases:
 
 ```json
 {
-  "mcpServers": {
-    "jetbrains-strict": {
-      "command": "node",
-      "args": ["./dist/index.js"],
-      "env": {
-        "ONLY_INSPECTIONS": "NullPointerException,ArrayIndexOutOfBounds",
-        "RESPONSE_FORMAT": "json"
-      }
-    },
-    "jetbrains-comprehensive": {
-      "command": "node", 
-      "args": ["./dist/index.js"],
-      "env": {
-        "EXCLUDE_INSPECTIONS": "SpellCheckingInspection",
-        "INSPECTION_TIMEOUT": "600000"
-      }
+    "mcpServers": {
+        "jetbrains-strict": {
+            "command": "node",
+            "args": ["./dist/index.js"],
+            "env": {
+                "ONLY_INSPECTIONS": "NullPointerException,ArrayIndexOutOfBounds",
+                "RESPONSE_FORMAT": "json"
+            }
+        },
+        "jetbrains-comprehensive": {
+            "command": "node",
+            "args": ["./dist/index.js"],
+            "env": {
+                "EXCLUDE_INSPECTIONS": "SpellCheckingInspection",
+                "INSPECTION_TIMEOUT": "600000"
+            }
+        }
     }
-  }
 }
 ```
 
@@ -175,9 +175,9 @@ Set up different MCP server configurations for different use cases:
 
 ```json
 {
-  "env": {
-    "FORCE_PROFILE_PATH": "/path/to/custom-profile.xml"
-  }
+    "env": {
+        "FORCE_PROFILE_PATH": "/path/to/custom-profile.xml"
+    }
 }
 ```
 
@@ -188,13 +188,13 @@ Set up different MCP server configurations for different use cases:
 <component name="InspectionProjectProfileManager">
   <profile version="1.0">
     <option name="myName" value="Custom Profile" />
-    
+
     <!-- Enable TypeScript validation -->
     <inspection_tool class="TypeScriptValidateTypes" enabled="true" level="ERROR" />
-    
+
     <!-- Disable spell checking -->
     <inspection_tool class="SpellCheckingInspection" enabled="false" />
-    
+
     <!-- Set unused declarations to warning -->
     <inspection_tool class="UnusedDeclaration" enabled="true" level="WARNING" />
   </profile>
@@ -208,17 +208,12 @@ Set up different MCP server configurations for different use cases:
 Process multiple paths in sequence:
 
 ```javascript
-const paths = [
-  "src/components",
-  "src/services", 
-  "src/utils",
-  "src/types"
-];
+const paths = ['src/components', 'src/services', 'src/utils', 'src/types'];
 
 for (const path of paths) {
-  const result = await get_jetbrains_code_inspections({ path });
-  // Process each result
-  console.log(`Analysis complete for ${path}`);
+    const result = await get_jetbrains_code_inspections({ path });
+    // Process each result
+    console.log(`Analysis complete for ${path}`);
 }
 ```
 
@@ -228,12 +223,12 @@ For very large directories:
 
 ```javascript
 // Get list of files first (pseudo-code)
-const files = getFilesInDirectory("src/components");
+const files = getFilesInDirectory('src/components');
 
 for (const file of files) {
-  if (file.endsWith('.ts') || file.endsWith('.tsx')) {
-    await get_jetbrains_code_inspections({ path: file });
-  }
+    if (file.endsWith('.ts') || file.endsWith('.tsx')) {
+        await get_jetbrains_code_inspections({ path: file });
+    }
 }
 ```
 
@@ -245,9 +240,9 @@ Enable JSON output for processing:
 
 ```json
 {
-  "env": {
-    "RESPONSE_FORMAT": "json"
-  }
+    "env": {
+        "RESPONSE_FORMAT": "json"
+    }
 }
 ```
 
@@ -255,23 +250,23 @@ Enable JSON output for processing:
 
 ```javascript
 const result = await get_jetbrains_code_inspections({
-  path: "src/components"
+    path: 'src/components',
 });
 
 // Parse the JSON response
 const diagnostics = JSON.parse(result);
 
 // Filter by severity
-const errors = diagnostics.results.filter(d => d.severity === 'ERROR');
-const warnings = diagnostics.results.filter(d => d.severity === 'WARNING');
+const errors = diagnostics.results.filter((d) => d.severity === 'ERROR');
+const warnings = diagnostics.results.filter((d) => d.severity === 'WARNING');
 
 // Group by file
 const byFile = diagnostics.results.reduce((acc, diagnostic) => {
-  if (!acc[diagnostic.file]) {
-    acc[diagnostic.file] = [];
-  }
-  acc[diagnostic.file].push(diagnostic);
-  return acc;
+    if (!acc[diagnostic.file]) {
+        acc[diagnostic.file] = [];
+    }
+    acc[diagnostic.file].push(diagnostic);
+    return acc;
 }, {});
 
 // Generate reports
@@ -286,19 +281,19 @@ console.log(`Found ${errors.length} errors and ${warnings.length} warnings`);
 
 ```javascript
 async function qualityGate() {
-  const result = await get_jetbrains_code_inspections({
-    path: "src/"
-  });
-  
-  const diagnostics = JSON.parse(result);
-  const errors = diagnostics.results.filter(d => d.severity === 'ERROR');
-  
-  if (errors.length > 0) {
-    console.error(`Quality gate failed: ${errors.length} errors found`);
-    process.exit(1);
-  }
-  
-  console.log("Quality gate passed");
+    const result = await get_jetbrains_code_inspections({
+        path: 'src/',
+    });
+
+    const diagnostics = JSON.parse(result);
+    const errors = diagnostics.results.filter((d) => d.severity === 'ERROR');
+
+    if (errors.length > 0) {
+        console.error(`Quality gate failed: ${errors.length} errors found`);
+        process.exit(1);
+    }
+
+    console.log('Quality gate passed');
 }
 ```
 
@@ -311,9 +306,9 @@ Analyze only changed files:
 const changedFiles = getChangedFiles();
 
 for (const file of changedFiles) {
-  if (isSupportedFile(file)) {
-    await get_jetbrains_code_inspections({ path: file });
-  }
+    if (isSupportedFile(file)) {
+        await get_jetbrains_code_inspections({ path: file });
+    }
 }
 ```
 
@@ -323,21 +318,19 @@ for (const file of changedFiles) {
 
 ```javascript
 async function preReviewAnalysis(pullRequestFiles) {
-  const issues = [];
-  
-  for (const file of pullRequestFiles) {
-    const result = await get_jetbrains_code_inspections({ path: file });
-    const diagnostics = JSON.parse(result);
-    
-    // Filter for review-relevant issues
-    const criticalIssues = diagnostics.results.filter(d => 
-      ['ERROR', 'WARNING'].includes(d.severity)
-    );
-    
-    issues.push(...criticalIssues);
-  }
-  
-  return issues;
+    const issues = [];
+
+    for (const file of pullRequestFiles) {
+        const result = await get_jetbrains_code_inspections({ path: file });
+        const diagnostics = JSON.parse(result);
+
+        // Filter for review-relevant issues
+        const criticalIssues = diagnostics.results.filter((d) => ['ERROR', 'WARNING'].includes(d.severity));
+
+        issues.push(...criticalIssues);
+    }
+
+    return issues;
 }
 ```
 
@@ -347,16 +340,16 @@ async function preReviewAnalysis(pullRequestFiles) {
 
 ```javascript
 async function robustAnalysis(path) {
-  try {
-    return await get_jetbrains_code_inspections({ path });
-  } catch (error) {
-    if (error.message.includes('timeout')) {
-      console.warn(`Timeout analyzing ${path}, trying with smaller scope`);
-      // Try analyzing individual files in the directory
-      return await analyzeIndividualFiles(path);
+    try {
+        return await get_jetbrains_code_inspections({ path });
+    } catch (error) {
+        if (error.message.includes('timeout')) {
+            console.warn(`Timeout analyzing ${path}, trying with smaller scope`);
+            // Try analyzing individual files in the directory
+            return await analyzeIndividualFiles(path);
+        }
+        throw error;
     }
-    throw error;
-  }
 }
 ```
 
@@ -364,21 +357,21 @@ async function robustAnalysis(path) {
 
 ```javascript
 async function analyzeWithFallback(path) {
-  const strategies = [
-    () => get_jetbrains_code_inspections({ path }),
-    () => get_jetbrains_code_inspections({ path: dirname(path) }),
-    () => analyzeIndividualFiles(path)
-  ];
-  
-  for (const strategy of strategies) {
-    try {
-      return await strategy();
-    } catch (error) {
-      console.warn(`Strategy failed: ${error.message}`);
+    const strategies = [
+        () => get_jetbrains_code_inspections({ path }),
+        () => get_jetbrains_code_inspections({ path: dirname(path) }),
+        () => analyzeIndividualFiles(path),
+    ];
+
+    for (const strategy of strategies) {
+        try {
+            return await strategy();
+        } catch (error) {
+            console.warn(`Strategy failed: ${error.message}`);
+        }
     }
-  }
-  
-  throw new Error(`All analysis strategies failed for ${path}`);
+
+    throw new Error(`All analysis strategies failed for ${path}`);
 }
 ```
 
@@ -388,10 +381,10 @@ async function analyzeWithFallback(path) {
 
 ```json
 {
-  "env": {
-    "DEBUG": "true",
-    "INSPECTION_TIMEOUT": "300000"
-  }
+    "env": {
+        "DEBUG": "true",
+        "INSPECTION_TIMEOUT": "300000"
+    }
 }
 ```
 
@@ -403,23 +396,21 @@ Process files in batches to manage memory:
 
 ```javascript
 async function analyzeInBatches(files, batchSize = 10) {
-  const results = [];
-  
-  for (let i = 0; i < files.length; i += batchSize) {
-    const batch = files.slice(i, i + batchSize);
-    
-    const batchPromises = batch.map(file => 
-      get_jetbrains_code_inspections({ path: file })
-    );
-    
-    const batchResults = await Promise.all(batchPromises);
-    results.push(...batchResults);
-    
-    // Optional: Add delay between batches
-    await delay(1000);
-  }
-  
-  return results;
+    const results = [];
+
+    for (let i = 0; i < files.length; i += batchSize) {
+        const batch = files.slice(i, i + batchSize);
+
+        const batchPromises = batch.map((file) => get_jetbrains_code_inspections({ path: file }));
+
+        const batchResults = await Promise.all(batchPromises);
+        results.push(...batchResults);
+
+        // Optional: Add delay between batches
+        await delay(1000);
+    }
+
+    return results;
 }
 ```
 
@@ -431,11 +422,11 @@ async function analyzeInBatches(files, batchSize = 10) {
 
 ```json
 {
-  "env": {
-    "EXCLUDE_INSPECTIONS": "TodoComment,SpellCheckingInspection",
-    "INSPECTION_TIMEOUT": "120000",
-    "DEBUG": "true"
-  }
+    "env": {
+        "EXCLUDE_INSPECTIONS": "TodoComment,SpellCheckingInspection",
+        "INSPECTION_TIMEOUT": "120000",
+        "DEBUG": "true"
+    }
 }
 ```
 
@@ -443,11 +434,11 @@ async function analyzeInBatches(files, batchSize = 10) {
 
 ```json
 {
-  "env": {
-    "ONLY_INSPECTIONS": "NullPointerException,ArrayIndexOutOfBounds,TypeScriptValidateTypes",
-    "INSPECTION_TIMEOUT": "600000",
-    "RESPONSE_FORMAT": "json"
-  }
+    "env": {
+        "ONLY_INSPECTIONS": "NullPointerException,ArrayIndexOutOfBounds,TypeScriptValidateTypes",
+        "INSPECTION_TIMEOUT": "600000",
+        "RESPONSE_FORMAT": "json"
+    }
 }
 ```
 
@@ -455,11 +446,11 @@ async function analyzeInBatches(files, batchSize = 10) {
 
 ```json
 {
-  "env": {
-    "EXCLUDE_INSPECTIONS": "SpellCheckingInspection,TodoComment,UnusedDeclaration",
-    "INSPECTION_TIMEOUT": "300000",
-    "RESPONSE_FORMAT": "json"
-  }
+    "env": {
+        "EXCLUDE_INSPECTIONS": "SpellCheckingInspection,TodoComment,UnusedDeclaration",
+        "INSPECTION_TIMEOUT": "300000",
+        "RESPONSE_FORMAT": "json"
+    }
 }
 ```
 
@@ -469,16 +460,16 @@ async function analyzeInBatches(files, batchSize = 10) {
 
 ```javascript
 async function benchmarkAnalysis(path) {
-  const startTime = Date.now();
-  
-  const result = await get_jetbrains_code_inspections({ path });
-  
-  const endTime = Date.now();
-  const duration = endTime - startTime;
-  
-  console.log(`Analysis of ${path} took ${duration}ms`);
-  
-  return { result, duration };
+    const startTime = Date.now();
+
+    const result = await get_jetbrains_code_inspections({ path });
+
+    const endTime = Date.now();
+    const duration = endTime - startTime;
+
+    console.log(`Analysis of ${path} took ${duration}ms`);
+
+    return { result, duration };
 }
 ```
 

@@ -58,12 +58,12 @@ detects the appropriate IDE installed on your system and uses it to analyze your
 ```javascript
 // Analyze a TypeScript file
 const diagnostics = await get_jetbrains_code_inspections({
-  path: '/src/app.ts'
+    path: '/src/app.ts',
 });
 
 // Analyze a directory
 const results = await get_jetbrains_code_inspections({
-  path: '/src/components/'
+    path: '/src/components/',
 });
 ```
 

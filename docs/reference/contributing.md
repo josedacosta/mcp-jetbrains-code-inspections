@@ -200,25 +200,30 @@ git push origin your-branch
 
 ```markdown
 ## Description
+
 Brief description of changes
 
 ## Type of Change
+
 - [ ] Bug fix
-- [ ] New feature  
+- [ ] New feature
 - [ ] Documentation update
 - [ ] Performance improvement
-- [ ] Other: ___
+- [ ] Other: \_\_\_
 
 ## Testing
+
 - [ ] Tested with multiple IDEs
 - [ ] Tested on different platforms
 - [ ] Added/updated tests
 - [ ] Documentation updated
 
 ## Screenshots (if applicable)
+
 Add screenshots or example output
 
 ## Additional Notes
+
 Any additional information or context
 ```
 
@@ -240,25 +245,25 @@ Any additional information or context
 ```typescript
 // ✅ Good
 interface InspectionConfig {
-  timeout: number;
-  format: 'json' | 'markdown';
-  excludeInspections?: string[];
+    timeout: number;
+    format: 'json' | 'markdown';
+    excludeInspections?: string[];
 }
 
 async function executeInspection(config: InspectionConfig): Promise<InspectionResult> {
-  try {
-    // Implementation
-  } catch (error) {
-    if (error instanceof InspectionTimeoutError) {
-      // Handle timeout specifically
+    try {
+        // Implementation
+    } catch (error) {
+        if (error instanceof InspectionTimeoutError) {
+            // Handle timeout specifically
+        }
+        throw new InspectionError(`Execution failed: ${error.message}`);
     }
-    throw new InspectionError(`Execution failed: ${error.message}`);
-  }
 }
 
 // ❌ Avoid
 function doInspection(config: any): any {
-  // Implementation without types
+    // Implementation without types
 }
 ```
 
@@ -403,11 +408,12 @@ When reporting bugs, please include:
 
 ### Bug Report Template
 
-```markdown
+````markdown
 **Bug Description**
 A clear and concise description of the bug.
 
 **Reproduction Steps**
+
 1. Go to '...'
 2. Click on '...'
 3. See error
@@ -419,17 +425,20 @@ What you expected to happen.
 What actually happened.
 
 **Environment**
+
 - OS: [e.g., macOS 14.2]
 - Node.js: [e.g., 20.17.0]
 - IDE: [e.g., IntelliJ IDEA 2023.3]
 - Project Type: [e.g., TypeScript React]
 
 **Configuration**
+
 ```json
 {
-  "your": "mcp configuration"
+    "your": "mcp configuration"
 }
 ```
+````
 
 **Error Messages**
 
@@ -497,3 +506,4 @@ We appreciate all contributions! Contributors will be:
 By contributing, you agree that your contributions will be licensed under the Open Software License 3.0 (OSL-3.0), the same license as the project.
 
 Thank you for contributing to MCP JetBrains Code Inspections!
+```

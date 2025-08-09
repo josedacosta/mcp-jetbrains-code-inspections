@@ -10,9 +10,9 @@
 @layer base {
     :root {
         /* Logo Gradient Colors */
-        --gradient-orange: #FF8618;
-        --gradient-pink: #FF246E;
-        --gradient-purple: #AF1DF5;
+        --gradient-orange: #ff8618;
+        --gradient-pink: #ff246e;
+        --gradient-purple: #af1df5;
 
         /* Primary Gradient */
         --gradient-primary: linear-gradient(135deg, var(--gradient-orange) 0%, var(--gradient-pink) 50%, var(--gradient-purple) 100%);
@@ -88,7 +88,7 @@
         --sh-ring: hsl(var(--ring));
 
         /* Docusaurus overwrites - Using gradient purple */
-        --ifm-color-primary: #AF1DF5;
+        --ifm-color-primary: #af1df5;
         --ifm-color-primary-dark: #9e1add;
         --ifm-color-primary-darker: #8d17c4;
         --ifm-color-primary-darkest: #7c14ab;
@@ -101,8 +101,9 @@
         --ifm-navbar-background-color: var(--sh-background);
         --ifm-footer-background-color: var(--sh-muted);
 
-        --ifm-font-family-base: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        --ifm-font-family-monospace: 'JetBrains Mono', ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+        --ifm-font-family-base:
+            'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        --ifm-font-family-monospace: 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
 
         --ifm-global-radius: var(--radius);
         --ifm-button-border-radius: var(--radius);
@@ -131,7 +132,7 @@
         --foreground: 0 0% 98%;
 
         /* Gradient colors remain vibrant in dark mode */
-        --gradient-primary: linear-gradient(135deg, #FF8618 0%, #FF246E 50%, #AF1DF5 100%);
+        --gradient-primary: linear-gradient(135deg, #ff8618 0%, #ff246e 50%, #af1df5 100%);
         --gradient-primary-hover: linear-gradient(135deg, #ffaa44 0%, #ff5588 50%, #cf4dff 100%);
         --gradient-primary-subtle: linear-gradient(135deg, rgba(255, 134, 24, 0.15) 0%, rgba(255, 36, 110, 0.15) 50%, rgba(175, 29, 245, 0.15) 100%);
 
@@ -202,7 +203,9 @@ body {
 body {
     color: var(--sh-foreground);
     background: var(--sh-background);
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+        'rlig' 1,
+        'calt' 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -211,7 +214,12 @@ body {
    Typography - shadcn/ui Style
    ===================================== */
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     scroll-margin-top: 5rem;
     font-weight: var(--ifm-heading-font-weight);
     letter-spacing: -0.025em;
@@ -418,8 +426,8 @@ pre code {
 /* GitHub Button - Force Button Appearance */
 
 /* Target the GitHub link specifically and force button styling */
-.navbar__items--right a[href*="github"],
-.navbar__item a[href*="github"].navbar__link {
+.navbar__items--right a[href*='github'],
+.navbar__item a[href*='github'].navbar__link {
     /* Reset default link styles */
     all: unset !important;
 
@@ -433,7 +441,7 @@ pre code {
     box-sizing: border-box !important;
 
     /* Gradient background from logo */
-    background: linear-gradient(135deg, #FF8618 0%, #FF246E 50%, #AF1DF5 100%) !important;
+    background: linear-gradient(135deg, #ff8618 0%, #ff246e 50%, #af1df5 100%) !important;
 
     /* Text styling */
     color: white !important;
@@ -461,8 +469,8 @@ pre code {
 }
 
 /* Add star icon before text */
-.navbar__items--right a[href*="github"]::before,
-.navbar__item a[href*="github"].navbar__link::before {
+.navbar__items--right a[href*='github']::before,
+.navbar__item a[href*='github'].navbar__link::before {
     content: '⭐ ' !important;
     margin-right: 0.25rem !important;
     font-size: 1rem !important;
@@ -470,8 +478,8 @@ pre code {
 }
 
 /* Hover overlay effect */
-.navbar__items--right a[href*="github"]::after,
-.navbar__item a[href*="github"].navbar__link::after {
+.navbar__items--right a[href*='github']::after,
+.navbar__item a[href*='github'].navbar__link::after {
     content: '' !important;
     position: absolute !important;
     top: 0 !important;
@@ -485,29 +493,29 @@ pre code {
 }
 
 /* Hover state */
-.navbar__items--right a[href*="github"]:hover,
-.navbar__item a[href*="github"].navbar__link:hover {
+.navbar__items--right a[href*='github']:hover,
+.navbar__item a[href*='github'].navbar__link:hover {
     transform: translateY(-2px) !important;
     box-shadow: 0 7px 20px 0 rgba(175, 29, 245, 0.45) !important;
     color: white !important;
     text-decoration: none !important;
 }
 
-.navbar__items--right a[href*="github"]:hover::after,
-.navbar__item a[href*="github"].navbar__link:hover::after {
+.navbar__items--right a[href*='github']:hover::after,
+.navbar__item a[href*='github'].navbar__link:hover::after {
     opacity: 1 !important;
 }
 
 /* Active/focus state */
-.navbar__items--right a[href*="github"]:active,
-.navbar__item a[href*="github"].navbar__link:active {
+.navbar__items--right a[href*='github']:active,
+.navbar__item a[href*='github'].navbar__link:active {
     transform: translateY(0) !important;
     box-shadow: 0 2px 8px 0 rgba(175, 29, 245, 0.3) !important;
 }
 
 /* Ensure text stays visible above gradient overlay */
-.navbar__items--right a[href*="github"] > *,
-.navbar__item a[href*="github"].navbar__link > * {
+.navbar__items--right a[href*='github'] > *,
+.navbar__item a[href*='github'].navbar__link > * {
     position: relative !important;
     z-index: 2 !important;
 }
@@ -720,16 +728,20 @@ pre code {
     background-color: var(--sh-card);
     color: var(--sh-card-foreground);
     padding: 1.5rem;
-    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    box-shadow:
+        0 1px 3px 0 rgb(0 0 0 / 0.1),
+        0 1px 2px -1px rgb(0 0 0 / 0.1);
     transition: all var(--ifm-transition-fast);
 }
 
 .card:hover {
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    box-shadow:
+        0 4px 6px -1px rgb(0 0 0 / 0.1),
+        0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
 /* Doc Cards - Enhanced */
-article[class*="docCard"] {
+article[class*='docCard'] {
     border: 1px solid var(--sh-border);
     border-radius: var(--radius);
     background: var(--sh-card);
@@ -738,7 +750,7 @@ article[class*="docCard"] {
     position: relative;
 }
 
-article[class*="docCard"]::before {
+article[class*='docCard']::before {
     content: '';
     position: absolute;
     top: 0;
@@ -750,13 +762,13 @@ article[class*="docCard"]::before {
     transition: opacity var(--ifm-transition-fast);
 }
 
-article[class*="docCard"]:hover {
+article[class*='docCard']:hover {
     box-shadow: 0 10px 30px -10px rgba(175, 29, 245, 0.2);
     transform: translateY(-2px);
     border-color: rgba(175, 29, 245, 0.3);
 }
 
-article[class*="docCard"]:hover::before {
+article[class*='docCard']:hover::before {
     opacity: 1;
 }
 
@@ -957,7 +969,9 @@ table td {
 .pagination-nav__link:hover {
     text-decoration: none;
     border-color: var(--sh-primary);
-    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    box-shadow:
+        0 1px 3px 0 rgb(0 0 0 / 0.1),
+        0 1px 2px -1px rgb(0 0 0 / 0.1);
 }
 
 .pagination-nav__sublabel {
@@ -991,7 +1005,9 @@ table td {
     outline: 2px solid transparent;
     outline-offset: 2px;
     border-color: var(--sh-ring);
-    box-shadow: 0 0 0 2px var(--sh-background), 0 0 0 4px hsl(var(--ring) / 0.2);
+    box-shadow:
+        0 0 0 2px var(--sh-background),
+        0 0 0 4px hsl(var(--ring) / 0.2);
 }
 
 /* =====================================
@@ -1236,15 +1252,16 @@ select:focus-visible {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, var(--gradient-orange) 0%, transparent 25%),
-    radial-gradient(circle, var(--gradient-pink) 0%, transparent 25%),
-    radial-gradient(circle, var(--gradient-purple) 0%, transparent 25%);
+    background:
+        radial-gradient(circle, var(--gradient-orange) 0%, transparent 25%), radial-gradient(circle, var(--gradient-pink) 0%, transparent 25%),
+        radial-gradient(circle, var(--gradient-purple) 0%, transparent 25%);
     opacity: 0.05;
     animation: float 20s ease-in-out infinite;
 }
 
 @keyframes float {
-    0%, 100% {
+    0%,
+    100% {
         transform: translate(0, 0) rotate(0deg);
     }
     33% {
@@ -1267,7 +1284,8 @@ select:focus-visible {
 }
 
 @keyframes gradient-shift {
-    0%, 100% {
+    0%,
+    100% {
         filter: hue-rotate(0deg);
     }
     50% {
@@ -1393,12 +1411,7 @@ select:focus-visible {
     left: 0;
     bottom: 0;
     right: 0;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.3),
-        transparent
-    );
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
     animation: shimmer 2s infinite;
 }
 
@@ -1445,12 +1458,12 @@ select:focus-visible {
    ===================================== */
 
 /* Hide the skip to main content button */
-[class*="skipToContent"] {
+[class*='skipToContent'] {
     display: none !important;
 }
 
 /* Alternative selector if the class name changes */
-div[role="region"][aria-label="Skip to main content"] {
+div[role='region'][aria-label='Skip to main content'] {
     display: none !important;
 }
 

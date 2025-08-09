@@ -29,7 +29,7 @@ Before using MCP JetBrains Code Inspections, ensure your system meets these requ
 At least one of the following IDEs must be installed:
 
 | IDE               | Supported Languages/Frameworks              |
-|-------------------|---------------------------------------------|
+| ----------------- | ------------------------------------------- |
 | **IntelliJ IDEA** | Java, Kotlin, Scala, Groovy                 |
 | **WebStorm**      | JavaScript, TypeScript, React, Vue, Angular |
 | **PyCharm**       | Python, Django, Flask                       |

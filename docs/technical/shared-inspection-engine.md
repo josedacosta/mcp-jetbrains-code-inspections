@@ -72,11 +72,11 @@ async analyzeProject(projectPath: string): Promise<ProjectInfo> {
 async resolveProfile(options: ProfileOptions): Promise<string> {
     // Check for forced profile path
     if (options.forcedPath) return options.forcedPath;
-    
+
     // Look for project-specific profiles
     const projectProfile = await this.findProjectProfile();
     if (projectProfile) return projectProfile;
-    
+
     // Fall back to unified profile
     return this.getUnifiedProfile();
 }
@@ -128,13 +128,13 @@ From our `IDEDetector.ts`:
 // IDE capabilities are determined by installed plugins
 const ideCapabilities = {
     'IntelliJ IDEA': ['java', 'kotlin', 'scala', 'groovy'],
-    'WebStorm': ['javascript', 'typescript', 'html', 'css'],
-    'PyCharm': ['python', 'django', 'flask'],
-    'PhpStorm': ['php', 'html', 'javascript'],
-    'GoLand': ['go'],
-    'RubyMine': ['ruby', 'rails'],
-    'CLion': ['c', 'cpp', 'cmake'],
-    'Rider': ['csharp', 'fsharp', 'vb'],
+    WebStorm: ['javascript', 'typescript', 'html', 'css'],
+    PyCharm: ['python', 'django', 'flask'],
+    PhpStorm: ['php', 'html', 'javascript'],
+    GoLand: ['go'],
+    RubyMine: ['ruby', 'rails'],
+    CLion: ['c', 'cpp', 'cmake'],
+    Rider: ['csharp', 'fsharp', 'vb'],
 };
 ```
 
@@ -147,7 +147,7 @@ Each inspection is registered via plugin.xml:
 ```xml
 <idea-plugin>
   <extensions defaultExtensionNs="com.intellij">
-    <localInspection 
+    <localInspection
       language="TypeScript"
       displayName="Unused local symbols"
       groupName="TypeScript"
@@ -176,17 +176,17 @@ All IDEs produce the same JSON format:
 
 ```json
 {
-  "problems": [
-    {
-      "file": "src/example.ts",
-      "line": 10,
-      "column": 5,
-      "severity": "WARNING",
-      "description": "Variable 'unused' is never used",
-      "inspectionId": "JSUnusedLocalSymbols",
-      "category": "Declaration redundancy"
-    }
-  ]
+    "problems": [
+        {
+            "file": "src/example.ts",
+            "line": 10,
+            "column": 5,
+            "severity": "WARNING",
+            "description": "Variable 'unused' is never used",
+            "inspectionId": "JSUnusedLocalSymbols",
+            "category": "Declaration redundancy"
+        }
+    ]
 }
 ```
 
@@ -197,13 +197,13 @@ From `SeverityMapper.ts`:
 ```typescript
 export class SeverityMapper {
     private readonly severityMap = {
-        'ERROR': DiagnosticSeverity.Error,
-        'WARNING': DiagnosticSeverity.Warning,
+        ERROR: DiagnosticSeverity.Error,
+        WARNING: DiagnosticSeverity.Warning,
         'WEAK WARNING': DiagnosticSeverity.Information,
-        'INFO': DiagnosticSeverity.Hint,
-        'INFORMATION': DiagnosticSeverity.Hint,
+        INFO: DiagnosticSeverity.Hint,
+        INFORMATION: DiagnosticSeverity.Hint,
         'SERVER PROBLEM': DiagnosticSeverity.Error,
-        'TYPO': DiagnosticSeverity.Information,
+        TYPO: DiagnosticSeverity.Information,
     };
 }
 ```
