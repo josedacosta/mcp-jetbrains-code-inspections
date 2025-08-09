@@ -7,27 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Planned Improvements
+## [1.0.0] - 2025-01-09
 
-#### Documentation Enhancements
+### 🎉 Initial Release
 
-- **Comprehensive Guides**: Expand documentation with more detailed tutorials and use cases
-- **Video Tutorials**: Add visual guides for setup and configuration
-- **Multilingual Support**: Translate documentation to multiple languages
-- **Interactive Examples**: Include live examples and playground for testing
-- **API Deep Dives**: More technical details on internal architecture
-
-#### Inspection Feedback Improvements
-
-- **Profile-Aware Results**: Enhanced inspection result processing based on specific inspection profiles
-- **Plugin Detection**: Automatic detection of installed IDE plugins that affect inspection results
-- **Custom Result Formatting**: Adapt inspection feedback based on installed plugins and their configurations
-- **Severity Calibration**: Fine-tune severity mappings for different inspection profiles
-- **Context-Aware Filtering**: Intelligent filtering based on project type and IDE configuration
-- **Plugin Compatibility Matrix**: Document how different plugins affect inspection results
-- **Result Normalization**: Improve consistency of inspection results across different IDE configurations
-
-## [1.0.0] - 2025-01-08
+This is the first stable release of MCP JetBrains Code Inspections server.
 
 ### Added
 
