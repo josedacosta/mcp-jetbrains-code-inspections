@@ -1,0 +1,37 @@
+{
+  "mcpServers": {
+    "mcp-jetbrains-code-inspections": {
+      "command": "node",
+      "args": ["./dist/index.js"],
+      "env": {
+        // === IDE Detection and Path Configuration ===
+        // Force specific IDE inspect tool path (disables auto-detection)
+        // "FORCE_INSPECT_PATH": "/path/to/ide/bin/inspect.sh",
+        
+        // Force project root directory (disables auto-detection)
+        // "FORCE_PROJECT_ROOT": "/path/to/project",
+        
+        // Force inspection profile path (disables default profile detection)
+        // "FORCE_PROFILE_PATH": "/path/to/profile.xml",
+        
+        // === Inspection Configuration ===
+        // Timeout for inspection in milliseconds (default: 120000 = 2 minutes)
+        // "INSPECTION_TIMEOUT": "120000",
+        
+        // Comma-separated list of inspection codes to exclude
+        // "EXCLUDE_INSPECTIONS": "SpellCheckingInspection,TodoComment",
+        
+        // Only include these inspection codes (overrides exclude)
+        // "ONLY_INSPECTIONS": "JSUnusedGlobalSymbols,JSDeprecatedSymbols",
+        
+        // === Output Configuration ===
+        // Response format: "markdown" (default) or "json"
+        // "RESPONSE_FORMAT": "json",
+        
+        // === Debug Configuration ===
+        // Enable debug logging ("true" to enable)
+        // "DEBUG": "true"
+      }
+    }
+  }
+}

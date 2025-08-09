@@ -1,0 +1,13 @@
+{
+    "mcpServers": {
+        "mcp-jetbrains-code-inspections": {
+            "command": "node",
+            "args": [
+                "dist/index.js"
+            ],
+            "env": {
+                "EXCLUDE_INSPECTIONS": "SpellCheckingInspection"
+            }
+        }
+    }
+}

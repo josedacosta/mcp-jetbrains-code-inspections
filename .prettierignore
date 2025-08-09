@@ -1,0 +1,164 @@
+# ============================================
+# Dependencies & Package Management
+# ============================================
+node_modules/
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
+
+# ============================================
+# Build & Compilation Outputs
+# ============================================
+dist/
+out/
+.next/
+*.min.js
+*.min.css
+*.bundle.js
+*.bundle.css
+
+# ============================================
+# Documentation Builds
+# ============================================
+.docusaurus/
+docusaurus/build/
+_site/
+site/
+
+# ============================================
+# Test Coverage & Reports
+# ============================================
+coverage/
+.nyc_output/
+reports/
+test-results/
+*.lcov
+scripts/testing/test-mcp-interactive/
+
+# ============================================
+# IDE & Editor Configuration
+# ============================================
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# ============================================
+# Version Control
+# ============================================
+.git/
+.svn/
+.hg/
+
+# ============================================
+# Cache & Temporary Files
+# ============================================
+.cache/
+.parcel-cache/
+.sass-cache/
+.temp/
+.tmp/
+tmp/
+temp/
+*.log
+*.pid
+*.seed
+*.pid.lock
+.docs-node/
+.docs-build/
+
+# ============================================
+# Operating System Files
+# ============================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ============================================
+# Claude Code Configuration
+# ============================================
+.claude/
+CLAUDE.md
+
+# ============================================
+# Environment & Configuration Files
+# ============================================
+.env
+.env.*
+!.env.example
+.env.local
+.env.production
+
+# ============================================
+# Static Assets & Binary Files
+# ============================================
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.ico
+*.svg
+*.webp
+*.mp4
+*.mp3
+*.pdf
+*.zip
+*.tar.gz
+*.rar
+static/img/
+
+# ============================================
+# Data & Generated Files
+# ============================================
+*.sql
+*.sqlite
+*.db
+json/*.xml
+
+# ============================================
+# Configuration Files (case-by-case)
+# ============================================
+tsconfig.json
+tsconfig.*.json
+babel.config.*
+webpack.config.*
+rollup.config.*
+.eslintrc.*
+.prettierrc
+.editorconfig
+.gitignore
+.gitattributes
+.npmignore
+.dockerignore
+
+# ============================================
+# License & Documentation
+# ============================================
+LICENSE
+CHANGELOG.md
+SECURITY.md
+
+# ============================================
+# MCP Project Specific
+# ============================================
+.mcp.json
+.mcp.json.example
+
+# ============================================
+# Source Maps
+# ============================================
+*.map
+*.d.ts.map
+*.js.map
+*.css.map
