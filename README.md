@@ -7,6 +7,7 @@
 [![License: OSL-3.0](https://img.shields.io/badge/License-OSL--3.0-yellow.svg)](https://opensource.org/licenses/OSL-3.0)
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D20-brightgreen)](https://nodejs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-%5E5.0-blue)](https://www.typescriptlang.org/)
+[![Documentation](https://img.shields.io/badge/docs-available-brightgreen)](https://josedacosta.github.io/mcp-jetbrains-code-inspections/)
 [![MCP SDK](https://img.shields.io/badge/MCP-SDK-green)](https://github.com/modelcontextprotocol/sdk)
 [![JetBrains](https://img.shields.io/badge/JetBrains-Compatible-orange)](https://www.jetbrains.com)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://makeapullrequest.com)
