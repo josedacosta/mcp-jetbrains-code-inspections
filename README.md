@@ -65,19 +65,7 @@ The code inspections server can be configured through environment variables in `
             "command": "node",
             "args": ["./dist/index.js"],
             "env": {
-                // Force specific configurations (disables auto-detection)
-                // "FORCE_INSPECT_PATH": "/path/to/specific/ide/bin/inspect.sh",
-                // "FORCE_PROJECT_ROOT": "/path/to/project",
-                // "FORCE_PROFILE_PATH": "/path/to/profile.xml",
-
-                // Inspection configuration
-                "INSPECTION_TIMEOUT": "120000"
-                // "EXCLUDE_INSPECTIONS": "SpellCheckingInspection,UnusedDeclaration",
-                // "ONLY_INSPECTIONS": "TypeScript,JavaScript",
-
-                // Output and debug
-                // "RESPONSE_FORMAT": "json",
-                // "DEBUG": "true"
+                "EXCLUDE_INSPECTIONS": "SpellCheckingInspection"
             }
         }
     }
