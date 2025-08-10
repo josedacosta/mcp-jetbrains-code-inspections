@@ -42,6 +42,11 @@ const sidebars = {
             label: 'Reference',
             items: ['reference/index', 'reference/changelog', 'reference/contributing', 'reference/jetbrains-resources'],
         },
+        {
+            type: 'category',
+            label: '⚠️ Deprecated Notice',
+            items: ['deprecated/index', 'deprecated/jetbrains-native-mcp'],
+        },
     ],
 };
 

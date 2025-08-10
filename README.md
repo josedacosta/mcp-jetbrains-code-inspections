@@ -12,8 +12,30 @@
 [![JetBrains](https://img.shields.io/badge/JetBrains-Compatible-orange)](https://www.jetbrains.com)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://makeapullrequest.com)
 
+> ## ⚠️ Deprecated Notice
+>
+> [![Status: Deprecated](https://img.shields.io/badge/Status-Deprecated-red.svg)](https://github.com/josedacosta/mcp-jetbrains-code-inspections#deprecated-notice)
+>
+> **This project is deprecated but still functional.** Starting from version 2025.2, JetBrains IDEs (WebStorm, IntelliJ IDEA, PyCharm, etc.) now include a built-in MCP server that provides native integration with external clients like Claude Desktop, Cursor, VS Code, and others.
+> 
+> **We recommend using the official JetBrains MCP integration instead:**
+> - For JetBrains IDE 2025.2+: Use the [built-in MCP server](https://www.jetbrains.com/help/webstorm/mcp-server.html)
+> - For earlier versions: Use the [JetBrains MCP plugin](https://plugins.jetbrains.com/plugin/26071-mcp-server)
+> 
+> The native integration offers:
+> - Direct IDE control without external tools
+> - More comprehensive tool set (25+ tools)
+> - Better performance and reliability
+> - Official support from JetBrains
+> 
+> **Note:** The native `get_file_problems` tool requires setting `errorsOnly: false` for similar functionality to this project. The `get_project_problems` tool only returns critical errors.
+> 
+> **For migration guide and detailed comparison, see our [deprecation documentation](https://josedacosta.github.io/mcp-jetbrains-code-inspections/deprecated/jetbrains-native-mcp).**
+
 A Model Context Protocol (MCP) server that provides JetBrains IDE code inspections with automatic IDE selection and a unified inspection profile that
 works across all file types.
+
+Documentation: [https://josedacosta.github.io/mcp-jetbrains-code-inspections/](https://josedacosta.github.io/mcp-jetbrains-code-inspections/)
 
 ## Features
 
