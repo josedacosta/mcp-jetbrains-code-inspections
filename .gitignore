@@ -38,3 +38,6 @@ scripts/testing/test-mcp-interactive/
 # Temporary Docusaurus build directories
 .docs-node/
 .docs-build/
+
+# Claude prompts file (not for repository)
+CLAUDE_PROMPTS.md
