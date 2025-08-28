@@ -43,6 +43,7 @@ A **Model Context Protocol (MCP)** server that provides JetBrains IDE code inspe
 > [!TIP]
 > 📚 **Full Documentation Available**: Visit our comprehensive docs at [josedacosta.github.io/mcp-jetbrains-code-inspections](https://josedacosta.github.io/mcp-jetbrains-code-inspections/)
 
+
 ## 🎯 Quick Start
 
 > [!NOTE]
@@ -61,6 +62,7 @@ yarn inspect
 ```
 
 Then configure your MCP client (Claude Desktop, Cursor, etc.) with the [configuration below](#️-configuration).
+
 
 ## ✨ Features
 
@@ -97,6 +99,7 @@ Then configure your MCP client (Claude Desktop, Cursor, etc.) with the [configur
 </tr>
 </table>
 
+
 ## 📦 Installation
 
 > [!NOTE]
@@ -118,6 +121,7 @@ Then configure your MCP client (Claude Desktop, Cursor, etc.) with the [configur
 
 > [!TIP]
 > Use `yarn inspect` after installation to test the server with the MCP Inspector
+
 
 ## 🚀 Usage
 
@@ -190,6 +194,7 @@ The code inspections server can be configured through environment variables in `
 > [!TIP]
 > 📚 For detailed configuration options, see [Configuration Documentation](docs/configuration/).
 
+
 ## 🧪 Testing
 
 ### 1️⃣ Interactive MCP Test
@@ -216,6 +221,7 @@ The inspector opens a web interface where you can:
 - Test get_jetbrains_code_inspections tool interactively
 - See requests/responses in real-time
 
+
 ## ⚙️ How It Works
 
 ### 🎯 Automatic IDE Selection
@@ -225,17 +231,17 @@ The inspector opens a web interface where you can:
 
 **Priority order:**
 
-1. 💡 **IntelliJ IDEA** - Ultimate Java/Kotlin IDE
-2. 🌐 **WebStorm** - JavaScript/TypeScript specialist
-3. 🐍 **PyCharm** - Python development
-4. 🐘 **PhpStorm** - PHP development
-5. 🐹 **GoLand** - Go programming
-6. 🏎️ **Rider** - .NET development
-7. ⚙️ **CLion** - C/C++ development
-8. 💎 **RubyMine** - Ruby/Rails
-9. 🗄️ **DataGrip** - Database management
-10. 📊 **DataSpell** - Data science
-11. 🍎 **AppCode** - iOS/macOS development
+1. **IntelliJ IDEA** - Ultimate Java/Kotlin IDE
+2. **WebStorm** - JavaScript/TypeScript specialist
+3. **PyCharm** - Python development
+4. **PhpStorm** - PHP development
+5. **GoLand** - Go programming
+6. **Rider** - .NET development
+7. **CLion** - C/C++ development
+8. **RubyMine** - Ruby/Rails
+9. **DataGrip** - Database management
+10. **DataSpell** - Data science
+11. **AppCode** - iOS/macOS development
 
 > [!TIP]
 > Use `FORCE_INSPECT_PATH` to override auto-detection and specify a particular IDE.
@@ -271,6 +277,7 @@ The inspector opens a web interface where you can:
 ```
 
 </details>
+
 
 ## 🛠️ Troubleshooting
 
@@ -310,6 +317,7 @@ The inspector opens a web interface where you can:
 > [!NOTE]
 > ✅ **This is no longer an issue!** The server automatically handles this by using isolated configuration directories, allowing inspections to run even when the IDE is already open.
 
+
 ## 📚 Documentation
 
 > [!TIP]
@@ -325,6 +333,7 @@ The inspector opens a web interface where you can:
 | 🔬 **[Technical Details](https://josedacosta.github.io/mcp-jetbrains-code-inspections/technical/)** | Architecture and IDE detection |
 | 💡 **[Guides](https://josedacosta.github.io/mcp-jetbrains-code-inspections/guides/)** | Best practices and troubleshooting |
 
+
 ## 📖 JetBrains Documentation
 
 > [!TIP]
@@ -334,6 +343,7 @@ The inspector opens a web interface where you can:
 |----------|-------------|
 | 📘 **[Code Inspection Overview](https://www.jetbrains.com/help/webstorm/code-inspection.html)** | Learn about code inspections, severity levels, and inspection profiles |
 | 🔧 **[Command-Line Code Inspector](https://www.jetbrains.com/help/webstorm/command-line-code-inspector.html)** | Detailed documentation on using the inspect.sh/inspect.bat tool |
+
 
 ## 🤝 Contributing
 
@@ -370,6 +380,7 @@ git push origin feat/amazing-feature
 
 > [!TIP]
 > See [CONTRIBUTING.md](CONTRIBUTING.md) for branch naming, commit message standards, and PR guidelines.
+
 
 ## 🏷️ Keywords
 
