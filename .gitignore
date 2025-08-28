@@ -39,5 +39,7 @@ scripts/testing/test-mcp-interactive/
 .docs-node/
 .docs-build/
 
-# Claude prompts file (not for repository)
+# Claude files (not for repository)
 CLAUDE_PROMPTS.md
+CLAUDE.md
+.claude/
