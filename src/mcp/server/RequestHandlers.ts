@@ -41,7 +41,7 @@ export class RequestHandlers {
     }
 
     private setupToolCallHandler(): void {
-        this.server.setRequestHandler(CallToolRequestSchema, async (request) => {
+        this.server.setRequestHandler(CallToolRequestSchema, async (request: any) => {
             const { name, arguments: args } = request.params;
 
             if (name === 'get_jetbrains_code_inspections') {

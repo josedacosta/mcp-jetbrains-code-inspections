@@ -77,7 +77,7 @@ export class IDEDetector {
                         nodir: true,
                         ignore: ['**/node_modules/**'],
                     });
-                    validPaths.push(...matches.filter((m) => existsSync(m)));
+                    validPaths.push(...matches.filter((m: string) => existsSync(m)));
                 } catch {
                     // Ignore glob errors
                 }
