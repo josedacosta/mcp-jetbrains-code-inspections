@@ -94,6 +94,12 @@ Then configure your MCP client (Claude Desktop, Cursor, etc.) with the [configur
   
 - 🌐 **Universal Profiles**
   <br>One profile for all languages
+  
+- 💬 **Built-in Prompts**
+  <br>Pre-configured prompts for common tasks
+  
+- 📚 **Server Resources**
+  <br>Access profiles, config, and IDE info
 
 </td>
 </tr>
@@ -124,6 +130,23 @@ Then configure your MCP client (Claude Desktop, Cursor, etc.) with the [configur
 
 
 ## 🚀 Usage
+
+### 📚 MCP Features
+
+The server provides three types of MCP features:
+
+#### 🔨 Tools
+- **get_jetbrains_code_inspections**: Runs code inspections on specified files or directories
+
+#### 💬 Prompts
+- **analyze-project**: Analyze a project for code quality issues
+- **check-file**: Check a specific file for issues
+- **fix-issues**: Get suggestions to fix detected issues
+
+#### 📚 Resources
+- **inspection://profiles**: List of available inspection profiles
+- **inspection://config**: Current MCP server configuration
+- **inspection://ides**: List of detected JetBrains IDEs on the system
 
 ### 🏃 Running the Server
 
@@ -217,8 +240,10 @@ yarn inspect:dev
 
 The inspector opens a web interface where you can:
 
-- View available tools
+- View available tools, prompts, and resources
 - Test get_jetbrains_code_inspections tool interactively
+- Use pre-configured prompts for common tasks
+- Access server resources (profiles, config, detected IDEs)
 - See requests/responses in real-time
 
 

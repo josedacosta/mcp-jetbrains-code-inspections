@@ -1,5 +1,12 @@
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
-import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprotocol/sdk/types.js';
+import { 
+    CallToolRequestSchema, 
+    ListToolsRequestSchema,
+    ListPromptsRequestSchema,
+    GetPromptRequestSchema,
+    ListResourcesRequestSchema,
+    ReadResourceRequestSchema
+} from '@modelcontextprotocol/sdk/types.js';
 import { InspectionTool, InspectionToolParams } from '../tools/InspectionTool.js';
 import { MarkdownFormatter } from '../formatters/MarkdownFormatter.js';
 import { JSONFormatter } from '../formatters/JSONFormatter.js';
@@ -27,6 +34,8 @@ export class RequestHandlers {
     setup(): void {
         this.setupToolListHandler();
         this.setupToolCallHandler();
+        this.setupPromptHandlers();
+        this.setupResourceHandlers();
         this.logger.info('Request handlers setup complete');
     }
 
@@ -99,6 +108,205 @@ export class RequestHandlers {
                 ],
                 isError: true,
             };
+        });
+    }
+
+    private setupPromptHandlers(): void {
+        // List available prompts
+        this.server.setRequestHandler(ListPromptsRequestSchema, async () => {
+            const prompts = [
+                {
+                    name: 'analyze-project',
+                    description: 'Analyze a project for code quality issues',
+                    arguments: [
+                        {
+                            name: 'projectPath',
+                            description: 'Path to the project to analyze',
+                            required: true,
+                        },
+                        {
+                            name: 'profile',
+                            description: 'Inspection profile to use',
+                            required: false,
+                        },
+                    ],
+                },
+                {
+                    name: 'check-file',
+                    description: 'Check a specific file for issues',
+                    arguments: [
+                        {
+                            name: 'filePath',
+                            description: 'Path to the file to check',
+                            required: true,
+                        },
+                    ],
+                },
+                {
+                    name: 'fix-issues',
+                    description: 'Get suggestions to fix detected issues',
+                    arguments: [
+                        {
+                            name: 'projectPath',
+                            description: 'Path to the project',
+                            required: true,
+                        },
+                        {
+                            name: 'severity',
+                            description: 'Minimum severity level (ERROR, WARNING, INFO)',
+                            required: false,
+                        },
+                    ],
+                },
+            ];
+
+            this.logger.debug('Listed prompts', { count: prompts.length });
+            return { prompts };
+        });
+
+        // Get a specific prompt
+        this.server.setRequestHandler(GetPromptRequestSchema, async (request: any) => {
+            const { name, arguments: args } = request.params;
+
+            const prompts: Record<string, (args: any) => { messages: any[] }> = {
+                'analyze-project': (args: any) => ({
+                    messages: [
+                        {
+                            role: 'user',
+                            content: {
+                                type: 'text',
+                                text: `Please analyze the project at ${args.projectPath} using JetBrains inspections${args.profile ? ` with profile "${args.profile}"` : ''}.`,
+                            },
+                        },
+                    ],
+                }),
+                'check-file': (args: any) => ({
+                    messages: [
+                        {
+                            role: 'user',
+                            content: {
+                                type: 'text',
+                                text: `Check the file at ${args.filePath} for code quality issues using JetBrains inspections.`,
+                            },
+                        },
+                    ],
+                }),
+                'fix-issues': (args: any) => ({
+                    messages: [
+                        {
+                            role: 'user',
+                            content: {
+                                type: 'text',
+                                text: `Analyze the project at ${args.projectPath} and provide fix suggestions for issues${args.severity ? ` with severity ${args.severity} or higher` : ''}.`,
+                            },
+                        },
+                    ],
+                }),
+            };
+
+            const promptHandler = prompts[name];
+            if (promptHandler) {
+                return promptHandler(args);
+            }
+
+            throw new Error(`Unknown prompt: ${name}`);
+        });
+    }
+
+    private setupResourceHandlers(): void {
+        // List available resources
+        this.server.setRequestHandler(ListResourcesRequestSchema, async () => {
+            const resources = [
+                {
+                    uri: 'inspection://profiles',
+                    name: 'Available Inspection Profiles',
+                    description: 'List of available inspection profiles',
+                    mimeType: 'application/json',
+                },
+                {
+                    uri: 'inspection://config',
+                    name: 'Current Configuration',
+                    description: 'Current MCP server configuration',
+                    mimeType: 'application/json',
+                },
+                {
+                    uri: 'inspection://ides',
+                    name: 'Detected IDEs',
+                    description: 'List of detected JetBrains IDEs on the system',
+                    mimeType: 'application/json',
+                },
+            ];
+
+            this.logger.debug('Listed resources', { count: resources.length });
+            return { resources };
+        });
+
+        // Read a specific resource
+        this.server.setRequestHandler(ReadResourceRequestSchema, async (request: any) => {
+            const { uri } = request.params;
+
+            if (uri === 'inspection://profiles') {
+                return {
+                    contents: [
+                        {
+                            uri,
+                            mimeType: 'application/json',
+                            text: JSON.stringify(
+                                {
+                                    profiles: [
+                                        'Default',
+                                        'Project Default',
+                                        'Strict',
+                                        'Essential',
+                                    ],
+                                    description: 'Available inspection profiles for code analysis',
+                                },
+                                null,
+                                2,
+                            ),
+                        },
+                    ],
+                };
+            }
+
+            if (uri === 'inspection://config') {
+                const config = this.container.resolve<ConfigLoader>('ConfigLoader').getConfig();
+                return {
+                    contents: [
+                        {
+                            uri,
+                            mimeType: 'application/json',
+                            text: JSON.stringify(config, null, 2),
+                        },
+                    ],
+                };
+            }
+
+            if (uri === 'inspection://ides') {
+                const { IDEDetector } = await import('../../core/ide/IDEDetector.js');
+                const { getIDEPaths } = await import('../../infrastructure/config/IDEPaths.js');
+                const detector = new IDEDetector(getIDEPaths(), this.logger);
+                const ides = await detector.findAvailableIDEs();
+                
+                return {
+                    contents: [
+                        {
+                            uri,
+                            mimeType: 'application/json',
+                            text: JSON.stringify(
+                                {
+                                    detected: ides,
+                                    count: ides.length,
+                                },
+                                null,
+                                2,
+                            ),
+                        },
+                    ],
+                };
+            }
+
+            throw new Error(`Unknown resource: ${uri}`);
         });
     }
 }
