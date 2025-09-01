@@ -1,0 +1,32 @@
+name: Version Consistency Check
+
+on:
+    push:
+        branches: [main, master, develop]
+    pull_request:
+        branches: [main, master, develop]
+
+jobs:
+    check-versions:
+        name: Check Version Consistency
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '20'
+
+            - name: Check version consistency
+              run: |
+                  chmod +x scripts/version/check-version-consistency.js
+                  node scripts/version/check-version-consistency.js
+
+            - name: Report status
+              if: failure()
+              run: |
+                  echo "::error::Version numbers are not consistent across files."
+                  echo "::error::Please synchronize versions in package.json, CHANGELOG.md and docs/reference/changelog.md"

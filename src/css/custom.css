@@ -1,0 +1,1492 @@
+/* ========================================
+   MCP JetBrains Docs - shadcn/ui Design System
+   ======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* =====================================
+   CSS Variables - JetBrains Gradient Theme
+   ===================================== */
+@layer base {
+    :root {
+        /* Logo Gradient Colors */
+        --gradient-orange: #ff8618;
+        --gradient-pink: #ff246e;
+        --gradient-purple: #af1df5;
+
+        /* Primary Gradient */
+        --gradient-primary: linear-gradient(135deg, var(--gradient-orange) 0%, var(--gradient-pink) 50%, var(--gradient-purple) 100%);
+        --gradient-primary-hover: linear-gradient(135deg, #ff9933 0%, #ff4580 50%, #bf3dff 100%);
+        --gradient-primary-subtle: linear-gradient(135deg, rgba(255, 134, 24, 0.1) 0%, rgba(255, 36, 110, 0.1) 50%, rgba(175, 29, 245, 0.1) 100%);
+
+        /* Background */
+        --background: 0 0% 100%;
+        --foreground: 240 10% 3.9%;
+
+        /* Card */
+        --card: 0 0% 100%;
+        --card-foreground: 240 10% 3.9%;
+
+        /* Popover */
+        --popover: 0 0% 100%;
+        --popover-foreground: 240 10% 3.9%;
+
+        /* Primary - Using purple from gradient */
+        --primary: 278 89% 54%;
+        --primary-foreground: 0 0% 98%;
+
+        /* Secondary - Subtle gray */
+        --secondary: 240 4.8% 95.9%;
+        --secondary-foreground: 240 5.9% 10%;
+
+        /* Muted */
+        --muted: 240 4.8% 95.9%;
+        --muted-foreground: 240 3.8% 46.1%;
+
+        /* Accent - Using orange from gradient */
+        --accent: 25 100% 55%;
+        --accent-foreground: 0 0% 98%;
+
+        /* Destructive */
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
+
+        /* Border */
+        --border: 240 5.9% 90%;
+        --input: 240 5.9% 90%;
+        --ring: 278 89% 54%;
+
+        /* Chart colors - Based on gradient */
+        --chart-1: 25 100% 55%;
+        --chart-2: 339 100% 57%;
+        --chart-3: 278 89% 54%;
+        --chart-4: 25 100% 70%;
+        --chart-5: 278 89% 70%;
+
+        /* Radius */
+        --radius: 0.5rem;
+
+        /* shadcn/ui specific */
+        --sh-background: hsl(var(--background));
+        --sh-foreground: hsl(var(--foreground));
+        --sh-card: hsl(var(--card));
+        --sh-card-foreground: hsl(var(--card-foreground));
+        --sh-popover: hsl(var(--popover));
+        --sh-popover-foreground: hsl(var(--popover-foreground));
+        --sh-primary: hsl(var(--primary));
+        --sh-primary-foreground: hsl(var(--primary-foreground));
+        --sh-secondary: hsl(var(--secondary));
+        --sh-secondary-foreground: hsl(var(--secondary-foreground));
+        --sh-muted: hsl(var(--muted));
+        --sh-muted-foreground: hsl(var(--muted-foreground));
+        --sh-accent: hsl(var(--accent));
+        --sh-accent-foreground: hsl(var(--accent-foreground));
+        --sh-destructive: hsl(var(--destructive));
+        --sh-destructive-foreground: hsl(var(--destructive-foreground));
+        --sh-border: hsl(var(--border));
+        --sh-input: hsl(var(--input));
+        --sh-ring: hsl(var(--ring));
+
+        /* Docusaurus overwrites - Using gradient purple */
+        --ifm-color-primary: #af1df5;
+        --ifm-color-primary-dark: #9e1add;
+        --ifm-color-primary-darker: #8d17c4;
+        --ifm-color-primary-darkest: #7c14ab;
+        --ifm-color-primary-light: #bf3dff;
+        --ifm-color-primary-lighter: #ca5dff;
+        --ifm-color-primary-lightest: #d57dff;
+
+        --ifm-background-color: var(--sh-background);
+        --ifm-font-color-base: var(--sh-foreground);
+        --ifm-navbar-background-color: var(--sh-background);
+        --ifm-footer-background-color: var(--sh-muted);
+
+        --ifm-font-family-base:
+            'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        --ifm-font-family-monospace: 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+
+        --ifm-global-radius: var(--radius);
+        --ifm-button-border-radius: var(--radius);
+        --ifm-code-border-radius: calc(var(--radius) - 2px);
+
+        --ifm-heading-font-weight: 600;
+        --ifm-font-weight-bold: 600;
+        --ifm-font-weight-semibold: 500;
+        --ifm-font-weight-normal: 400;
+
+        --ifm-global-shadow-lw: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        --ifm-global-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        --ifm-global-shadow-tl: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+        --ifm-spacing-horizontal: 1rem;
+        --ifm-spacing-vertical: 1rem;
+
+        --ifm-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+        --ifm-transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .dark,
+    [data-theme='dark'] {
+        /* Dark mode colors */
+        --background: 240 10% 3.9%;
+        --foreground: 0 0% 98%;
+
+        /* Gradient colors remain vibrant in dark mode */
+        --gradient-primary: linear-gradient(135deg, #ff8618 0%, #ff246e 50%, #af1df5 100%);
+        --gradient-primary-hover: linear-gradient(135deg, #ffaa44 0%, #ff5588 50%, #cf4dff 100%);
+        --gradient-primary-subtle: linear-gradient(135deg, rgba(255, 134, 24, 0.15) 0%, rgba(255, 36, 110, 0.15) 50%, rgba(175, 29, 245, 0.15) 100%);
+
+        --card: 240 10% 3.9%;
+        --card-foreground: 0 0% 98%;
+
+        --popover: 240 10% 3.9%;
+        --popover-foreground: 0 0% 98%;
+
+        --primary: 278 89% 64%;
+        --primary-foreground: 0 0% 98%;
+
+        --secondary: 240 3.7% 15.9%;
+        --secondary-foreground: 0 0% 98%;
+
+        --muted: 240 3.7% 15.9%;
+        --muted-foreground: 240 5% 64.9%;
+
+        --accent: 25 100% 60%;
+        --accent-foreground: 0 0% 98%;
+
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 0 0% 98%;
+
+        --border: 240 3.7% 15.9%;
+        --input: 240 3.7% 15.9%;
+        --ring: 278 89% 64%;
+
+        --chart-1: 25 100% 60%;
+        --chart-2: 339 100% 62%;
+        --chart-3: 278 89% 64%;
+        --chart-4: 25 100% 75%;
+        --chart-5: 278 89% 75%;
+
+        /* Update Docusaurus dark variables */
+        --ifm-background-color: hsl(240 10% 3.9%);
+        --ifm-background-surface-color: hsl(240 10% 7%);
+        --ifm-navbar-background-color: hsl(240 10% 3.9% / 0.8);
+        --ifm-footer-background-color: hsl(240 10% 2%);
+
+        --ifm-color-emphasis-100: hsl(240 10% 9%);
+        --ifm-color-emphasis-200: hsl(240 10% 12%);
+        --ifm-color-emphasis-300: hsl(240 10% 16%);
+        --ifm-color-emphasis-400: hsl(240 10% 20%);
+        --ifm-color-emphasis-500: hsl(240 10% 26%);
+        --ifm-color-emphasis-600: hsl(240 10% 34%);
+        --ifm-color-emphasis-700: hsl(240 10% 44%);
+        --ifm-color-emphasis-800: hsl(240 10% 58%);
+        --ifm-color-emphasis-900: hsl(240 10% 74%);
+        --ifm-color-emphasis-1000: hsl(240 10% 94%);
+    }
+}
+
+/* =====================================
+   Global Resets - shadcn/ui Style
+   ===================================== */
+
+* {
+    border-color: var(--sh-border);
+}
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    color: var(--sh-foreground);
+    background: var(--sh-background);
+    font-feature-settings:
+        'rlig' 1,
+        'calt' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* =====================================
+   Typography - shadcn/ui Style
+   ===================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    scroll-margin-top: 5rem;
+    font-weight: var(--ifm-heading-font-weight);
+    letter-spacing: -0.025em;
+    tracking-tight: true;
+}
+
+h1 {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+h2 {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    border-bottom: 2px solid transparent;
+    border-image: var(--gradient-primary);
+    border-image-slice: 1;
+    padding-bottom: 0.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+h4 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+p {
+    line-height: 1.75;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+/* Links - Enhanced with gradient */
+a {
+    color: var(--gradient-purple);
+    text-decoration: none;
+    text-underline-offset: 4px;
+    transition: all var(--ifm-transition-fast);
+    position: relative;
+}
+
+a:hover {
+    color: var(--gradient-pink);
+    text-decoration: underline;
+    text-decoration-color: var(--gradient-pink);
+}
+
+/* =====================================
+   Code & Pre - shadcn/ui Style
+   ===================================== */
+
+code {
+    position: relative;
+    padding: 0.125rem 0.25rem;
+    font-family: var(--ifm-font-family-monospace);
+    font-size: 0.875rem;
+    font-weight: 500;
+    background-color: var(--sh-muted);
+    border-radius: calc(var(--radius) - 4px);
+    border: 1px solid var(--sh-border);
+}
+
+pre {
+    overflow-x: auto;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: var(--sh-muted);
+    border-radius: var(--radius);
+    border: 1px solid var(--sh-border);
+}
+
+pre code {
+    background: transparent;
+    padding: 0;
+    border: none;
+    font-size: 0.875rem;
+}
+
+.docusaurus-highlight-code-line {
+    background-color: hsl(var(--muted) / 0.5);
+    display: block;
+    margin: 0 calc(-1 * var(--ifm-pre-padding));
+    padding: 0 var(--ifm-pre-padding);
+    border-left: 2px solid var(--sh-primary);
+}
+
+/* =====================================
+   Navigation - Enhanced with Gradient
+   ===================================== */
+
+.navbar {
+    background: var(--sh-background);
+    border-bottom: 1px solid var(--sh-border);
+    padding: 0.75rem 0;
+    backdrop-filter: blur(8px);
+    background-color: hsl(var(--background) / 0.95);
+    position: relative;
+    width: 100%;
+    max-width: 100vw;
+    overflow: visible; /* Changed from hidden to visible */
+}
+
+/* Ensure navbar inner content respects viewport width */
+.navbar__inner {
+    max-width: 100%;
+    padding: 0 2rem; /* Increased padding for buttons */
+    overflow: visible; /* Changed from hidden to visible */
+    display: flex;
+    align-items: center;
+    height: 60px; /* Fixed height for consistent alignment */
+}
+
+/* Prevent navbar items from causing overflow */
+.navbar__items {
+    flex-wrap: nowrap;
+    overflow: visible; /* Changed from hidden to visible */
+    display: flex;
+    align-items: center;
+}
+
+.navbar__items--right {
+    flex-shrink: 0;
+    min-width: 0;
+    padding-right: 1rem; /* Add padding to prevent cutoff */
+}
+
+/* Ensure title truncates properly */
+.navbar__title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+}
+
+.navbar::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    opacity: 0.2;
+}
+
+.navbar__brand {
+    font-weight: 600;
+    font-size: 1.125rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: filter var(--ifm-transition-fast);
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    max-width: calc(100vw - 200px);
+    overflow: hidden;
+}
+
+.navbar__brand:hover {
+    filter: brightness(1.2);
+}
+
+/* Ensure logo doesn't cause overflow */
+.navbar__logo {
+    flex-shrink: 0;
+    margin-right: 0.5rem;
+}
+
+.navbar__title {
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--gradient-purple) 0%, var(--gradient-pink) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.navbar__item {
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+/* GitHub Button - Force Button Appearance */
+
+/* Target the GitHub link specifically and force button styling */
+.navbar__items--right a[href*='github'],
+.navbar__item a[href*='github'].navbar__link {
+    /* Reset default link styles */
+    all: unset !important;
+
+    /* Button appearance */
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0.4rem 1.25rem !important;
+    margin: 0 !important;
+    height: 36px !important;
+    box-sizing: border-box !important;
+
+    /* Gradient background from logo */
+    background: linear-gradient(135deg, #ff8618 0%, #ff246e 50%, #af1df5 100%) !important;
+
+    /* Text styling */
+    color: white !important;
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+    font-family: inherit !important;
+    letter-spacing: 0.01em !important;
+    text-decoration: none !important;
+    text-transform: none !important;
+    -webkit-text-fill-color: white !important;
+
+    /* Button shape and effects */
+    border-radius: 8px !important;
+    border: none !important;
+    box-shadow: 0 4px 14px 0 rgba(175, 29, 245, 0.35) !important;
+
+    /* Transitions */
+    transition: all 200ms ease !important;
+    cursor: pointer !important;
+
+    /* Positioning */
+    position: relative !important;
+    overflow: hidden !important;
+    z-index: 1 !important;
+}
+
+/* Add star icon before text */
+.navbar__items--right a[href*='github']::before,
+.navbar__item a[href*='github'].navbar__link::before {
+    content: '⭐ ' !important;
+    margin-right: 0.25rem !important;
+    font-size: 1rem !important;
+    display: inline !important;
+}
+
+/* Hover overlay effect */
+.navbar__items--right a[href*='github']::after,
+.navbar__item a[href*='github'].navbar__link::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: linear-gradient(135deg, #ffaa44 0%, #ff5588 50%, #cf4dff 100%) !important;
+    opacity: 0 !important;
+    transition: opacity 200ms ease !important;
+    z-index: -1 !important;
+}
+
+/* Hover state */
+.navbar__items--right a[href*='github']:hover,
+.navbar__item a[href*='github'].navbar__link:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 7px 20px 0 rgba(175, 29, 245, 0.45) !important;
+    color: white !important;
+    text-decoration: none !important;
+}
+
+.navbar__items--right a[href*='github']:hover::after,
+.navbar__item a[href*='github'].navbar__link:hover::after {
+    opacity: 1 !important;
+}
+
+/* Active/focus state */
+.navbar__items--right a[href*='github']:active,
+.navbar__item a[href*='github'].navbar__link:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 8px 0 rgba(175, 29, 245, 0.3) !important;
+}
+
+/* Ensure text stays visible above gradient overlay */
+.navbar__items--right a[href*='github'] > *,
+.navbar__item a[href*='github'].navbar__link > * {
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+.navbar__link {
+    color: var(--sh-muted-foreground);
+    transition: all var(--ifm-transition-fast);
+    position: relative;
+}
+
+.navbar__link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    transition: all var(--ifm-transition-fast);
+    transform: translateX(-50%);
+}
+
+.navbar__link:hover {
+    color: var(--gradient-purple);
+    text-decoration: none;
+}
+
+.navbar__link:hover::after {
+    width: 100%;
+}
+
+.navbar__link--active {
+    color: var(--gradient-purple);
+    font-weight: 500;
+}
+
+.navbar__link--active::after {
+    width: 100%;
+}
+
+/* =====================================
+   Sidebar - shadcn/ui Style
+   ===================================== */
+
+.theme-doc-sidebar-container {
+    border-right: 1px solid var(--sh-border);
+    background: var(--sh-background);
+}
+
+.menu {
+    font-weight: 400;
+    padding: 0.5rem;
+}
+
+.menu__list {
+    gap: 0.125rem;
+}
+
+.menu__link {
+    border-radius: calc(var(--radius) - 2px);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    color: var(--sh-muted-foreground);
+    transition: all var(--ifm-transition-fast);
+}
+
+.menu__link:hover {
+    background: var(--gradient-primary-subtle);
+    color: var(--gradient-purple);
+    text-decoration: none;
+    position: relative;
+}
+
+.menu__link:hover::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--gradient-primary);
+    border-radius: 0 2px 2px 0;
+}
+
+.menu__link--active {
+    background-color: var(--sh-secondary);
+    color: var(--sh-secondary-foreground);
+    font-weight: 500;
+}
+
+.menu__link--active:hover {
+    background-color: var(--sh-secondary);
+    color: var(--sh-secondary-foreground);
+}
+
+.menu__list-item-collapsible {
+    border-radius: calc(var(--radius) - 2px);
+}
+
+.menu__list-item-collapsible:hover {
+    background-color: transparent;
+}
+
+.menu__caret:before {
+    background: var(--ifm-menu-link-sublist-icon) 50% / 1.25rem 1.25rem;
+    filter: none;
+    height: 1.25rem;
+    width: 1.25rem;
+}
+
+/* =====================================
+   Buttons - Enhanced with Gradients
+   ===================================== */
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all var(--ifm-transition-fast);
+    border: 1px solid transparent;
+    padding: 0.5rem 1rem;
+    height: 2.25rem;
+    text-transform: none;
+    letter-spacing: normal;
+    position: relative;
+    overflow: hidden;
+}
+
+.button--primary {
+    background: var(--gradient-primary);
+    color: white;
+    box-shadow: 0 4px 14px 0 rgba(175, 29, 245, 0.3);
+    border: none;
+}
+
+.button--primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-primary-hover);
+    opacity: 0;
+    transition: opacity var(--ifm-transition-fast);
+}
+
+.button--primary:hover::before {
+    opacity: 1;
+}
+
+.button--primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 7px 20px 0 rgba(175, 29, 245, 0.4);
+    color: white;
+}
+
+.button--secondary {
+    background-color: var(--sh-secondary);
+    color: var(--sh-secondary-foreground);
+}
+
+.button--secondary:hover {
+    background-color: hsl(var(--secondary) / 0.8);
+}
+
+.button--outline {
+    background-color: transparent;
+    border: 1px solid var(--sh-input);
+    color: var(--sh-foreground);
+}
+
+.button--outline:hover {
+    background-color: var(--sh-accent);
+    color: var(--sh-accent-foreground);
+}
+
+.button--ghost {
+    background-color: transparent;
+    color: var(--sh-foreground);
+}
+
+.button--ghost:hover {
+    background-color: var(--sh-accent);
+    color: var(--sh-accent-foreground);
+}
+
+.button--link {
+    background-color: transparent;
+    color: var(--sh-primary);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.button--link:hover {
+    text-decoration: underline;
+}
+
+/* =====================================
+   Cards - shadcn/ui Style
+   ===================================== */
+
+.card {
+    border-radius: var(--radius);
+    border: 1px solid var(--sh-border);
+    background-color: var(--sh-card);
+    color: var(--sh-card-foreground);
+    padding: 1.5rem;
+    box-shadow:
+        0 1px 3px 0 rgb(0 0 0 / 0.1),
+        0 1px 2px -1px rgb(0 0 0 / 0.1);
+    transition: all var(--ifm-transition-fast);
+}
+
+.card:hover {
+    box-shadow:
+        0 4px 6px -1px rgb(0 0 0 / 0.1),
+        0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+/* Doc Cards - Enhanced */
+article[class*='docCard'] {
+    border: 1px solid var(--sh-border);
+    border-radius: var(--radius);
+    background: var(--sh-card);
+    transition: all var(--ifm-transition-fast);
+    overflow: hidden;
+    position: relative;
+}
+
+article[class*='docCard']::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity var(--ifm-transition-fast);
+}
+
+article[class*='docCard']:hover {
+    box-shadow: 0 10px 30px -10px rgba(175, 29, 245, 0.2);
+    transform: translateY(-2px);
+    border-color: rgba(175, 29, 245, 0.3);
+}
+
+article[class*='docCard']:hover::before {
+    opacity: 1;
+}
+
+/* =====================================
+   Tables - shadcn/ui Style
+   ===================================== */
+
+table {
+    width: 100%;
+    caption-side: bottom;
+    font-size: 0.875rem;
+    border: 1px solid var(--sh-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin: 1.5rem 0;
+}
+
+table thead {
+    background-color: var(--sh-muted);
+}
+
+table thead tr {
+    border-bottom: 1px solid var(--sh-border);
+}
+
+table th {
+    height: 2.5rem;
+    padding: 0 0.75rem;
+    text-align: left;
+    font-weight: 500;
+    color: var(--sh-muted-foreground);
+}
+
+table tbody tr {
+    border-bottom: 1px solid var(--sh-border);
+    transition: background-color var(--ifm-transition-fast);
+}
+
+table tbody tr:hover {
+    background-color: var(--sh-muted);
+}
+
+table tbody tr:last-child {
+    border-bottom: 0;
+}
+
+table td {
+    padding: 0.75rem;
+    align-items: center;
+}
+
+/* =====================================
+   Alerts/Admonitions - shadcn/ui Style
+   ===================================== */
+
+.alert {
+    position: relative;
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--sh-border);
+    padding: 1rem;
+    margin: 1rem 0;
+    font-size: 0.875rem;
+}
+
+.alert--secondary {
+    background-color: var(--sh-secondary);
+    color: var(--sh-secondary-foreground);
+    border-color: var(--sh-border);
+}
+
+.alert--info {
+    background-color: hsl(var(--primary) / 0.1);
+    color: var(--sh-primary);
+    border-color: hsl(var(--primary) / 0.2);
+}
+
+.alert--success {
+    background-color: hsl(142 76% 36% / 0.1);
+    color: hsl(142 76% 36%);
+    border-color: hsl(142 76% 36% / 0.2);
+}
+
+.alert--warning {
+    background-color: hsl(38 92% 50% / 0.1);
+    color: hsl(38 92% 50%);
+    border-color: hsl(38 92% 50% / 0.2);
+}
+
+.alert--danger {
+    background-color: hsl(var(--destructive) / 0.1);
+    color: var(--sh-destructive);
+    border-color: hsl(var(--destructive) / 0.2);
+}
+
+.admonition {
+    border-radius: var(--radius);
+    border: 1px solid var(--sh-border);
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.admonition-heading {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+/* =====================================
+   Footer - shadcn/ui Style
+   ===================================== */
+
+.footer {
+    background: var(--sh-muted);
+    border-top: 1px solid var(--sh-border);
+    padding: 3rem 0;
+}
+
+.footer__title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--sh-foreground);
+}
+
+.footer__item {
+    font-size: 0.875rem;
+    color: var(--sh-muted-foreground);
+}
+
+.footer__link {
+    color: var(--sh-muted-foreground);
+    transition: color var(--ifm-transition-fast);
+}
+
+.footer__link:hover {
+    color: var(--sh-foreground);
+    text-decoration: none;
+}
+
+.footer__copyright {
+    font-size: 0.875rem;
+    color: var(--sh-muted-foreground);
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--sh-border);
+}
+
+/* =====================================
+   TOC - shadcn/ui Style
+   ===================================== */
+
+.table-of-contents {
+    font-size: 0.875rem;
+    padding-left: 0;
+    border-left: 1px solid var(--sh-border);
+}
+
+.table-of-contents__link {
+    color: var(--sh-muted-foreground);
+    padding: 0.25rem 0 0.25rem 1rem;
+    display: block;
+    transition: all var(--ifm-transition-fast);
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+}
+
+.table-of-contents__link:hover {
+    color: var(--sh-foreground);
+    text-decoration: none;
+}
+
+.table-of-contents__link--active {
+    color: var(--sh-foreground);
+    font-weight: 500;
+    border-left-color: var(--sh-primary);
+}
+
+/* =====================================
+   Pagination - shadcn/ui Style
+   ===================================== */
+
+.pagination-nav {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--sh-border);
+}
+
+.pagination-nav__link {
+    border: 1px solid var(--sh-border);
+    border-radius: var(--radius);
+    padding: 1rem;
+    transition: all var(--ifm-transition-fast);
+}
+
+.pagination-nav__link:hover {
+    text-decoration: none;
+    border-color: var(--sh-primary);
+    box-shadow:
+        0 1px 3px 0 rgb(0 0 0 / 0.1),
+        0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+.pagination-nav__sublabel {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    color: var(--sh-muted-foreground);
+    margin-bottom: 0.25rem;
+}
+
+.pagination-nav__label {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* =====================================
+   Search - shadcn/ui Style
+   ===================================== */
+
+.navbar__search-input {
+    background-color: var(--sh-background);
+    border: 1px solid var(--sh-input);
+    border-radius: calc(var(--radius) - 2px);
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    transition: all var(--ifm-transition-fast);
+}
+
+.navbar__search-input:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    border-color: var(--sh-ring);
+    box-shadow:
+        0 0 0 2px var(--sh-background),
+        0 0 0 4px hsl(var(--ring) / 0.2);
+}
+
+/* =====================================
+   Breadcrumbs - shadcn/ui Style
+   ===================================== */
+
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    color: var(--sh-muted-foreground);
+    margin-bottom: 1rem;
+}
+
+.breadcrumbs__item {
+    display: inline-flex;
+    align-items: center;
+}
+
+.breadcrumbs__link {
+    color: var(--sh-muted-foreground);
+    transition: color var(--ifm-transition-fast);
+}
+
+.breadcrumbs__link:hover {
+    color: var(--sh-foreground);
+    text-decoration: none;
+}
+
+/* =====================================
+   Tabs - shadcn/ui Style
+   ===================================== */
+
+.tabs {
+    margin: 1.5rem 0;
+}
+
+.tabs__item {
+    border-radius: calc(var(--radius) - 2px) calc(var(--radius) - 2px) 0 0;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--sh-muted-foreground);
+    border: 1px solid transparent;
+    margin-right: 0.25rem;
+    transition: all var(--ifm-transition-fast);
+}
+
+.tabs__item:hover {
+    color: var(--sh-foreground);
+}
+
+.tabs__item--active {
+    color: var(--sh-foreground);
+    background-color: var(--sh-background);
+    border-color: var(--sh-border);
+    border-bottom-color: var(--sh-background);
+}
+
+/* =====================================
+   Navbar Button Alignment - Unified Style
+   ===================================== */
+
+/* Common styles for all navbar buttons */
+.navbar__items--right {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    transform: translateY(-8px) !important; /* Lift buttons significantly up from bottom */
+}
+
+/* =====================================
+   Color Mode Toggle - No custom styling, use Docusaurus defaults
+   ===================================== */
+
+/* Removed all custom styling for color mode toggle button */
+
+/* =====================================
+   Focus States - shadcn/ui Style
+   ===================================== */
+
+:focus-visible {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 2px solid var(--sh-ring);
+    outline-offset: 2px;
+    border-radius: calc(var(--radius) - 2px);
+}
+
+/* =====================================
+   Scrollbar - shadcn/ui Style
+   ===================================== */
+
+::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--sh-border);
+    border-radius: calc(var(--radius) - 2px);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--sh-muted-foreground);
+}
+
+/* =====================================
+   Utilities - shadcn/ui Style
+   ===================================== */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* =====================================
+   Animations - shadcn/ui Style
+   ===================================== */
+
+@keyframes in {
+    from {
+        opacity: 0;
+        transform: translateY(0.25rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.animate-in {
+    animation: in 200ms ease-out;
+}
+
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+/* =====================================
+   Media Queries
+   ===================================== */
+
+@media (max-width: 996px) {
+    .navbar {
+        padding: 0.5rem 0;
+        width: 100%;
+        max-width: 100vw;
+    }
+
+    .navbar__inner {
+        padding: 0 0.5rem;
+        max-width: 100%;
+    }
+
+    .navbar__brand {
+        max-width: calc(100vw - 150px);
+    }
+
+    .navbar__title {
+        font-size: 1rem;
+        max-width: 200px;
+    }
+
+    h1 {
+        font-size: 1.875rem;
+        line-height: 2.25rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+
+    h3 {
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .pagination-nav {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+    }
+
+    .card {
+        padding: 1rem;
+    }
+}
+
+/* =====================================
+   Hero Sections - Gradient Enhanced
+   ===================================== */
+
+.hero {
+    position: relative;
+    padding: 5rem 0;
+    text-align: center;
+    background: var(--gradient-primary-subtle);
+    border-bottom: 1px solid var(--sh-border);
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background:
+        radial-gradient(circle, var(--gradient-orange) 0%, transparent 25%), radial-gradient(circle, var(--gradient-pink) 0%, transparent 25%),
+        radial-gradient(circle, var(--gradient-purple) 0%, transparent 25%);
+    opacity: 0.05;
+    animation: float 20s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    33% {
+        transform: translate(30px, -30px) rotate(120deg);
+    }
+    66% {
+        transform: translate(-20px, 20px) rotate(240deg);
+    }
+}
+
+.hero__title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+    0%,
+    100% {
+        filter: hue-rotate(0deg);
+    }
+    50% {
+        filter: hue-rotate(30deg);
+    }
+}
+
+.hero__subtitle {
+    font-size: 1.25rem;
+    color: var(--sh-muted-foreground);
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+/* =====================================
+   Feature Cards - Gradient Borders
+   ===================================== */
+
+.feature-card {
+    position: relative;
+    padding: 2rem;
+    border-radius: var(--radius);
+    background: var(--sh-card);
+    transition: all var(--ifm-transition-fast);
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: var(--radius);
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity var(--ifm-transition-fast);
+    z-index: -1;
+}
+
+.feature-card:hover::before {
+    opacity: 1;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -10px rgba(175, 29, 245, 0.3);
+}
+
+/* =====================================
+   Code Blocks - Enhanced Styling
+   ===================================== */
+
+.prism-code {
+    background: linear-gradient(135deg, hsl(240 10% 3.9%) 0%, hsl(240 10% 6%) 100%);
+    border: 1px solid rgba(175, 29, 245, 0.1);
+}
+
+.token.keyword {
+    color: var(--gradient-purple);
+}
+
+.token.string {
+    color: var(--gradient-orange);
+}
+
+.token.function {
+    color: var(--gradient-pink);
+}
+
+/* =====================================
+   Badges & Pills - Gradient Style
+   ===================================== */
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.625rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background: var(--gradient-primary);
+    color: white;
+    box-shadow: 0 2px 8px -2px rgba(175, 29, 245, 0.3);
+    transition: all var(--ifm-transition-fast);
+}
+
+.badge:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px -2px rgba(175, 29, 245, 0.4);
+}
+
+.badge--outline {
+    background: transparent;
+    border: 1px solid;
+    border-image: var(--gradient-primary);
+    border-image-slice: 1;
+    color: var(--gradient-purple);
+}
+
+/* =====================================
+   Progress Indicators
+   ===================================== */
+
+.progress-bar {
+    height: 4px;
+    background: var(--sh-muted);
+    border-radius: 9999px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar__fill {
+    height: 100%;
+    background: var(--gradient-primary);
+    border-radius: 9999px;
+    transition: width 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar__fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* =====================================
+   Glow Effects
+   ===================================== */
+
+.glow-on-hover {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.glow-on-hover::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-primary);
+    border-radius: var(--radius);
+    opacity: 0;
+    filter: blur(20px);
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.glow-on-hover:hover::before {
+    opacity: 0.5;
+}
+
+/* =====================================
+   Hide Skip to Content Button
+   ===================================== */
+
+/* Hide the skip to main content button */
+[class*='skipToContent'] {
+    display: none !important;
+}
+
+/* Alternative selector if the class name changes */
+div[role='region'][aria-label='Skip to main content'] {
+    display: none !important;
+}
+
+/* =====================================
+   Print Styles
+   ===================================== */
+
+@media print {
+    .navbar,
+    .footer,
+    .table-of-contents,
+    .pagination-nav,
+    .theme-doc-sidebar-container {
+        display: none;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: underline;
+    }
+}
