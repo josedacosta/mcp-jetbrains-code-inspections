@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- **MCP Prompts Support**: Added 3 pre-configured prompts for common inspection tasks
+  - `analyze-project`: Analyze entire projects with optional profile selection
+  - `check-file`: Quick single file inspection
+  - `fix-issues`: Get fix suggestions filtered by severity
+- **MCP Resources Support**: Added 3 server resources for runtime information
+  - `inspection://profiles`: Available inspection profiles list
+  - `inspection://config`: Current server configuration
+  - `inspection://ides`: Detected JetBrains IDEs on the system
+- **Enhanced MCP Capabilities**: Server now advertises prompts and resources capabilities
+- **Comprehensive Test Suite**: New test script for validating all MCP features
+- **Documentation Updates**: Complete API reference for prompts and resources
+
+### Fixed
+- **Build Dependencies**: Updated @modelcontextprotocol/sdk to v1.17.4 for full feature support
+- **Type Definitions**: Fixed TypeScript type errors in IDEDetector and RequestHandlers
+
 ## [1.0.0] - 2025-01-09
 
 ### 🎉 Initial Release

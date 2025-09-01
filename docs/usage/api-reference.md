@@ -6,9 +6,28 @@ description: Complete API documentation for the MCP tool
 
 # API Reference
 
-Complete documentation for the `get_jetbrains_code_inspections` MCP tool.
+Complete documentation for the MCP JetBrains Code Inspections server, including tools, prompts, and resources.
 
-## Tool Overview
+## MCP Features Overview
+
+The server provides three types of MCP features:
+
+### 🔧 Tools
+- **get_jetbrains_code_inspections**: Run code inspections on files/directories
+
+### 💬 Prompts
+- **analyze-project**: Analyze a project for code quality issues
+- **check-file**: Check a specific file for issues
+- **fix-issues**: Get suggestions to fix detected issues
+
+### 📚 Resources
+- **inspection://profiles**: List of available inspection profiles
+- **inspection://config**: Current MCP server configuration
+- **inspection://ides**: List of detected JetBrains IDEs
+
+---
+
+## Tools API
 
 ### Tool Name
 
@@ -258,9 +277,150 @@ type SeverityLevel = 'error' | 'warning' | 'info';
 - **`warning`**: Issues that should be addressed (unused code, potential bugs)
 - **`info`**: Informational messages, suggestions, and minor issues
 
+## Prompts API
+
+### Available Prompts
+
+#### analyze-project
+
+Analyze an entire project for code quality issues.
+
+**Arguments:**
+- `projectPath` (required): Path to the project to analyze
+- `profile` (optional): Inspection profile to use
+
+**Example:**
+```javascript
+// Get prompt
+const prompt = await getPrompt({
+    name: 'analyze-project',
+    arguments: {
+        projectPath: '/path/to/project',
+        profile: 'Default'
+    }
+});
+```
+
+#### check-file
+
+Check a specific file for code quality issues.
+
+**Arguments:**
+- `filePath` (required): Path to the file to check
+
+**Example:**
+```javascript
+const prompt = await getPrompt({
+    name: 'check-file',
+    arguments: {
+        filePath: 'src/components/Button.tsx'
+    }
+});
+```
+
+#### fix-issues
+
+Get suggestions to fix detected issues in a project.
+
+**Arguments:**
+- `projectPath` (required): Path to the project
+- `severity` (optional): Minimum severity level (ERROR, WARNING, INFO)
+
+**Example:**
+```javascript
+const prompt = await getPrompt({
+    name: 'fix-issues',
+    arguments: {
+        projectPath: '/path/to/project',
+        severity: 'ERROR'
+    }
+});
+```
+
+---
+
+## Resources API
+
+### Available Resources
+
+#### inspection://profiles
+
+Returns the list of available inspection profiles.
+
+**Response:**
+```json
+{
+    "profiles": [
+        "Default",
+        "Project Default",
+        "Strict",
+        "Essential"
+    ],
+    "description": "Available inspection profiles for code analysis"
+}
+```
+
+#### inspection://config
+
+Returns the current MCP server configuration.
+
+**Response:**
+```json
+{
+    "name": "mcp-jetbrains-code-inspections",
+    "version": "1.0.0",
+    "defaultTimeout": 120000,
+    "responseFormat": "markdown",
+    "excludedInspections": ["SpellCheckingInspection"],
+    "debug": false
+}
+```
+
+#### inspection://ides
+
+Returns the list of detected JetBrains IDEs on the system.
+
+**Response:**
+```json
+{
+    "detected": [
+        {
+            "name": "WebStorm",
+            "type": "webstorm",
+            "version": "2024.1",
+            "inspectPath": "/Applications/WebStorm.app/Contents/bin/inspect.sh"
+        },
+        {
+            "name": "IntelliJ IDEA",
+            "type": "idea",
+            "version": "2024.1",
+            "inspectPath": "/Applications/IntelliJ IDEA.app/Contents/bin/inspect.sh"
+        }
+    ],
+    "count": 2
+}
+```
+
+### Using Resources
+
+```javascript
+// List all available resources
+const resources = await listResources();
+
+// Read a specific resource
+const profilesData = await readResource({
+    uri: 'inspection://profiles'
+});
+
+const profiles = JSON.parse(profilesData.contents[0].text);
+console.log('Available profiles:', profiles.profiles);
+```
+
+---
+
 ## Usage Examples
 
-### Basic Usage
+### Basic Tool Usage
 
 ```javascript
 // Analyze a single file
