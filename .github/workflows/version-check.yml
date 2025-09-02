@@ -20,10 +20,12 @@ jobs:
               with:
                   node-version: '20'
 
+            - name: Install dependencies
+              run: yarn install --frozen-lockfile
+
             - name: Check version consistency
               run: |
-                  chmod +x scripts/version/check-version-consistency.js
-                  node scripts/version/check-version-consistency.js
+                  npx tsx scripts/version/check-version-consistency.ts
 
             - name: Report status
               if: failure()
