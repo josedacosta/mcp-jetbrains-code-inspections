@@ -1,11 +1,14 @@
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
-import { 
-    CallToolRequestSchema, 
+import {
+    CallToolRequestSchema,
     ListToolsRequestSchema,
     ListPromptsRequestSchema,
     GetPromptRequestSchema,
     ListResourcesRequestSchema,
-    ReadResourceRequestSchema
+    ReadResourceRequestSchema,
+    CallToolRequest,
+    GetPromptRequest,
+    ReadResourceRequest,
 } from '@modelcontextprotocol/sdk/types.js';
 import { InspectionTool, InspectionToolParams } from '../tools/InspectionTool.js';
 import { MarkdownFormatter } from '../formatters/MarkdownFormatter.js';
@@ -50,7 +53,7 @@ export class RequestHandlers {
     }
 
     private setupToolCallHandler(): void {
-        this.server.setRequestHandler(CallToolRequestSchema, async (request: any) => {
+        this.server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest) => {
             const { name, arguments: args } = request.params;
 
             if (name === 'get_jetbrains_code_inspections') {
@@ -165,11 +168,14 @@ export class RequestHandlers {
         });
 
         // Get a specific prompt
-        this.server.setRequestHandler(GetPromptRequestSchema, async (request: any) => {
+        this.server.setRequestHandler(GetPromptRequestSchema, async (request: GetPromptRequest) => {
             const { name, arguments: args } = request.params;
 
-            const prompts: Record<string, (args: any) => { messages: any[] }> = {
-                'analyze-project': (args: any) => ({
+            const prompts: Record<
+                string,
+                (args: Record<string, unknown>) => { messages: Array<{ role: string; content: { type: string; text: string } }> }
+            > = {
+                'analyze-project': (args: Record<string, unknown>) => ({
                     messages: [
                         {
                             role: 'user',
@@ -180,7 +186,7 @@ export class RequestHandlers {
                         },
                     ],
                 }),
-                'check-file': (args: any) => ({
+                'check-file': (args: Record<string, unknown>) => ({
                     messages: [
                         {
                             role: 'user',
@@ -191,7 +197,7 @@ export class RequestHandlers {
                         },
                     ],
                 }),
-                'fix-issues': (args: any) => ({
+                'fix-issues': (args: Record<string, unknown>) => ({
                     messages: [
                         {
                             role: 'user',
@@ -206,7 +212,7 @@ export class RequestHandlers {
 
             const promptHandler = prompts[name];
             if (promptHandler) {
-                return promptHandler(args);
+                return promptHandler(args || {});
             }
 
             throw new Error(`Unknown prompt: ${name}`);
@@ -242,7 +248,7 @@ export class RequestHandlers {
         });
 
         // Read a specific resource
-        this.server.setRequestHandler(ReadResourceRequestSchema, async (request: any) => {
+        this.server.setRequestHandler(ReadResourceRequestSchema, async (request: ReadResourceRequest) => {
             const { uri } = request.params;
 
             if (uri === 'inspection://profiles') {
@@ -253,12 +259,7 @@ export class RequestHandlers {
                             mimeType: 'application/json',
                             text: JSON.stringify(
                                 {
-                                    profiles: [
-                                        'Default',
-                                        'Project Default',
-                                        'Strict',
-                                        'Essential',
-                                    ],
+                                    profiles: ['Default', 'Project Default', 'Strict', 'Essential'],
                                     description: 'Available inspection profiles for code analysis',
                                 },
                                 null,
@@ -287,7 +288,7 @@ export class RequestHandlers {
                 const { getIDEPaths } = await import('../../infrastructure/config/IDEPaths.js');
                 const detector = new IDEDetector(getIDEPaths(), this.logger);
                 const ides = await detector.findAvailableIDEs();
-                
+
                 return {
                     contents: [
                         {

@@ -35,12 +35,12 @@ class MCPFeatureTester {
         try {
             await this.startServer();
             await this.initialize();
-            
+
             // Test all new features
             await this.testPrompts();
             await this.testResources();
             await this.testTools();
-            
+
             console.log(colorize('\n✅ All tests completed successfully!', colors.green, colors.bold));
         } catch (error) {
             console.error(colorize('❌ Test failed:', colors.red, colors.bold), error);
@@ -63,8 +63,11 @@ class MCPFeatureTester {
         });
 
         this.serverProcess.stdout?.on('data', (data: Buffer) => {
-            const lines = data.toString().split('\n').filter(line => line.trim());
-            lines.forEach(line => {
+            const lines = data
+                .toString()
+                .split('\n')
+                .filter((line) => line.trim());
+            lines.forEach((line) => {
                 try {
                     const response = JSON.parse(line);
                     this.responses.push(response);
@@ -75,12 +78,12 @@ class MCPFeatureTester {
         });
 
         // Wait for server to start
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise((resolve) => setTimeout(resolve, 1000));
     }
 
     private async initialize(): Promise<void> {
         console.log(colorize('🔄 Initializing MCP connection...', colors.blue));
-        
+
         await this.sendRequest({
             jsonrpc: '2.0',
             id: this.messageId++,
@@ -101,7 +104,7 @@ class MCPFeatureTester {
 
     private async testPrompts(): Promise<void> {
         console.log(colorize('\n📝 Testing Prompts...', colors.bold, colors.yellow));
-        
+
         // List prompts
         await this.sendRequest({
             jsonrpc: '2.0',
@@ -112,7 +115,7 @@ class MCPFeatureTester {
 
         const promptsResponse = await this.waitForResponse();
         const prompts = promptsResponse?.result?.prompts || [];
-        
+
         console.log(`  Found ${prompts.length} prompts:`);
         prompts.forEach((prompt: any) => {
             console.log(`    - ${colorize(prompt.name, colors.cyan)}: ${prompt.description}`);
@@ -128,8 +131,8 @@ class MCPFeatureTester {
                     name: 'analyze-project',
                     arguments: {
                         projectPath: '/test/path',
-                        profile: 'Default'
-                    }
+                        profile: 'Default',
+                    },
                 },
             });
 
@@ -142,7 +145,7 @@ class MCPFeatureTester {
 
     private async testResources(): Promise<void> {
         console.log(colorize('\n📚 Testing Resources...', colors.bold, colors.yellow));
-        
+
         // List resources
         await this.sendRequest({
             jsonrpc: '2.0',
@@ -153,7 +156,7 @@ class MCPFeatureTester {
 
         const resourcesResponse = await this.waitForResponse();
         const resources = resourcesResponse?.result?.resources || [];
-        
+
         console.log(`  Found ${resources.length} resources:`);
         resources.forEach((resource: any) => {
             console.log(`    - ${colorize(resource.uri, colors.cyan)}: ${resource.name}`);
@@ -179,7 +182,7 @@ class MCPFeatureTester {
 
     private async testTools(): Promise<void> {
         console.log(colorize('\n🔧 Testing Tools...', colors.bold, colors.yellow));
-        
+
         // List tools
         await this.sendRequest({
             jsonrpc: '2.0',
@@ -190,12 +193,12 @@ class MCPFeatureTester {
 
         const toolsResponse = await this.waitForResponse();
         const tools = toolsResponse?.result?.tools || [];
-        
+
         console.log(`  Found ${tools.length} tools:`);
         tools.forEach((tool: any) => {
             console.log(`    - ${colorize(tool.name, colors.cyan)}: ${tool.description}`);
         });
-        
+
         if (tools.length > 0) {
             console.log(colorize('  ✅ Tool "get_jetbrains_code_inspections" is available', colors.green));
         }
@@ -211,14 +214,14 @@ class MCPFeatureTester {
     private async waitForResponse(timeout = 3000): Promise<any> {
         const startTime = Date.now();
         const initialLength = this.responses.length;
-        
+
         while (Date.now() - startTime < timeout) {
             if (this.responses.length > initialLength) {
                 return this.responses[this.responses.length - 1];
             }
-            await new Promise(resolve => setTimeout(resolve, 100));
+            await new Promise((resolve) => setTimeout(resolve, 100));
         }
-        
+
         throw new Error('Timeout waiting for response');
     }
 
@@ -235,7 +238,7 @@ async function main() {
     await tester.start();
 }
 
-main().catch(error => {
+main().catch((error) => {
     console.error(colorize('❌ Fatal error:', colors.red, colors.bold), error);
     process.exit(1);
 });

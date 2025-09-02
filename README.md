@@ -13,36 +13,36 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://makeapullrequest.com)
 
 > [!CAUTION]
+>
 > ## ⚠️ Deprecated Notice
-> 
+>
 > [![Status: Deprecated](https://img.shields.io/badge/Status-Deprecated-red.svg)](https://github.com/josedacosta/mcp-jetbrains-code-inspections#deprecated-notice)
-> 
+>
 > **This project is deprecated but still functional.** Starting from version 2025.2, JetBrains IDEs (WebStorm, IntelliJ IDEA, PyCharm, etc.) now include a built-in MCP server that provides native integration with external clients like Claude Desktop, Cursor, VS Code, and others.
-> 
+>
 > ### 🔄 Migration Options
-> 
-> | IDE Version | Recommended Solution | Link |
-> |------------|---------------------|------|
-> | **2025.2+** | Built-in MCP server | [Official Documentation](https://www.jetbrains.com/help/webstorm/mcp-server.html) |
-> | **Earlier versions** | JetBrains MCP plugin | [Plugin Marketplace](https://plugins.jetbrains.com/plugin/26071-mcp-server) |
-> 
+>
+> | IDE Version          | Recommended Solution | Link                                                                              |
+> | -------------------- | -------------------- | --------------------------------------------------------------------------------- |
+> | **2025.2+**          | Built-in MCP server  | [Official Documentation](https://www.jetbrains.com/help/webstorm/mcp-server.html) |
+> | **Earlier versions** | JetBrains MCP plugin | [Plugin Marketplace](https://plugins.jetbrains.com/plugin/26071-mcp-server)       |
+>
 > ### ✅ Native Integration Benefits
-> 
+>
 > - **Direct IDE control** without external tools
 > - **25+ tools** comprehensive tool set
 > - **Better performance** and reliability
 > - **Official support** from JetBrains
-> 
+>
 > > [!IMPORTANT]
 > > The native `get_file_problems` tool requires setting `errorsOnly: false` for similar functionality to this project. The `get_project_problems` tool only returns critical errors.
-> 
+>
 > 📚 **[View Migration Guide & Comparison →](https://josedacosta.github.io/mcp-jetbrains-code-inspections/deprecated/jetbrains-native-mcp)**
 
 A **Model Context Protocol (MCP)** server that provides JetBrains IDE code inspections with automatic IDE selection and a unified inspection profile that works across all file types.
 
 > [!TIP]
 > 📚 **Full Documentation Available**: Visit our comprehensive docs at [josedacosta.github.io/mcp-jetbrains-code-inspections](https://josedacosta.github.io/mcp-jetbrains-code-inspections/)
-
 
 ## 🎯 Quick Start
 
@@ -63,7 +63,6 @@ yarn inspect
 
 Then configure your MCP client (Claude Desktop, Cursor, etc.) with the [configuration below](#️-configuration).
 
-
 ## ✨ Features
 
 <table>
@@ -74,10 +73,8 @@ Then configure your MCP client (Claude Desktop, Cursor, etc.) with the [configur
 
 - 🔍 **Automatic IDE Detection**
   <br>Intelligently selects the best JetBrains IDE
-  
 - ⚡ **Configurable Timeout**
   <br>Default 120s, adjustable for large projects
-  
 - 🔄 **Cross-IDE Compatible**
   <br>Works with all JetBrains IDEs
 
@@ -88,23 +85,18 @@ Then configure your MCP client (Claude Desktop, Cursor, etc.) with the [configur
 
 - 📊 **Smart Output Formats**
   <br>Markdown for LLMs, JSON for tools
-  
 - 🎯 **Concurrent Execution**
   <br>Run even when IDE is open
-  
 - 🌐 **Universal Profiles**
   <br>One profile for all languages
-  
 - 💬 **Built-in Prompts**
   <br>Pre-configured prompts for common tasks
-  
 - 📚 **Server Resources**
   <br>Access profiles, config, and IDE info
 
 </td>
 </tr>
 </table>
-
 
 ## 📦 Installation
 
@@ -114,20 +106,21 @@ Then configure your MCP client (Claude Desktop, Cursor, etc.) with the [configur
 ### Step-by-step Installation
 
 1. **Install dependencies**:
-   ```bash
-   yarn install
-   ```
+
+    ```bash
+    yarn install
+    ```
 
 2. **Build the server**:
-   ```bash
-   yarn build
-   ```
+
+    ```bash
+    yarn build
+    ```
 
 3. **Configure MCP** (see [⚙️ Configuration](#️-configuration) section below)
 
 > [!TIP]
 > Use `yarn inspect` after installation to test the server with the MCP Inspector
-
 
 ## 🚀 Usage
 
@@ -136,14 +129,17 @@ Then configure your MCP client (Claude Desktop, Cursor, etc.) with the [configur
 The server provides three types of MCP features:
 
 #### 🔨 Tools
+
 - **get_jetbrains_code_inspections**: Runs code inspections on specified files or directories
 
 #### 💬 Prompts
+
 - **analyze-project**: Analyze a project for code quality issues
 - **check-file**: Check a specific file for issues
 - **fix-issues**: Get suggestions to fix detected issues
 
 #### 📚 Resources
+
 - **inspection://profiles**: List of available inspection profiles
 - **inspection://config**: Current MCP server configuration
 - **inspection://ides**: List of detected JetBrains IDEs on the system
@@ -189,9 +185,9 @@ The code inspections server can be configured through environment variables in `
 > [!IMPORTANT]
 > The tool accepts only one parameter from the LLM:
 
-| Parameter | Type   | Description                       | Required | Example |
-| --------- | ------ | --------------------------------- | -------- | ------- |
-| `path`    | `string` | File or directory path to inspect | ✅ Yes | `"src/index.ts"` or `"./src"` |
+| Parameter | Type     | Description                       | Required | Example                       |
+| --------- | -------- | --------------------------------- | -------- | ----------------------------- |
+| `path`    | `string` | File or directory path to inspect | ✅ Yes   | `"src/index.ts"` or `"./src"` |
 
 #### 🌍 Configuration via Environment Variables
 
@@ -201,22 +197,21 @@ The code inspections server can be configured through environment variables in `
 <details>
 <summary><b>📑 Available Environment Variables</b> (click to expand)</summary>
 
-| Environment Variable  | Type               | Description                                               | Default                 |
-| --------------------- | ------------------ | --------------------------------------------------------- | ----------------------- |
-| `FORCE_INSPECT_PATH`  | `string`           | Force specific IDE inspect tool (disables auto-detection) | Auto-detected           |
-| `FORCE_PROJECT_ROOT`  | `string`           | Force project root directory (disables auto-detection)    | Auto-detected           |
-| `FORCE_PROFILE_PATH`  | `string`           | Force inspection profile path (disables defaults)         | Project defaults        |
-| `INSPECTION_TIMEOUT`  | `number`           | Maximum analysis time (ms)                                | `120000`                |
-| `EXCLUDE_INSPECTIONS` | `string`           | Comma-separated inspection codes to exclude               | `SpellCheckingInspection` |
-| `ONLY_INSPECTIONS`    | `string`           | Only include these inspection codes                       | -                       |
-| `RESPONSE_FORMAT`     | `'markdown'\|'json'` | Output format for diagnostics                           | `'markdown'`            |
-| `DEBUG`               | `boolean`          | Enable debug logging                                      | `false`                 |
+| Environment Variable  | Type                 | Description                                               | Default                   |
+| --------------------- | -------------------- | --------------------------------------------------------- | ------------------------- |
+| `FORCE_INSPECT_PATH`  | `string`             | Force specific IDE inspect tool (disables auto-detection) | Auto-detected             |
+| `FORCE_PROJECT_ROOT`  | `string`             | Force project root directory (disables auto-detection)    | Auto-detected             |
+| `FORCE_PROFILE_PATH`  | `string`             | Force inspection profile path (disables defaults)         | Project defaults          |
+| `INSPECTION_TIMEOUT`  | `number`             | Maximum analysis time (ms)                                | `120000`                  |
+| `EXCLUDE_INSPECTIONS` | `string`             | Comma-separated inspection codes to exclude               | `SpellCheckingInspection` |
+| `ONLY_INSPECTIONS`    | `string`             | Only include these inspection codes                       | -                         |
+| `RESPONSE_FORMAT`     | `'markdown'\|'json'` | Output format for diagnostics                             | `'markdown'`              |
+| `DEBUG`               | `boolean`            | Enable debug logging                                      | `false`                   |
 
 </details>
 
 > [!TIP]
 > 📚 For detailed configuration options, see [Configuration Documentation](docs/configuration/).
-
 
 ## 🧪 Testing
 
@@ -245,7 +240,6 @@ The inspector opens a web interface where you can:
 - Use pre-configured prompts for common tasks
 - Access server resources (profiles, config, detected IDEs)
 - See requests/responses in real-time
-
 
 ## ⚙️ How It Works
 
@@ -277,6 +271,7 @@ The inspector opens a web interface where you can:
 > **Key Innovation**: The server uses temporary isolated configuration directories with `-Didea.config.path` and `-Didea.system.path` JVM properties. This allows inspections to run even when the IDE is already open!
 
 **Benefits:**
+
 - ✅ No IDE conflicts
 - ✅ Parallel execution support
 - ✅ Clean, isolated analysis
@@ -294,7 +289,7 @@ The inspector opens a web interface where you can:
    ✅ WebStorm - Found and selected!
       Path: /Applications/WebStorm.app/Contents/bin/inspect.sh
       Note: Using isolated configuration - works even if IDE is already running
-      
+
 📊 Analysis Results:
    ⚠️ Warning: Unused variable 'config' at line 42
    ❌ Error: Missing semicolon at line 156
@@ -302,7 +297,6 @@ The inspector opens a web interface where you can:
 ```
 
 </details>
-
 
 ## 🛠️ Troubleshooting
 
@@ -312,6 +306,7 @@ The inspector opens a web interface where you can:
 > This error occurs when no JetBrains IDE can be found in standard installation locations.
 
 **Solutions:**
+
 - ✅ Verify that a JetBrains IDE is installed in `/Applications/` or `~/Applications/`
 - ✅ Ensure the `inspect.sh` file is executable
 - ✅ Use `FORCE_INSPECT_PATH` environment variable to specify the exact path
@@ -322,6 +317,7 @@ The inspector opens a web interface where you can:
 > Without an inspection profile, the tool cannot analyze your code properly.
 
 **Steps to fix:**
+
 1. Open the project in a JetBrains IDE
 2. Go to **Settings** → **Inspections**
 3. Configure and save an inspection profile
@@ -333,6 +329,7 @@ The inspector opens a web interface where you can:
 > Default timeout is 120 seconds. Large projects may need more time.
 
 **Solutions:**
+
 - 🔄 Increase timeout: Set `INSPECTION_TIMEOUT=300000` (5 minutes)
 - 📊 Check that the IDE is not currently indexing
 - 📦 For very large projects, consider inspecting specific directories
@@ -342,7 +339,6 @@ The inspector opens a web interface where you can:
 > [!NOTE]
 > ✅ **This is no longer an issue!** The server automatically handles this by using isolated configuration directories, allowing inspections to run even when the IDE is already open.
 
-
 ## 📚 Documentation
 
 > [!TIP]
@@ -350,25 +346,23 @@ The inspector opens a web interface where you can:
 
 **Available sections:**
 
-| Section | Description |
-|---------|-------------|
-| 🏁 **[Getting Started](https://josedacosta.github.io/mcp-jetbrains-code-inspections/getting-started/)** | Installation and prerequisites |
-| ⚙️ **[Configuration](https://josedacosta.github.io/mcp-jetbrains-code-inspections/configuration/)** | Environment variables and profiles |
-| 📖 **[Usage Guide](https://josedacosta.github.io/mcp-jetbrains-code-inspections/usage/)** | Basic and advanced usage |
-| 🔬 **[Technical Details](https://josedacosta.github.io/mcp-jetbrains-code-inspections/technical/)** | Architecture and IDE detection |
-| 💡 **[Guides](https://josedacosta.github.io/mcp-jetbrains-code-inspections/guides/)** | Best practices and troubleshooting |
-
+| Section                                                                                                 | Description                        |
+| ------------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| 🏁 **[Getting Started](https://josedacosta.github.io/mcp-jetbrains-code-inspections/getting-started/)** | Installation and prerequisites     |
+| ⚙️ **[Configuration](https://josedacosta.github.io/mcp-jetbrains-code-inspections/configuration/)**     | Environment variables and profiles |
+| 📖 **[Usage Guide](https://josedacosta.github.io/mcp-jetbrains-code-inspections/usage/)**               | Basic and advanced usage           |
+| 🔬 **[Technical Details](https://josedacosta.github.io/mcp-jetbrains-code-inspections/technical/)**     | Architecture and IDE detection     |
+| 💡 **[Guides](https://josedacosta.github.io/mcp-jetbrains-code-inspections/guides/)**                   | Best practices and troubleshooting |
 
 ## 📖 JetBrains Documentation
 
 > [!TIP]
 > Learn more about JetBrains code inspections and the command-line inspector:
 
-| Resource | Description |
-|----------|-------------|
-| 📘 **[Code Inspection Overview](https://www.jetbrains.com/help/webstorm/code-inspection.html)** | Learn about code inspections, severity levels, and inspection profiles |
-| 🔧 **[Command-Line Code Inspector](https://www.jetbrains.com/help/webstorm/command-line-code-inspector.html)** | Detailed documentation on using the inspect.sh/inspect.bat tool |
-
+| Resource                                                                                                       | Description                                                            |
+| -------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| 📘 **[Code Inspection Overview](https://www.jetbrains.com/help/webstorm/code-inspection.html)**                | Learn about code inspections, severity levels, and inspection profiles |
+| 🔧 **[Command-Line Code Inspector](https://www.jetbrains.com/help/webstorm/command-line-code-inspector.html)** | Detailed documentation on using the inspect.sh/inspect.bat tool        |
 
 ## 🤝 Contributing
 
@@ -376,6 +370,7 @@ The inspector opens a web interface where you can:
 > We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for full details.
 
 **What we're looking for:**
+
 - 🐛 Bug fixes and issue reports
 - ✨ New features and enhancements
 - 📝 Documentation improvements
@@ -405,7 +400,6 @@ git push origin feat/amazing-feature
 
 > [!TIP]
 > See [CONTRIBUTING.md](CONTRIBUTING.md) for branch naming, commit message standards, and PR guidelines.
-
 
 ## 🏷️ Keywords
 

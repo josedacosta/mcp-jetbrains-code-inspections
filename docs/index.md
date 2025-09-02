@@ -14,11 +14,12 @@ slug: /
 > [![Status: Deprecated](https://img.shields.io/badge/Status-Deprecated-red.svg)](https://github.com/josedacosta/mcp-jetbrains-code-inspections#deprecated-notice)
 >
 > **This project is deprecated but still functional.** Starting from version 2025.2, JetBrains IDEs now include a built-in MCP server.
-> 
+>
 > **Recommended alternatives:**
+>
 > - JetBrains IDE 2025.2+: [Built-in MCP server](https://www.jetbrains.com/help/webstorm/mcp-server.html)
 > - Earlier versions: [JetBrains MCP plugin](https://plugins.jetbrains.com/plugin/26071-mcp-server)
-> 
+>
 > **See our [migration guide](./deprecated/jetbrains-native-mcp) for details.**
 
 A Model Context Protocol (MCP) server that enables running JetBrains IDE code inspections with automatic IDE selection.

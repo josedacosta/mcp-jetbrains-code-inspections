@@ -50,27 +50,28 @@ The native JetBrains MCP integration offers several advantages:
 ### For JetBrains IDE 2025.2+
 
 1. **Enable MCP Server in IDE**:
-   - Open your JetBrains IDE
-   - Navigate to `Settings` → `Tools` → `MCP Server`
-   - Click "Enable MCP Server"
+    - Open your JetBrains IDE
+    - Navigate to `Settings` → `Tools` → `MCP Server`
+    - Click "Enable MCP Server"
 
 ![Enable MCP Server in JetBrains IDE Settings](/screen/mcp_01.png)
-*First step: Check the "Enable MCP Server" checkbox to activate the native MCP integration*
+_First step: Check the "Enable MCP Server" checkbox to activate the native MCP integration_
 
 2. **Configure Your Client**:
-   
-   **Automatic Configuration:**
-   - In the MCP Server settings, click "Auto-Configure" for your client
-   - The IDE will automatically update your client's configuration
-   - Restart your client to apply changes
+
+    **Automatic Configuration:**
+    - In the MCP Server settings, click "Auto-Configure" for your client
+    - The IDE will automatically update your client's configuration
+    - Restart your client to apply changes
 
 ![Auto-configure clients for MCP](/screen/mcp_02.png)
-*Auto-configuration: Click "Auto-Configure" for Claude Code or other detected clients. Note the status shows "Configured - restart the client if changes aren't applied"*
+_Auto-configuration: Click "Auto-Configure" for Claude Code or other detected clients. Note the status shows "Configured - restart the client if changes aren't applied"_
 
-   **Manual Configuration:**
-   - Copy the SSE or Stdio configuration from the settings
-   - Paste into your client's configuration file
-   - Restart your client
+**Manual Configuration:**
+
+- Copy the SSE or Stdio configuration from the settings
+- Paste into your client's configuration file
+- Restart your client
 
 ### For Earlier JetBrains Versions
 
@@ -86,22 +87,22 @@ After configuring the MCP server, you can verify the connection directly in Clau
 ### 1. Check Available MCP Commands
 
 ![Claude Code MCP commands](/screen/mcp_03.png)
-*Type `/mcp` in Claude Code to see available MCP management commands*
+_Type `/mcp` in Claude Code to see available MCP management commands_
 
 ### 2. View Connected MCP Servers
 
 ![View connected MCP servers](/screen/mcp_04.png)
-*Use `/mcp` → "Manage MCP servers" to see your connected JetBrains server with a green checkmark*
+_Use `/mcp` → "Manage MCP servers" to see your connected JetBrains server with a green checkmark_
 
 ### 3. Inspect Server Details
 
 ![JetBrains MCP server details](/screen/mcp_05.png)
-*View detailed server information including status, URL, configuration location, and the number of available tools (22 tools in this example)*
+_View detailed server information including status, URL, configuration location, and the number of available tools (22 tools in this example)_
 
 ### 4. Browse Available Tools
 
 ![List of available MCP tools](/screen/mcp_06.png)
-*Explore the full list of available tools, including `get_file_problems` and `get_project_problems` highlighted for code inspection*
+_Explore the full list of available tools, including `get_file_problems` and `get_project_problems` highlighted for code inspection_
 
 ## Available Tools in Native Integration
 
@@ -110,18 +111,18 @@ The native MCP server provides access to various tool categories:
 ### Inspection and Error Tools
 
 - **`get_file_problems`**: Analyzes a specific file for errors and warnings
-  - Important: Set `errorsOnly: false` for comprehensive results (similar to this project)
-  - Default behavior only shows errors
+    - Important: Set `errorsOnly: false` for comprehensive results (similar to this project)
+    - Default behavior only shows errors
 
 ![get_file_problems tool documentation](/screen/mcp_07.png)
-*The `get_file_problems` tool documentation showing the critical `errorsOnly` parameter - set it to false to get all warnings, not just errors*
-  
+_The `get_file_problems` tool documentation showing the critical `errorsOnly` parameter - set it to false to get all warnings, not just errors_
+
 - **`get_project_problems`**: Retrieves project-wide problems
-  - Note: Only returns critical errors, not warnings
-  - More limited than this project's comprehensive inspection
+    - Note: Only returns critical errors, not warnings
+    - More limited than this project's comprehensive inspection
 
 ![get_project_problems tool documentation](/screen/mcp_08.png)
-*The `get_project_problems` tool documentation - note it lacks an `errorsOnly` parameter and only returns severe issues*
+_The `get_project_problems` tool documentation - note it lacks an `errorsOnly` parameter and only returns severe issues_
 
 ### Other Tool Categories
 
@@ -137,24 +138,25 @@ The native MCP server provides access to various tool categories:
 
 ### Inspection Capabilities
 
-| Feature | This Project | Native MCP |
-|---------|-------------|------------|
-| File inspections | ✅ Full inspections | ✅ With `errorsOnly: false` |
-| Project inspections | ✅ All severities | ⚠️ Critical errors only |
-| Custom profiles | ✅ Supported | ✅ Uses IDE profiles |
-| Multiple IDEs | ✅ Auto-detection | ✅ Per-IDE configuration |
-| Isolation | ✅ Separate process | ✅ Integrated with IDE |
+| Feature             | This Project        | Native MCP                  |
+| ------------------- | ------------------- | --------------------------- |
+| File inspections    | ✅ Full inspections | ✅ With `errorsOnly: false` |
+| Project inspections | ✅ All severities   | ⚠️ Critical errors only     |
+| Custom profiles     | ✅ Supported        | ✅ Uses IDE profiles        |
+| Multiple IDEs       | ✅ Auto-detection   | ✅ Per-IDE configuration    |
+| Isolation           | ✅ Separate process | ✅ Integrated with IDE      |
 
 ### Configuration Differences
 
 **This Project (Environment Variables):**
+
 ```json
 {
-  "env": {
-    "EXCLUDE_INSPECTIONS": "SpellCheckingInspection",
-    "INSPECTION_TIMEOUT": "120000",
-    "RESPONSE_FORMAT": "markdown"
-  }
+    "env": {
+        "EXCLUDE_INSPECTIONS": "SpellCheckingInspection",
+        "INSPECTION_TIMEOUT": "120000",
+        "RESPONSE_FORMAT": "markdown"
+    }
 }
 ```
 
@@ -175,6 +177,7 @@ The LLM will translate these instructions into the appropriate tool parameters w
 ### 1. Backup Current Configuration
 
 Save your current `.mcp.json` configuration for reference:
+
 ```bash
 cp .mcp.json .mcp.json.backup
 ```
@@ -182,6 +185,7 @@ cp .mcp.json .mcp.json.backup
 ### 2. Update JetBrains IDE
 
 Ensure your IDE is updated to version 2025.2 or later:
+
 - Check for updates: `Help` → `Check for Updates`
 - Download latest version from [JetBrains website](https://www.jetbrains.com/)
 
@@ -196,11 +200,13 @@ When working with your LLM (Claude Code, etc.), you'll need to update your promp
 #### For File Inspections
 
 **Before (this project):**
+
 ```
 Check the code quality of the file /src/app.ts using JetBrains inspections
 ```
 
 **After (native MCP):**
+
 ```
 Check for all code problems in src/app.ts, including warnings and info messages, not just errors
 ```
@@ -210,11 +216,13 @@ Check for all code problems in src/app.ts, including warnings and info messages,
 #### For Project Inspections
 
 **Before (this project):**
+
 ```
 Run inspections on my entire /src/ directory
 ```
 
 **After (native MCP):**
+
 ```
 Check for critical errors in the entire project using get_project_problems
 ```
@@ -234,7 +242,7 @@ Check for critical errors in the entire project using get_project_problems
 1. **Project Problems**: The native `get_project_problems` only returns critical errors, not warnings or info-level issues
 
 ![Example of get_project_problems output](/screen/mcp_09.png)
-*Example output: `get_project_problems` often returns an empty array even when the project has warnings or minor issues - it only reports severe compilation errors*
+_Example output: `get_project_problems` often returns an empty array even when the project has warnings or minor issues - it only reports severe compilation errors_
 
 2. **No Standalone Mode**: Requires the IDE to be running
 3. **Per-IDE Configuration**: Each IDE needs separate configuration
@@ -253,17 +261,20 @@ You might want to continue using this project if:
 ### Common Issues
 
 **IDE not detected by client:**
+
 - Ensure MCP Server is enabled in IDE settings
 - Check that the IDE is running
 - Verify client configuration is correct
 - Restart both IDE and client
 
 **Missing inspections:**
+
 - For `get_file_problems`, ensure `errorsOnly: false`
 - Check IDE inspection profiles are properly configured
 - Verify file is within project scope
 
 **Performance issues:**
+
 - Adjust timeout values in tool parameters
 - Ensure IDE indexing is complete
 - Check system resources
