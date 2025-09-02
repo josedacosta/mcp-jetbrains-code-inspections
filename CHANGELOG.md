@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2025-09-02
+
+### Added
+- **GitHub Deployment Cleanup Script**: New TypeScript script to clean up non-successful GitHub deployments
+  - Support for dry-run mode to preview changes before deletion
+  - Option to keep the most recent deployment regardless of status
+  - Verbose mode for detailed output
+  - Color-coded terminal output for better readability
+- **Deployment Cleanup Documentation**: Comprehensive French documentation on GitHub deployment management
+  - Multiple deletion methods (CLI, API, GitHub Actions)
+  - Code examples in JavaScript, Python, and shell scripts
+  - Troubleshooting guide and best practices
+
+### Changed
+- **Script Organization**: Moved `check-version-consistency.ts` from `scripts/version/` to `scripts/git/` for better organization
+  - All git-related scripts now centralized in `scripts/git/` directory
+  - Removed empty `scripts/version/` directory
+
 ### Added
 - **MCP Prompts Support**: Added 3 pre-configured prompts for common inspection tasks
   - `analyze-project`: Analyze entire projects with optional profile selection

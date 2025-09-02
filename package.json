@@ -1,6 +1,6 @@
 {
     "name": "mcp-jetbrains-code-inspections",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "MCP server for JetBrains IDE code inspections with automatic IDE selection",
     "author": "José DA COSTA <jose.da-costa@runtima.com>",
     "license": "OSL-3.0",
