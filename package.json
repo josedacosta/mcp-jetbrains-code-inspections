@@ -50,7 +50,7 @@
         "docs:preview": "./scripts/docs/build-with-node-20.sh && yarn docs:serve"
     },
     "dependencies": {
-        "@modelcontextprotocol/sdk": "^1.17.4",
+        "@modelcontextprotocol/sdk": "^1.24.0",
         "@types/glob": "^9.0.0",
         "glob": "^11.0.3",
         "zod": "^3.22.0"
